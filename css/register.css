@@ -23,20 +23,20 @@
 
 .boxForm{
     width: 420px;
-    height: 340px;
+    height: 450px;
     position: absolute;
-    top: 50px;
+    top: 0px;
     left: 780px;
     margin: 6% auto;
     background: white;
-    padding: 5px;
+    padding: 15px;
     border-radius: 25px;
     box-shadow: 0px 1px 2px 2px rgb(173, 169, 169);
 }
 
 .input-login-field{
     width: 90%;
-    padding: 15px;
+    padding: 10px;
     margin: 10px auto;
     border: 1px solid rgb(211, 207, 207);
     border-color: rgb(126, 124, 124);
@@ -44,14 +44,61 @@
     outline: none;
     position: relative;
     left: 20px;
-    top: 20px;
 }
 
-.checkBox{
-    display: block;
+.label{
+    font-size: 15px;
     position: relative;
     left: 25px;
-    top: 25px;
+    padding: 0px;
+    margin: 0px;
+    top: 5px;
+}
+
+#firstname{
+    width: 43%;
+}
+
+#lastname{
+    width: 43%;
+    left: 23px;
+    position: relative;
+    margin: 8px;
+}
+
+.DoB_N_Gender{
+    display: grid;
+    grid-template-columns: 65% 25%;
+    position: relative;
+    left: 20px;
+}
+
+.DoB_N_Gender .label{
+    font-size: 15px;
+    left: 5px;
+}
+
+.DoB{
+    margin: 5px auto;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 25% 25% 48%;
+}
+
+.Gender{
+    position: relative;
+    left: 19px;
+}
+
+#DoB_Border{
+    outline: none;
+    margin: 5px auto;
+    padding: 5px;
+    border: 1px solid;
+    border-color: rgb(126, 124, 124);
+    border-radius: 5px;
+    cursor: pointer;
+    color: gray;
 }
 
 .loginBtn{
@@ -59,19 +106,9 @@
     width: 180px;
     height: 50px;
     left: 120px;
-    top: 45px;
+    top: 20px;
     border-radius: 15px;
     font-weight: 500;
     background-color: rgba(102, 102, 223, 0.384);
     font-size: 25px;
-}
-
-.linkRegister{
-    position: relative;
-    top: 70px;
-    left: 10px;
-}
-
-.linkRegister a {
-    text-decoration: underline;
 }
