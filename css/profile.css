@@ -15,6 +15,11 @@
     z-index: 1;
 }
 
+.brand {
+    position: relative;
+    top: -100px;
+}
+
 .info {
     margin-top: 10px;
 }
@@ -25,4 +30,8 @@
 
 .borderColor{
     border-color: rgb(255, 140, 20);
+}
+
+.active a .mainColor{
+    color: #007BFF;
 }
