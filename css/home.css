@@ -1,0 +1,56 @@
+.mainColor{
+    color: rgb(255, 140, 20); 
+}
+
+.borderColor{
+    border-color: rgb(255, 140, 20);
+}
+
+.category{
+    width: 400px;
+    display: inline;
+}
+
+.categoryUL{
+    line-height: 30px;
+    font-size: 25px; 
+}
+
+.active a .mainColor{
+    color: #007BFF;
+}
+
+.categoryUL .active{
+    background-color: rgb(255, 255, 255);
+    font-weight: 500;
+    border: solid 2px;
+    border-color: rgb(255, 140, 20);
+}
+
+.categoryUL li:hover{
+    line-height: 50px;
+}
+
+.categoryUL :hover{
+    font-size: 30px;
+    text-decoration: none;
+    color: #1100ff;
+}
+
+.categoryUL a:active{
+    line-height: 30px;
+    border-color: rgb(255, 140, 20);
+}
+
+.contentUL{
+    display: inline;
+}
+
+.imgContent{
+
+}
+
+.postImg{
+    width: 300px;
+    height: 300px;
+}
