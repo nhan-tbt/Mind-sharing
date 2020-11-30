@@ -119,3 +119,490 @@
     
   </body>
 </html>
+
+//
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Wall</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/wall.css"> 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom border-dark">
+        <img src="../images/logo.png" style="height: 80px; width: 80px;" alt="logo">
+        <a class="navbar-brand mr-5" style="text-shadow: 2px 2px 5px rgb(67, 68, 68);" href="#"> <h2>Mind-Sharing</h2></a>
+        <form class="form-inline my-2 my-lg-0 mr-5">
+            <input class="form-control mr-sm-2 rounded" type="text" placeholder="Search...">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-home fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-tags fa-3x" aria-hidden="true"></i></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-commenting fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-bell fa-3x" aria-hidden="true"></i></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-user-circle-o fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item dropdown ml-4">
+                    <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-caret-square-o-down fa-3x" aria-hidden="true"></i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#">Feedback</a>
+                        <a class="dropdown-item" href="#">Setting & Privacy</a>
+                        <a class="dropdown-item" href="#">Help</a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="background text-center">
+            <img src= "../images/background.jpg" alt="bacground">
+        </div>
+        <div class="avatar">
+            <center><img src="../images/user_1.jpg" id="ok" style="width: 200px; height: 200px;" alt="avatar"></center>
+        </div>
+
+        <div class="brand">
+            <center><h3>Ricardo Milos</h3></center>
+            <a href="profile.html"><center><input type="button" class="btn btn-primary" id = "addBtn" value = "See Profile"></center></a>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <div class="card-header">
+                    <a href="#"> <img src="../images/user_1.jpg" class="rounded-circle" style="width: 70px; height: 70px;" alt="user_img"> </a>
+                    <span class="h3">User name 1</span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio consequuntur eligendi maxime sequi similique quae repellendus! Aut sequi saepe incidunt, rerum fugit iste ipsum minus vel earum dolorum culpa.</h4>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 
+                            <span>17</span> </div>
+                        <div class="col-md-3 text-center"> 
+                            <span>17</span> 
+                            <i class="fa fa-comment-o" aria-hidden="true"></i> 
+                            <span>9</span> 
+                            <i class="fa fa-share-square-o" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row">
+                        <div class="col text-center border-right border-secondary p-0 m-0">
+                            <span class="text-dark" id="like" style="cursor: pointer;">Like</span>
+                        </div>
+                        <div class="col text-center border-right border-secondary p-0 m-0">
+                            <span class="text-dark" id="cmt" style="cursor: pointer;">Comment</span>
+                        </div>
+                        <div class="col text-center">
+                            <span class="text-dark" id="share" style="cursor: pointer;">Share</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="h6 font-weight-bold"> See more comments... </span>
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="#"> <img src="../images/user_2.jpg" class="rounded-circle" style="width: 30px; height: 30px;" alt="user_img"> </a>
+                            <span class="h5 text-dark"> User name 2 </span>
+                            <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio consequuntur eligendi maxime sequi similique quae repellendus! Aut sequi saepe incidunt, rerum fugit iste ipsum minus vel earum dolorum culpa.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+  </body>
+</html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Wall</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/wall.css"> 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom border-dark">
+        <img src="../images/logo.png" style="height: 80px; width: 80px;" alt="logo">
+        <a class="navbar-brand mr-5" style="text-shadow: 2px 2px 5px rgb(67, 68, 68);" href="#"> <h2>Mind-Sharing</h2></a>
+        <form class="form-inline my-2 my-lg-0 mr-5">
+            <input class="form-control mr-sm-2 rounded" type="text" placeholder="Search...">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-home fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-tags fa-3x" aria-hidden="true"></i></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-commenting fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-bell fa-3x" aria-hidden="true"></i></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-user-circle-o fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item dropdown ml-4">
+                    <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-caret-square-o-down fa-3x" aria-hidden="true"></i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#">Feedback</a>
+                        <a class="dropdown-item" href="#">Setting & Privacy</a>
+                        <a class="dropdown-item" href="#">Help</a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="background text-center">
+            <img src= "../images/background.jpg" alt="bacground">
+        </div>
+        <div class="avatar">
+            <center><img src="../images/user_1.jpg" id="ok" style="width: 200px; height: 200px;" alt="avatar"></center>
+        </div>
+
+        <div class="brand">
+            <center><h3>Ricardo Milos</h3></center>
+            <a href="profile.html"><center><input type="button" class="btn btn-primary" id = "addBtn" value = "See Profile"></center></a>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <div class="card-header">
+                    <a href="#"> <img src="../images/user_1.jpg" class="rounded-circle" style="width: 70px; height: 70px;" alt="user_img"> </a>
+                    <span class="h3">User name 1</span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio consequuntur eligendi maxime sequi similique quae repellendus! Aut sequi saepe incidunt, rerum fugit iste ipsum minus vel earum dolorum culpa.</h4>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 
+                            <span>17</span> </div>
+                        <div class="col-md-3 text-center"> 
+                            <span>17</span> 
+                            <i class="fa fa-comment-o" aria-hidden="true"></i> 
+                            <span>9</span> 
+                            <i class="fa fa-share-square-o" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row">
+                        <div class="col text-center border-right border-secondary p-0 m-0">
+                            <span class="text-dark" id="like" style="cursor: pointer;">Like</span>
+                        </div>
+                        <div class="col text-center border-right border-secondary p-0 m-0">
+                            <span class="text-dark" id="cmt" style="cursor: pointer;">Comment</span>
+                        </div>
+                        <div class="col text-center">
+                            <span class="text-dark" id="share" style="cursor: pointer;">Share</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="h6 font-weight-bold"> See more comments... </span>
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="#"> <img src="../images/user_2.jpg" class="rounded-circle" style="width: 30px; height: 30px;" alt="user_img"> </a>
+                            <span class="h5 text-dark"> User name 2 </span>
+                            <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio consequuntur eligendi maxime sequi similique quae repellendus! Aut sequi saepe incidunt, rerum fugit iste ipsum minus vel earum dolorum culpa.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+  </body>
+</html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Wall</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/wall.css"> 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom border-dark">
+        <img src="../images/logo.png" style="height: 80px; width: 80px;" alt="logo">
+        <a class="navbar-brand mr-5" style="text-shadow: 2px 2px 5px rgb(67, 68, 68);" href="#"> <h2>Mind-Sharing</h2></a>
+        <form class="form-inline my-2 my-lg-0 mr-5">
+            <input class="form-control mr-sm-2 rounded" type="text" placeholder="Search...">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-home fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-tags fa-3x" aria-hidden="true"></i></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-commenting fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-bell fa-3x" aria-hidden="true"></i></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-user-circle-o fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item dropdown ml-4">
+                    <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-caret-square-o-down fa-3x" aria-hidden="true"></i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#">Feedback</a>
+                        <a class="dropdown-item" href="#">Setting & Privacy</a>
+                        <a class="dropdown-item" href="#">Help</a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="background text-center">
+            <img src= "../images/background.jpg" alt="bacground">
+        </div>
+        <div class="avatar">
+            <center><img src="../images/user_1.jpg" id="ok" style="width: 200px; height: 200px;" alt="avatar"></center>
+        </div>
+
+        <div class="brand">
+            <center><h3>Ricardo Milos</h3></center>
+            <a href="profile.html"><center><input type="button" class="btn btn-primary" id = "addBtn" value = "See Profile"></center></a>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <div class="card-header">
+                    <a href="#"> <img src="../images/user_1.jpg" class="rounded-circle" style="width: 70px; height: 70px;" alt="user_img"> </a>
+                    <span class="h3">User name 1</span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio consequuntur eligendi maxime sequi similique quae repellendus! Aut sequi saepe incidunt, rerum fugit iste ipsum minus vel earum dolorum culpa.</h4>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 
+                            <span>17</span> </div>
+                        <div class="col-md-3 text-center"> 
+                            <span>17</span> 
+                            <i class="fa fa-comment-o" aria-hidden="true"></i> 
+                            <span>9</span> 
+                            <i class="fa fa-share-square-o" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row">
+                        <div class="col text-center border-right border-secondary p-0 m-0">
+                            <span class="text-dark" id="like" style="cursor: pointer;">Like</span>
+                        </div>
+                        <div class="col text-center border-right border-secondary p-0 m-0">
+                            <span class="text-dark" id="cmt" style="cursor: pointer;">Comment</span>
+                        </div>
+                        <div class="col text-center">
+                            <span class="text-dark" id="share" style="cursor: pointer;">Share</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="h6 font-weight-bold"> See more comments... </span>
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="#"> <img src="../images/user_2.jpg" class="rounded-circle" style="width: 30px; height: 30px;" alt="user_img"> </a>
+                            <span class="h5 text-dark"> User name 2 </span>
+                            <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio consequuntur eligendi maxime sequi similique quae repellendus! Aut sequi saepe incidunt, rerum fugit iste ipsum minus vel earum dolorum culpa.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+  </body>
+</html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Wall</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/wall.css"> 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom border-dark">
+        <img src="../images/logo.png" style="height: 80px; width: 80px;" alt="logo">
+        <a class="navbar-brand mr-5" style="text-shadow: 2px 2px 5px rgb(67, 68, 68);" href="#"> <h2>Mind-Sharing</h2></a>
+        <form class="form-inline my-2 my-lg-0 mr-5">
+            <input class="form-control mr-sm-2 rounded" type="text" placeholder="Search...">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-home fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-tags fa-3x" aria-hidden="true"></i></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-commenting fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-bell fa-3x" aria-hidden="true"></i></i></a>
+                </li>
+                <li class="nav-item ml-4 mr-3">
+                    <a class="nav-link" href="#"><i class="fa fa-user-circle-o fa-3x" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item dropdown ml-4">
+                    <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-caret-square-o-down fa-3x" aria-hidden="true"></i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#">Feedback</a>
+                        <a class="dropdown-item" href="#">Setting & Privacy</a>
+                        <a class="dropdown-item" href="#">Help</a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="background text-center">
+            <img src= "../images/background.jpg" alt="bacground">
+        </div>
+        <div class="avatar">
+            <center><img src="../images/user_1.jpg" id="ok" style="width: 200px; height: 200px;" alt="avatar"></center>
+        </div>
+
+        <div class="brand">
+            <center><h3>Ricardo Milos</h3></center>
+            <a href="profile.html"><center><input type="button" class="btn btn-primary" id = "addBtn" value = "See Profile"></center></a>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <div class="card-header">
+                    <a href="#"> <img src="../images/user_1.jpg" class="rounded-circle" style="width: 70px; height: 70px;" alt="user_img"> </a>
+                    <span class="h3">User name 1</span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio consequuntur eligendi maxime sequi similique quae repellendus! Aut sequi saepe incidunt, rerum fugit iste ipsum minus vel earum dolorum culpa.</h4>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 
+                            <span>17</span> </div>
+                        <div class="col-md-3 text-center"> 
+                            <span>17</span> 
+                            <i class="fa fa-comment-o" aria-hidden="true"></i> 
+                            <span>9</span> 
+                            <i class="fa fa-share-square-o" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row">
+                        <div class="col text-center border-right border-secondary p-0 m-0">
+                            <span class="text-dark" id="like" style="cursor: pointer;">Like</span>
+                        </div>
+                        <div class="col text-center border-right border-secondary p-0 m-0">
+                            <span class="text-dark" id="cmt" style="cursor: pointer;">Comment</span>
+                        </div>
+                        <div class="col text-center">
+                            <span class="text-dark" id="share" style="cursor: pointer;">Share</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="h6 font-weight-bold"> See more comments... </span>
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="#"> <img src="../images/user_2.jpg" class="rounded-circle" style="width: 30px; height: 30px;" alt="user_img"> </a>
+                            <span class="h5 text-dark"> User name 2 </span>
+                            <h5 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio consequuntur eligendi maxime sequi similique quae repellendus! Aut sequi saepe incidunt, rerum fugit iste ipsum minus vel earum dolorum culpa.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+  </body>
+</html>
