@@ -18,3 +18,8 @@
 .content {
     margin-top: 10px;
 }
+
+.brand {
+    position: relative;
+    top: -100px;
+}
