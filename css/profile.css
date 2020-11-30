@@ -18,3 +18,11 @@
 .info {
     margin-top: 10px;
 }
+
+.mainColor{
+    color: rgb(255, 140, 20); 
+}
+
+.borderColor{
+    border-color: rgb(255, 140, 20);
+}
