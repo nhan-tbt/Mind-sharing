@@ -6,6 +6,10 @@
     border-color: rgb(255, 140, 20);
 }
 
+.bgColor{
+    background-color: rgb(255, 140, 20);
+}
+
 .category{
     width: 400px;
     display: inline;
