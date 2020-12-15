@@ -10,6 +10,12 @@
     background-color: rgb(255, 140, 20);
 }
 
+.logoName{
+    font-size: 45px;
+    position: relative;
+    top: 5px;
+}
+
 .category{
     width: 400px;
     display: inline;
@@ -48,10 +54,6 @@
 
 .contentUL{
     display: inline;
-}
-
-.imgContent{
-
 }
 
 .postImg{
