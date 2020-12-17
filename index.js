@@ -36,6 +36,18 @@ app.get('/message',function(req,res){
     res.render('message');
 })
 
+app.get('/setting-password',function(req,res){
+    res.render('setting-password');
+})
+
+app.get('/setting-privacy',function(req,res){
+    res.render('setting-privacy');
+})
+
+app.get('/setting-general',function(req,res){
+    res.render('setting-general');
+})
+
 app.get('/user_wall',function(req,res){
     res.render('user_wall');
 })
