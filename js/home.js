@@ -1,6 +1,4 @@
-var list = document.getElementById('content');
 var listNav = document.getElementById('navbar');
-
 
 function setCurrentUser(name){
     sessionStorage.setItem("current_user", name);
