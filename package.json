@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/18127168/Mind-sharing#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0"
   }

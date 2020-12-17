@@ -26,14 +26,19 @@
     font-size: 25px; 
 }
 
-.active a .mainColor{
+p{
+    padding: 0px;
+    margin: 0px;
+}
+
+.active p{
     color: #007BFF;
 }
 
 .categoryUL .active{
     background-color: rgb(255, 255, 255);
     font-weight: 500;
-    border: solid 2px;
+    border: solid 3px;
     border-color: rgb(255, 140, 20);
 }
 
@@ -59,4 +64,8 @@
 .postImg{
     width: 300px;
     height: 300px;
+}
+
+.post{
+    
 }

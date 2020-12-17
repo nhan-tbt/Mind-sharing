@@ -1,0 +1,50 @@
+.box-mess {
+    /* width: 500px; */
+    margin: 10px 50px;
+    border-radius: 15px;
+    background: #ccc;
+    color: black;
+    padding: 20px;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+    max-width: 800px;
+}
+  
+.me:before {
+  content: "";
+  
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 15px solid #ccc;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #ccc;
+  border-bottom: 15px solid transparent;
+  right: -16px;
+  top: 0px;
+}
+
+.guy:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 15px solid #ccc;
+  border-top: 15px solid  #ccc;
+  border-bottom: 15px solid transparent;
+  left: -16px;
+  top: 0px;
+}
+
+.username {
+  white-space: nowrap; 
+  width: 280px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.box-chat {
+  height: 380px;
+  overflow: auto;
+}

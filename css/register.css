@@ -33,13 +33,13 @@
 }
 
 .loginForm{
-    width: 420px;
-    height: 380px;
+    width: 450px;
+    height: 410px;
 }
 
 .registerForm{
     width: 420px;
-    height: 470px;
+    height: 500px;
 }
 
 .inputField{
@@ -152,6 +152,12 @@
     left: 10px;
 }
 
+.linkLogin{
+    position: relative;
+    top: 50px;
+    left: 50px;
+}
+
 .linkRegister a {
     text-decoration: underline;
 }
@@ -161,4 +167,24 @@
     position: relative;
     left: 25px;
     top: 25px;
+}
+
+.announcement{
+    color: red;
+    font-size: 15px;
+    position: relative;
+    left: 40px;
+    padding: 0px;
+    margin: 0px;
+    top: 25px;
+}
+
+.logAnnoun{
+    color: red;
+    font-size: 20px;
+    position: relative;
+    left: 50px;
+    padding: 0px;
+    margin: 0px;
+    top: 15px;
 }
