@@ -1,25 +1,37 @@
-.avatar {
-    position: relative;
-    top: -120px;
+.background{
+    width: 900px; 
+    height: 250;
+}
+
+.avatar{
+    width: 230px; 
+    height: 235; 
+    position: relative; 
+    top: -100px;
     z-index: 2;
 }
 
-#ok {
-    border: 3px solid black;
-    border-radius: 100% 100% 100% 100%;
+.username{
+    position: relative; 
+    top: -80px; 
+    font-size: 50px;
 }
 
-.background {
-    top: -20%;
-    position: relative;
-    z-index: 1;
+
+#wallBtn {
+    position: relative; 
+    top: -50px; 
+    font-size: 20px;
 }
 
-.brand {
-    position: relative;
-    top: -100px;
+.inputRow{
+    padding: 5px;
 }
 
-.info {
-    margin-top: 10px;
+.inputField{
+    padding: 15px;
+}
+
+input[type="text"]:disabled {
+    background: rgb(247, 255, 224);
 }
