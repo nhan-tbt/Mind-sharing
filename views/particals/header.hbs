@@ -3,25 +3,25 @@
         <img src="./images/logo.png" style="height: 80px; width: 80px;" alt="logo">
         <span class="logoName mainColor">Mind-Sharing</span>
     </a>
-    <form class="form-inline my-2 my-lg-0 mr-5">
-        <input class="form-control mr-sm-2 rounded borderColor" type="text" placeholder="Search...">
+    <div class="mr-5"></div>
+    <form class="form-inline my-2 my-lg-0 ml-5 mr-5">
+        <input class="form-control mr-sm-2 rounded borderColor searchField" type="text" placeholder="Search...">
         <button class="btn btn-outline-success my-2 my-sm-0 borderColor" type="submit"><span><b>Search</b></span> </button>
     </form>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0" id="navbar">
             <li class="nav-item active ml-5 mr-3">
                 <a class="nav-link" href="/"><i class="fa fa-home fa-3x mainColor" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item ml-4 mr-3">
                 <a class="nav-link" href="/message"><i class="fa fa-commenting fa-3x mainColor" aria-hidden="true"></i></a>
             </li>
-            <li class="nav-item ml-4 mr-3">
+            <li class="nav-item dropdown ml-4 mr-3">
+                <a class="nav-link text-light" href="" id="notiDropdown" role="button" data-toggle="dropdown">
+                    <i class="fa fa-bell fa-3x mainColor" aria-hidden="true"></i>
+                </a>
                 <div id ="notification" class="noti">
-                    <div class="nav-item dropdown">
-                        <a class="nav-link text-light" href="#" id="notiDropdown" role="button" data-toggle="dropdown">
-                            <i class="fa fa-bell fa-3x mainColor" aria-hidden="true"></i>
-                        </a>
-                            <ul class="dropdown-menu">
+                        <ul class="dropdown-menu">
                             <li class="head text-dark bgColor">
                                 <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
@@ -75,7 +75,6 @@
                                 <strong><a href="" class="text-dark">View All</a></strong>
                             </li>
                         </ul>
-                    </div>
                 </div>
             </li>
             <li class="nav-item ml-4 mr-3">
@@ -89,10 +88,25 @@
                     {{!-- <a class="dropdown-item" href="#">Feedback</a> --}}
                     <a class="dropdown-item" href="/setting-general">Setting & Privacy</a>
                     {{!-- <a class="dropdown-item" href="#">Help</a> --}}
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="/login">Logout</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
 <div class="border"></div>
+<script src="./js/home.js"></script>
+<script>
+    var current_user = {{current_user}};
+ 
+    if (current_user == 1){
+        setAnonymous();
+    }
+    else if (current_user == 2){
+        setCurrentUser("{{user_name}}");
+    }
+    else if (current_user == 2){
+
+    }
+
+</script>

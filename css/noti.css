@@ -11,10 +11,10 @@
   .dropdown-menu:before{
     content: "";
     position: absolute;
-    top: -20px;
-    right: 12px;
-    border:10px solid #343A40;
-    border-color: transparent transparent #343A40 transparent;
+    top: -15px;
+    right: 20px;
+    border: 10px solid rgb(255, 140, 20); ;
+    border-color: transparent transparent rgb(255, 140, 20);  transparent;
   }
   
   .notification-box{

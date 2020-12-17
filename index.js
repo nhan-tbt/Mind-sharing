@@ -5,6 +5,14 @@ const fs = require('fs');
 const bodyParser = require("body-parser");
 var app = express();
 
+
+const anonymous = 1;
+const user = 2;
+const admin = 3;
+
+var current_user = anonymous;
+var user_name = "";
+
 var accountFile = JSON.parse(fs.readFileSync(__dirname + "/json/account.json"));
 
 app.engine('hbs', hbs({
@@ -25,31 +33,31 @@ app.set('view engine', 'hbs');
 app.set('port',(process.env.PORT || 5000));
 
 app.get('/',function(req,res){
-    res.render('index');
+    res.render('index', {current_user: current_user, user_name: user_name });
 })
 
 app.get('/profile',function(req,res){
-    res.render('profile');
+    res.render('profile', {current_user: current_user, user_name: user_name });
 })
 
 app.get('/message',function(req,res){
-    res.render('message');
+    res.render('message', {current_user: current_user, user_name: user_name });
 })
 
 app.get('/setting-password',function(req,res){
-    res.render('setting-password');
+    res.render('setting-password', {current_user: current_user, user_name: user_name });
 })
 
 app.get('/setting-privacy',function(req,res){
-    res.render('setting-privacy');
+    res.render('setting-privacy', {current_user: current_user, user_name: user_name });
 })
 
 app.get('/setting-general',function(req,res){
-    res.render('setting-general');
+    res.render('setting-general', {current_user: current_user, user_name: user_name });
 })
 
 app.get('/user_wall',function(req,res){
-    res.render('user_wall');
+    res.render('user_wall', {current_user: current_user, user_name: user_name });
 })
 
 app.get('/login',function(req,res){
@@ -99,6 +107,8 @@ app.post('/get_infor_register', (req, res) => {
             accountFile.userInfor.push(user);
             fs.writeFileSync(__dirname + "/json/account.json", JSON.stringify(accountFile));
 
+            current_user = user;
+            user_name = req.body.account;
             res.redirect("/");
         }
         else {
@@ -121,6 +131,8 @@ function checkLogin(ArrAcc, Acc, Pass){
 
 app.post('/get_infor_login', (req, res) => {
     if (checkLogin(accountFile.userInfor, req.body.account, req.body.password)){
+        current_user = user;
+        user_name = req.body.account;
         res.redirect("/");
     }
     else{
