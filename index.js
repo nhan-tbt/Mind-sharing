@@ -14,8 +14,6 @@ const admin = 3;
 var current_user = anonymous;
 var user_name = "";
 
-var accountFile = JSON.parse(fs.readFileSync(__dirname + "/json/account.json"));
-
 app.engine('hbs', hbs({
     extname:'hbs',
     defaultLayout: 'layout',
