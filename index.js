@@ -3,8 +3,9 @@ const hbs = require('express-handlebars');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const bodyParser = require("body-parser");
-var app = express();
+const controller = require('./controllers/blogController');
 
+var app = express();
 
 const anonymous = 1;
 const user = 2;
@@ -68,77 +69,68 @@ app.get('/register',function(req,res){
     res.render('register', {layout: 'log_res_Layout.hbs'});
 })
 
-function checkExist(ArrAcc, newAcc){
-
-    var check = false;
-    ArrAcc.forEach(ele => {
-        if (String(ele.account) === String(newAcc))
-            check = true;
-        }
-    )
-    return check;
-}
-
 app.post('/get_infor_register', (req, res) => {
+
     if (req.body.account.includes(" ")){
         res.render('register', {resAnnoun: '*Account cannot contain space', func: "register()"});
     }
     else {
-        if (checkExist(accountFile.userInfor, req.body.account) == false){
-            var user = {};
-            user.fname = req.body.fname;
-            user.lname = req.body.lname;
-            user.account = req.body.account;
-            user.password = req.body.password;
-            user.avtImage = "";
-            user.bgImage = "";
-            user.email = "";
-            user.pNumber = "";
-            user.Bday = req.body.Bday;
-            user.Bmonth = req.body.Bmonth;
-            user.Byear = req.body.Byear;
-            user.gender = req.body.gender;
-            user.nation = "";
-            user.bio = "";
-            
-            var salt = bcrypt.genSaltSync(10);
-            user.password = bcrypt.hashSync(user.password, salt);
+        controller.searchAcc(req.body.account, function(this_user) {
+            if (this_user != null){
+                res.render('register',{layout: 'log_res_Layout.hbs', resAnnoun: '*Account ' + req.body.account + ' has already exists', func: "register()"});
+            }
+            else {
+                var salt = bcrypt.genSaltSync(10);
 
-            accountFile.userInfor.push(user);
-            fs.writeFileSync(__dirname + "/json/account.json", JSON.stringify(accountFile));
-
-            current_user = user;
-            user_name = req.body.account;
-            res.redirect("/");
-        }
-        else {
-            res.render('register',{layout: 'log_res_Layout.hbs', resAnnoun: '*Account ' + req.body.account + ' has already exists', func: "register()"});
-        }
+                var userAcc = {
+                    id: req.body.account,
+                    type: "USER",
+                    password: bcrypt.hashSync(req.body.password, salt),
+                    fname: req.body.fname,
+                    lname: req.body.lname,
+                    avtPath: "",
+                    bgPath: "",
+                    email: "",
+                    pNum: "",
+                    bDay: req.body.Bday,
+                    bMonth: req.body.Bmonth,
+                    bYear: req.body.Byear,
+                    gender: req.body.gender,
+                    nation: "",
+                    bio: ""
+                }
+    
+                current_user = user;
+                user_name = req.body.account;
+    
+                controller.createAcc(userAcc);
+                res.redirect("/");
+            }
+        });
     }
 });
 
-function checkLogin(ArrAcc, Acc, Pass){
-    var check = false;
-    
-    ArrAcc.forEach(ele => {
-        if (String(ele.account) == String(Acc))
-            if (bcrypt.compareSync(Pass, ele.password))
-                check = true;
-    })
 
-    return check;
-}
 
 app.post('/get_infor_login', (req, res) => {
-    if (checkLogin(accountFile.userInfor, req.body.account, req.body.password)){
-        current_user = user;
-        user_name = req.body.account;
-        res.redirect("/");
-    }
-    else{
-        res.render('login', {layout: 'log_res_Layout.hbs', resAnnoun: '*Invalid username or password'});
-    }
+    controller.searchAcc(req.body.account, function(this_user) {
+        if (this_user.length != 0){
+            if (bcrypt.compareSync(req.body.password, this_user.password)){
+                current_user = user;
+                user_name = req.body.account;
+                res.redirect("/");
+            }
+            else {
+                res.render('login', {layout: 'log_res_Layout.hbs', resAnnoun: '*Invalid username or password'});
+            }
+        }
+        else {
+            res.render('login', {layout: 'log_res_Layout.hbs', resAnnoun: '*Invalid username or password'});
+        }
+    });
 });
+
+
 
 app.listen(app.get('port'),function(){
     console.log("Server is listening on port "+ app.get('port'));

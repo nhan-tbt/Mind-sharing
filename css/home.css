@@ -10,6 +10,12 @@
     background-color: rgb(255, 140, 20);
 }
 
+.navBar{
+    z-index: 100;
+    position: sticky;
+    top: 0;
+}
+
 .logoName{
     font-size: 45px;
     position: relative;
@@ -67,5 +73,16 @@ p{
 }
 
 .post{
-    
+    position: relative;
+    width: 100%;
+    height: 90px;
+    cursor: pointer;
+    border: none;
+    padding: 15px;
+}
+
+.post::placeholder {
+    color: rgb(103, 168, 18);
+    opacity: 0.8; /* Firefox */
+    font-size: 30px;
 }
