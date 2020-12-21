@@ -41,6 +41,10 @@ app.get('/profile',function(req,res){
     res.render('profile', {current_user: current_user, user_name: user_name });
 })
 
+app.get('/contact',function(req,res){
+    res.render('contact', {current_user: current_user, user_name: user_name });
+})
+
 app.get('/message',function(req,res){
     res.render('message', {current_user: current_user, user_name: user_name });
 })

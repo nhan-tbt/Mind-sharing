@@ -1,89 +1,95 @@
 <link rel="stylesheet" href="./css/profile.css">
 <div class="container">
-    <div class="background text-center">
-        <img src="./images/background.jpg" alt="bacground">
+    <div class="text-center">
+        <img src="./images/background.jpg" class="img-thumbnail background" alt="background">
     </div>
-    <div class="avatar">
-        <center><img src="./images/user_1.jpg" class="img-thumbnail" id="ok" style="width: 200px; height: 200px;"
-                alt="avatar"></center>
-    </div>
-    <div class="brand">
-        <center>
-            <h3>Ricardo Milos</h3>
-        </center>
+    <div class="text-center">
+        <img src="./images/user_1.jpg" class="img-thumbnail rounded-circle avatar" style="height: 200px; width: 200px;" alt="avatar">
+        <h1 class="username mainColor"> User Name </h1>
         <a href="/user_wall">
-            <center><input type="button" class="btn btn-primary" id="proBtn" value="See Post"></center>
+            <input type="button" class="btn bgColor" id="wallBtn" value="See Post">
         </a>
     </div>
     <div class="info">
-        <div class="card">
-            <div class="card-header">
-                <h2>Public Profile</h2>
+        <div class="card formColor">
+            <div class="card-header bgColor">
+                <h2 class="text-center">Public Profile</h2>
             </div>
             <div class="card-body">
                 <div class="row m-2">
-                    <div class="col-3">
+                    <div class="col-2 inputRow">
                         <h5>First Name</h5>
                     </div>
-                    <div class="col">
+                    <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control" name="first name" value="Ricardo">
+                            <input type="text" class="form-control p-4" name="first name" value="User" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-3">
+                    <div class="col-2 inputRow">
                         <h5>Last Name</h5>
                     </div>
-                    <div class="col">
+                    <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control" name="last name" value="Milos">
+                            <input type="text" class="form-control p-4" name="last name" value="Name" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-3">
+                    <div class="col-2 inputRow">
                         <h5>Email Address</h5>
                     </div>
-                    <div class="col">
+                    <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control" name="email" value="ricardo.milos@gmail.com">
+                            <input type="text" class="form-control p-4" name="email" value="user.name@gmail.com" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-3">
+                    <div class="col-2 inputRow">
                         <h5>Phone number</h5>
                     </div>
-                    <div class="col">
+                    <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control" name="phone" value="911">
+                            <input type="text" class="form-control p-4" name="phone" value="0969327639" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-3">
+                    <div class="col-2 inputRow">
+                        <h5>Favorite food</h5>
+                    </div>
+                    <div class="col inputRow">
+                        <div class="form-row">
+                            <input type="text" class="form-control p-4" name="favoriteFood"
+                                value="Lemon ice cream, lemon lemongrass kumquat tea, lemon juice" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col-2 inputRow">
                         <h5>Nationality</h5>
                     </div>
-                    <div class="col">
+                    <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control" name="nation" value="Vietnam">
+                            <input type="text" class="form-control p-4" name="nation" value="Campuchia" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-3">
+                    <div class="col-2 inputRow">
                         <h5>Bio</h5>
                     </div>
-                    <div class="col ">
+                    <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control" name="phone"
-                                value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, quod!">
+                            <input type="text" class="form-control p-4" name="phone"
+                                value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, quod!"
+                                disabled>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
