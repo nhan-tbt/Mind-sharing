@@ -1,10 +1,16 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "Mind-Sharing",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "username": "phojcggwcwfqig",
+    "password": "17877da03725a67ad9f7f6bc3f907d13d02951a10e06b11c7025ce9ab8e20a90",
+    "database": "d2n50dlvhvrng7",
+    "host": "ec2-54-172-219-218.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+          "require": true,
+          "rejectUnauthorized": false
+      }
+    }
   },
   "test": {
     "username": "root",

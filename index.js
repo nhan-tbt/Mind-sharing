@@ -87,7 +87,6 @@ app.post('/get_infor_register', (req, res) => {
                 var userAcc = {
                     id: req.body.account,
                     password: bcrypt.hashSync(req.body.password, salt),
-                    type: "USER",
                     fname: req.body.fname,
                     lname: req.body.lname,
                     avtPath: "",
@@ -99,9 +98,7 @@ app.post('/get_infor_register', (req, res) => {
                     bYear: req.body.Byear,
                     gender: req.body.gender,
                     nation: "",
-                    bio: "",
-                    createdAt: Sequelize.literal('NOW()'),
-                    updatedAt: Sequelize.literal('NOW()')
+                    bio: ""
                 }
     
                 current_user = user;
@@ -134,12 +131,12 @@ app.post('/get_infor_login', (req, res) => {
     });
 });
 
-var models = require('./models');
-app.get('/sync',function(req,res){
-  models.sequelize.sync().then(function(){
-      res.send('database sync complete!');
-  })
-})
+// var models = require('./models');
+// app.get('/sync',function(req,res){
+//   models.sequelize.sync().then(function(){
+//       res.send('database sync complete!');
+//   })
+// })
 
 app.listen(app.get('port'),function(){
     console.log("Server is listening on port "+ app.get('port'));
