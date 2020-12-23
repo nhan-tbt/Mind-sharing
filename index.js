@@ -87,6 +87,7 @@ app.post('/get_infor_register', (req, res) => {
                 var userAcc = {
                     id: req.body.account,
                     password: bcrypt.hashSync(req.body.password, salt),
+                    type: "USER",
                     fname: req.body.fname,
                     lname: req.body.lname,
                     avtPath: "",
@@ -112,10 +113,9 @@ app.post('/get_infor_register', (req, res) => {
 });
 
 
-
 app.post('/get_infor_login', (req, res) => {
     controller.searchAcc(req.body.account, function(this_user) {
-        if (this_user.length != 0){
+        if (this_user != null){
             if (bcrypt.compareSync(req.body.password, this_user.password)){
                 current_user = user;
                 user_name = req.body.account;
