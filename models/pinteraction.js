@@ -10,10 +10,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      pInteraction.belongsTo(models.Post);
     }
   };
   pInteraction.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
+    PostId: DataTypes.INTEGER,
+    UserId: DataTypes.STRING,
     like: DataTypes.BOOLEAN,
     share: DataTypes.BOOLEAN
   }, {

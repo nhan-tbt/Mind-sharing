@@ -1,18 +1,40 @@
 const express = require('express');
 const hbs = require('express-handlebars');
 const bcrypt = require('bcrypt');
-const fs = require('fs');
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 const controller = require('./controllers/blogController');
+const http = require('http')
+const socketio = require('socket.io')
+const multer = require('multer');
+const path = require('path')
 
 var app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
-const anonymous = 1;
-const user = 2;
-const admin = 3;
+var currentUser = "";
 
-var current_user = anonymous;
-var user_name = "";
+//Storage
+const storage = multer.diskStorage({
+    destination: __dirname + '/' + '/images',
+    filename: function(req, file, cb) {
+        cb(null, file.filename + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: storage
+}).single('myImage');
+
+app.post('/upload', function(req, res) {
+    upload(req, res, (err) => {
+        if(err){
+            console.log(err)
+        } else{
+            console.log('suc')
+        }
+    });
+});
 
 app.engine('hbs', hbs({
     extname:'hbs',
@@ -31,55 +53,92 @@ app.use(bodyParser.json());
 app.set('view engine', 'hbs');
 app.set('port',(process.env.PORT || 5000));
 
+io.on('connection', socket => {
+    socket.emit('message', 'Welcome to !');
+
+    socket.broadcast.emit('message', 'Welcome to Hahaha!');
+
+    socket.on('disconnect', () => {
+        io.emit('message', "Uf");
+    })
+
+    //Listen
+    socket.on('chatMessage', (mess) => {
+        io.emit('mess', mess)
+    })
+})
+
 app.get('/',function(req,res){
-    res.render('index', {current_user: current_user, user_name: user_name });
+    res.locals.currentUser = currentUser;
+    
+    controller.searchAllPost(function(posts){
+        res.locals.posts = posts;
+        res.render('index');
+    });
 })
 
 app.get('/profile',function(req,res){
-    res.render('profile', {current_user: current_user, user_name: user_name });
+    res.render('profile');
 })
 
 app.get('/contact',function(req,res){
-    res.render('contact', {current_user: current_user, user_name: user_name });
+    res.render('contact');
 })
 
 app.get('/message',function(req,res){
-    res.render('message', {current_user: current_user, user_name: user_name });
+    res.render('message');
 })
 
 app.get('/setting-password',function(req,res){
-    res.render('setting-password', {current_user: current_user, user_name: user_name });
+    res.render('setting-password');
 })
 
-app.get('/setting-privacy',function(req,res){
-    res.render('setting-privacy', {current_user: current_user, user_name: user_name });
-})
-
-app.get('/setting-general',function(req,res){
-    res.render('setting-general', {current_user: current_user, user_name: user_name });
-})
-
-app.get('/user_wall',function(req,res){
-    res.render('user_wall', {current_user: current_user, user_name: user_name });
+app.get('/test',function(req,res){
+    res.render('test');
 })
 
 app.get('/login',function(req,res){
-    res.render('login', {layout: 'log_res_Layout.hbs'});
+    res.locals.layout = 'log_res_Layout.hbs';
+
+    res.render('login');
 })
 
+app.get('/login',function(req,res){
+    res.locals.layout = 'log_res_Layout.hbs';
+
+    res.render('login');
+})
+
+app.get('/user_wall',function(req,res){
+    res.render('user_wall');
+})
+
+app.get('/login',function(req,res){
+    res.locals.layout = 'log_res_Layout.hbs';
+
+    res.render('login');
+})
+
+
 app.get('/register',function(req,res){
-    res.render('register', {layout: 'log_res_Layout.hbs'});
+    res.locals.layout = 'log_res_Layout.hbs';
+
+    res.render('register');
 })
 
 app.post('/get_infor_register', (req, res) => {
-
     if (req.body.account.includes(" ")){
-        res.render('register', {resAnnoun: '*Account cannot contain space', func: "register()"});
+        res.locals.layout = 'log_res_Layout.hbs';
+        res.locals.resAnnoun = '*Account cannot contain space';
+        res.render('register');
     }
     else {
         controller.searchAcc(req.body.account, function(this_user) {
             if (this_user != null){
-                res.render('register',{layout: 'log_res_Layout.hbs', resAnnoun: '*Account ' + req.body.account + ' has already exists', func: "register()"});
+                res.locals.layout = 'log_res_Layout.hbs';
+                res.locals.resAnnoun = '*Account ' + req.body.account + ' has already exists';
+
+                res.render('register');
             }
             else {
                 var salt = bcrypt.genSaltSync(10);
@@ -102,7 +161,7 @@ app.post('/get_infor_register', (req, res) => {
                     bio: ""
                 }
     
-                current_user = user;
+                currentUser = req.body.account;
                 user_name = req.body.account;
     
                 controller.createAcc(userAcc);
@@ -112,32 +171,30 @@ app.post('/get_infor_register', (req, res) => {
     }
 });
 
-
 app.post('/get_infor_login', (req, res) => {
+
     controller.searchAcc(req.body.account, function(this_user) {
         if (this_user != null){
             if (bcrypt.compareSync(req.body.password, this_user.password)){
-                current_user = user;
-                user_name = req.body.account;
+                currentUser = req.body.account;
+
                 res.redirect("/");
             }
             else {
-                res.render('login', {layout: 'log_res_Layout.hbs', resAnnoun: '*Invalid username or password'});
+                res.locals.layout = 'log_res_Layout.hbs';
+                res.locals.resAnnoun = '*Invalid username or password';
+                res.render('login');
             }
         }
         else {
-            res.render('login', {layout: 'log_res_Layout.hbs', resAnnoun: '*Invalid username or password'});
+            res.locals.layout = 'log_res_Layout.hbs';
+            res.locals.resAnnoun = '*Invalid username or password';
+
+            res.render('login');
         }
     });
 });
 
-// var models = require('./models');
-// app.get('/sync',function(req,res){
-//   models.sequelize.sync().then(function(){
-//       res.send('database sync complete!');
-//   })
-// })
-
-app.listen(app.get('port'),function(){
-    console.log("Server is listening on port "+ app.get('port'));
+server.listen(app.get('port'),function(){
+    console.log("Server is listening on port "+ app.get('port'))
 });

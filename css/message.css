@@ -48,3 +48,8 @@
   height: 380px;
   overflow: auto;
 }
+
+.chat_input {
+  width: 92%;
+  display: inline-block;
+}

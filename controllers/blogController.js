@@ -4,7 +4,7 @@ const sequelize = require('sequelize');
 
 var models = require('../models');
 var User = models.User;
-
+var Post = models.Post;
 controller.searchAcc = function(account, callback){
 	User.findOne({
 		where: { id: account },
@@ -15,19 +15,17 @@ controller.searchAcc = function(account, callback){
 };
 
 controller.createAcc = function(user){
-	models.User
-	.create(user);
+	User.create(user);
 };
 
-// controller.updatea = function(){
-// 	models.User
-// 	.update({
-// 		type: 'USER',
-// 	}, {
-// 		where: {id: 'tainhan2013'},
-// 	}
-// 	);
-// };
+controller.searchAllPost = function(callback){
+	Post.findAll({
+		include: [User],
+	}).then(function(posts) {
+		callback(posts);
+	});
+};
+
 
 
 module.exports = controller;

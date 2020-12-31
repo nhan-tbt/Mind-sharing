@@ -1,35 +1,48 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('pCategories', {
+    await queryInterface.createTable('Messes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      PostId: {
+      ChatId: {
         type: Sequelize.INTEGER,
-        primaryKey: true,
         references: {
-          model: 'Posts',
+          model: 'Chats',
           key: 'id'
         },
         onDelete: 'cascade',
         onUpdate: 'cascade'
       },
-      category: {
-        type: Sequelize.TEXT
-      },
-      UserId: {
-        type: Sequelize.TEXT,
-        primaryKey: true,
+      UserID: {
+        type: Sequelize.STRING,
         references: {
           model: 'Users',
           key: 'id'
         },
         onDelete: 'cascade',
         onUpdate: 'cascade'
+      },
+      typeMess: {
+        type: Sequelize.STRING
+      },
+      contentMess: {
+        type: Sequelize.TEXT
+      },
+      time: {
+        type: Sequelize.STRING
+      },
+      mDay: {
+        type: Sequelize.INTEGER
+      },
+      mMonth: {
+        type: Sequelize.INTEGER
+      },
+      mYear: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -42,6 +55,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('pCategories');
+    await queryInterface.dropTable('Messes');
   }
 };

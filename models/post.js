@@ -1,4 +1,6 @@
 'use strict';
+
+
 const {
   Model
 } = require('sequelize');
@@ -10,14 +12,27 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      //Post.belongsTo(models.User);
+      Post.belongsTo(models.User);
+      Post.hasMany(models.pComment);
+      Post.hasMany(models.pInteraction);
     }
   };
   Post.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
+    UserId: DataTypes.STRING,
+    time: DataTypes.STRING,
     pDay: DataTypes.TEXT,
     pMonth: DataTypes.TEXT,
-    pDay: DataTypes.TEXT,
-    content: DataTypes.TEXT
+    pYear: DataTypes.TEXT,
+    content: DataTypes.TEXT,
+    imgPath: DataTypes.ARRAY(DataTypes.STRING),
+    category: DataTypes.ARRAY(DataTypes.STRING),
+    like: DataTypes.INTEGER,
+    share: DataTypes.INTEGER,
+    comment: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Post',

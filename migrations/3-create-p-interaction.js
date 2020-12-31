@@ -17,17 +17,8 @@ module.exports = {
         onDelete: 'cascade',
         onUpdate: 'cascade'
       },
-      UserIdPost: {
-        type: Sequelize.TEXT,
-        references: {
-          model: 'Users',
-          key: 'id'
-        },
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
-      },
-      UserIdInteraction: {
-        type: Sequelize.TEXT,
+      UserId: {
+        type: Sequelize.STRING,
         references: {
           model: 'Users',
           key: 'id'

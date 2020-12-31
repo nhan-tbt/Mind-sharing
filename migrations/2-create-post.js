@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       UserId: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
         references: {
           model: 'Users',
           key: 'id'
@@ -17,17 +17,35 @@ module.exports = {
         onDelete: 'cascade',
         onUpdate: 'cascade'
       },
+      time: {
+        type: Sequelize.STRING
+      },
       pDay: {
-        type: Sequelize.TEXT
+        type: Sequelize.INTEGER
       },
       pMonth: {
-        type: Sequelize.TEXT
+        type: Sequelize.INTEGER
       },
-      pDay: {
-        type: Sequelize.TEXT
+      pYear: {
+        type: Sequelize.INTEGER
       },
       content: {
         type: Sequelize.TEXT
+      },
+      imgPath: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
+      category: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
+      like: {
+        type: Sequelize.INTEGER
+      },
+      share: {
+        type: Sequelize.INTEGER
+      },
+      comment: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

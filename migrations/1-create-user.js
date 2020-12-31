@@ -5,46 +5,46 @@ module.exports = {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       password: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       type:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       fname: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       lname: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       avtPath: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       bgPath: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       pNum: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       bDay: {
-        type: Sequelize.TEXT
+        type: Sequelize.INTEGER
       },
       bMonth: {
-        type: Sequelize.TEXT
+        type: Sequelize.INTEGER
       },
       bYear: {
-        type: Sequelize.TEXT
+        type: Sequelize.INTEGER
       },
       gender: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       nation: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       bio: {
         type: Sequelize.TEXT
