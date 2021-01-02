@@ -19,10 +19,11 @@
         {{>header}}
         {{{body}}}
         <script>
-            if (`{{currentUser}}` == ""){
+            console.log({{currentUser}})
+            if (`{{currentUser}}` == ''){
                 setAnonymous();
             } else {
-                sessionStorage.setItem("current_user", `{{currentUser}}`);
+                sessionStorage.setItem("currentUser", `{{currentUser}}`);
             }
         </script>
         <!-- Optional JavaScript -->

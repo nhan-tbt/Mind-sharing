@@ -3,13 +3,12 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Posts', [{
-      id: 1,
       UserId: 'admin',
       time: '20:44',
       pDay: '29',
       pMonth: '12',
       pYear: '2020',
-      content: 'Welcome to MindSharing - where we can find or share knowledge with each other. Merry christmas and happy new yearr!',
+      content: 'Welcome to MindSharing - where we can find or share knowledge with each other. Merry christmas and happy new year!\nLove',
       imgPath: [""],
       like: 0,
       share: 0,
@@ -21,6 +20,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Users', null, {});
+    return queryInterface.bulkDelete('Posts', null, {});
   }
 };

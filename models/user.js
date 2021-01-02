@@ -23,8 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     fname: DataTypes.STRING,
     lname: DataTypes.STRING,
-    avtPath: DataTypes.STRING,
-    bgPath: DataTypes.STRING,
     email: DataTypes.STRING,
     pNum: DataTypes.STRING,
     bDay: DataTypes.INTEGER,
@@ -32,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     bYear: DataTypes.INTEGER,
     gender: DataTypes.STRING,
     nation: DataTypes.STRING,
-    bio: DataTypes.TEXT
+    bio: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'User',

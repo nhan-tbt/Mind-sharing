@@ -12,7 +12,7 @@ var app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-var currentUser = "";
+var chatId = 1;
 
 //Storage
 const storage = multer.diskStorage({
@@ -30,9 +30,7 @@ app.post('/upload', function(req, res) {
     upload(req, res, (err) => {
         if(err){
             console.log(err)
-        } else{
-            console.log('suc')
-        }
+        } 
     });
 });
 
@@ -52,27 +50,35 @@ app.use(bodyParser.json());
 
 app.set('view engine', 'hbs');
 app.set('port',(process.env.PORT || 5000));
+app.set('currentUser', '');
 
 io.on('connection', socket => {
-    socket.emit('message', 'Welcome to !');
+    // socket.emit('message', `Hello ${currentUser}!`);
 
-    socket.broadcast.emit('message', 'Welcome to Hahaha!');
-
-    socket.on('disconnect', () => {
-        io.emit('message', "Uf");
-    })
+    // socket.on('disconnect', () => {
+    //     io.emit('message', "Oops");
+    // })
 
     //Listen
     socket.on('chatMessage', (mess) => {
-        io.emit('mess', mess)
+        var messes = {
+            id: mess.dateTime,
+            ChatId: chatId,
+            who: mess.user,
+            typeMess: 'TEXT',
+            contentMess: mess.mess,
+        }
+        controller.createMess(messes);
+        io.emit('message', mess)
     })
 })
 
 app.get('/',function(req,res){
-    res.locals.currentUser = currentUser;
+    res.locals.currentUser = req.app.get('currentUser');
     
     controller.searchAllPost(function(posts){
         res.locals.posts = posts;
+        
         res.render('index');
     });
 })
@@ -86,7 +92,18 @@ app.get('/contact',function(req,res){
 })
 
 app.get('/message',function(req,res){
-    res.render('message');
+    controller.searchChat(req.app.get('currentUser'), function(chats) {
+        controller.searchAcc(chats[0].UserId, function(user){
+            chatId = chats[0].id;
+            controller.searchMess(chats[0].id,function(messes){
+                res.locals.enemy = user;
+                res.locals.messes = messes;
+                res.locals.chats = chats;
+
+                res.render('message');
+            })
+        })
+    });
 })
 
 app.get('/setting-password',function(req,res){
@@ -158,10 +175,10 @@ app.post('/get_infor_register', (req, res) => {
                     bYear: req.body.Byear,
                     gender: req.body.gender,
                     nation: "",
-                    bio: ""
+                    bio: "",
                 }
     
-                currentUser = req.body.account;
+                req.app.set('currentUser', req.body.account);
                 user_name = req.body.account;
     
                 controller.createAcc(userAcc);
@@ -176,7 +193,7 @@ app.post('/get_infor_login', (req, res) => {
     controller.searchAcc(req.body.account, function(this_user) {
         if (this_user != null){
             if (bcrypt.compareSync(req.body.password, this_user.password)){
-                currentUser = req.body.account;
+                req.app.set('currentUser', req.body.account);
 
                 res.redirect("/");
             }

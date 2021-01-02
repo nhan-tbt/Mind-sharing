@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    UserIdOwn: DataTypes.STRING,
-    UserIDFriend: DataTypes.STRING
+    Owner: DataTypes.STRING,
+    UserId: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Chat',

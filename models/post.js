@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     category: DataTypes.ARRAY(DataTypes.STRING),
     like: DataTypes.INTEGER,
     share: DataTypes.INTEGER,
-    comment: DataTypes.INTEGER
+    comment: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Post',

@@ -3,10 +3,8 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Messes', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       ChatId: {
         type: Sequelize.INTEGER,
@@ -17,32 +15,14 @@ module.exports = {
         onDelete: 'cascade',
         onUpdate: 'cascade'
       },
-      UserID: {
-        type: Sequelize.STRING,
-        references: {
-          model: 'Users',
-          key: 'id'
-        },
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
+      who: {
+        type: Sequelize.STRING
       },
       typeMess: {
         type: Sequelize.STRING
       },
       contentMess: {
         type: Sequelize.TEXT
-      },
-      time: {
-        type: Sequelize.STRING
-      },
-      mDay: {
-        type: Sequelize.INTEGER
-      },
-      mMonth: {
-        type: Sequelize.INTEGER
-      },
-      mYear: {
-        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
