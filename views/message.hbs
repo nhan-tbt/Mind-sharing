@@ -7,22 +7,13 @@
             </div>
             <div class="card-body">
                 <ul class="list-group categoryUL">
+                    {{#each chats}}
                     <li class="list-group-item active">
-                        <img src="../images/Avatar/user_1.jpg" class="img-thumbnail rounded-circle avatar"
+                        <img src="../images/Avatar/{{User.id}}.jpg" class="img-thumbnail rounded-circle avatar"
                             style="height: 60px; width: 60px;" alt="avatar">
-                        <a href="#">User 1</a>
+                        <a href="#">{{User.fname}} {{User.lname}}</a>
                     </li>
-                    <li class="list-group-item">
-                        <img src="../images/Avatar/user_1.jpg" class="img-thumbnail rounded-circle avatar"
-                            style="height: 60px; width: 60px;" alt="avatar">
-                        <a href="#">User 2</a>
-                    </li>
-                    <li class="list-group-item">
-                        <img src="../images/Avatar/user_1.jpg" class="img-thumbnail rounded-circle avatar"
-                            style="height: 60px; width: 60px;" alt="avatar">
-                        <a href="#">User 3</a>
-                    </li>
-
+                    {{/each}}
                 </ul>
             </div>
         </div>
@@ -31,63 +22,34 @@
         <div class="card">
             <div class="card-header">
                 <a href="" style="font-size: 45px;">
-                    <img src="../images/Avatar/user_1.jpg" class="img-thumbnail rounded-circle avatar"
+                    <img src="../images/Avatar/{{enemy.id}}.jpg" class="img-thumbnail rounded-circle avatar"
                         style="height: 80px; width: 80px;" alt="avatar">
-                    User 1
+                    {{enemy.fname}} {{enemy.lname}}
                 </a>
             </div>
             <div class="card-body box-chat" id="chat-box">
-                <div class="row">
-                    <div class="box-mess guy col-auto" id="guy">
-                        Hello!
-                    </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="box-mess me col-auto" id="me">
-                        Hi! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint porro asperiores fugit odio
-                        facilis! Ipsa quibusdam labore impedit officiis, sint voluptate illum aliquam dolores enim
-                        tempora error suscipit nisi magni!
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="box-mess guy col-auto" id="guy">
-                        Hello!
-                    </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="box-mess me col-auto" id="me">
-                        Hi! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint porro asperiores fugit odio
-                        facilis! Ipsa quibusdam labore impedit officiis, sint voluptate illum aliquam dolores enim
-                        tempora error suscipit nisi magni!
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="box-mess guy col-auto" id="guy">
-                        Hello!
-                    </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="box-mess me col-auto" id="me">
-                        Hi! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint porro asperiores fugit odio
-                        facilis! Ipsa quibusdam labore impedit officiis, sint voluptate illum aliquam dolores enim
-                        tempora error suscipit nisi magni!
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="box-mess guy col-auto" id="guy">
-                        Hello!
-                    </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="box-mess me col-auto" id="me">
-                        Hi! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint porro asperiores fugit odio
-                        facilis! Ipsa quibusdam labore impedit officiis, sint voluptate illum aliquam dolores enim
-                        tempora error suscipit nisi magni!
-                    </div>
-                </div>
-
+            {{#each messes}}
+                <script>
+                    if (`{{../enemy.id}}` == `{{who}}`){
+                        var item = `                        <div class="row">
+                            <div class="box-mess guy col-auto" id="guy">
+                                {{contentMess}}
+                            </div>
+                        </div>`
+                        var t = document.querySelector('#chat-box');
+                        t.insertAdjacentHTML("beforeend", item);
+                    } else {
+                        var item = `                        <div class="row justify-content-end">
+                            <div class="box-mess me col-auto" id="me">
+                                {{contentMess}}
+                            </div>
+                        </div>`;
+                        var t = document.querySelector('#chat-box');
+                        t.insertAdjacentHTML("beforeend", item);
+                    }
+                </script>
+            {{/each}}
             </div>
-
             <div class="card-footer">
                 <form id="chat-form">
                     <input id="message" type="text" class="form-control input-sm chat_input mr-2 mt-1"

@@ -12,26 +12,37 @@ var app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-var currentUser = "";
-
-//Storage
-const storage = multer.diskStorage({
-    destination: __dirname + '/' + '/images',
-    filename: function(req, file, cb) {
-        cb(null, file.filename + path.extname(file.originalname))
-    }
-})
-
-const upload = multer({
-    storage: storage
-}).single('myImage');
+var chatId = 1;
 
 app.post('/upload', function(req, res) {
+    //Storage
+    // const storage = multer.diskStorage({
+    //     destination: __dirname + '/' + '/images',
+    //     filename: function(req, file, cb) {
+    //         cb(null, 'b' + path.extname(file.originalname))
+    //     }
+    // })
+
+    // const upload = multer({
+    //     storage: storage
+    // }).single('myImage');
+
+    const storage = multer.diskStorage({
+        destination: __dirname + '/' + '/images',
+        filename: function(req, file, cb) {
+            cb(null, 'user_' + file.originalname);
+        }
+    })
+    
+    const upload = multer({
+        storage: storage
+    }).array("files", 12);
+
     upload(req, res, (err) => {
         if(err){
             console.log(err)
-        } else{
-            console.log('suc')
+        } else {
+            console.log('uploaded');
         }
     });
 });
@@ -52,27 +63,35 @@ app.use(bodyParser.json());
 
 app.set('view engine', 'hbs');
 app.set('port',(process.env.PORT || 5000));
+app.set('currentUser', '');
 
 io.on('connection', socket => {
-    socket.emit('message', 'Welcome to !');
+    // socket.emit('message', `Hello ${currentUser}!`);
 
-    socket.broadcast.emit('message', 'Welcome to Hahaha!');
-
-    socket.on('disconnect', () => {
-        io.emit('message', "Uf");
-    })
+    // socket.on('disconnect', () => {
+    //     io.emit('message', "Oops");
+    // })
 
     //Listen
     socket.on('chatMessage', (mess) => {
-        io.emit('mess', mess)
+        var messes = {
+            id: mess.dateTime,
+            ChatId: chatId,
+            who: mess.user,
+            typeMess: 'TEXT',
+            contentMess: mess.mess,
+        }
+        controller.createMess(messes);
+        io.emit('message', mess)
     })
 })
 
 app.get('/',function(req,res){
-    res.locals.currentUser = currentUser;
+    res.locals.currentUser = req.app.get('currentUser');
     
     controller.searchAllPost(function(posts){
         res.locals.posts = posts;
+        
         res.render('index');
     });
 })
@@ -85,8 +104,23 @@ app.get('/contact',function(req,res){
     res.render('contact');
 })
 
+app.get('/create_post',function(req,res){
+    res.render('create_post');
+})
+
 app.get('/message',function(req,res){
-    res.render('message');
+    controller.searchChat(req.app.get('currentUser'), function(chats) {
+        controller.searchAcc(chats[0].UserId, function(user){
+            chatId = chats[0].id;
+            controller.searchMess(chats[0].id,function(messes){
+                res.locals.enemy = user;
+                res.locals.messes = messes;
+                res.locals.chats = chats;
+
+                res.render('message');
+            })
+        })
+    });
 })
 
 
@@ -104,12 +138,6 @@ app.get('/setting-general', function (req, res) {
 
 app.get('/test',function(req,res){
     res.render('test');
-})
-
-app.get('/login',function(req,res){
-    res.locals.layout = 'log_res_Layout.hbs';
-
-    res.render('login');
 })
 
 app.get('/login',function(req,res){
@@ -167,10 +195,10 @@ app.post('/get_infor_register', (req, res) => {
                     bYear: req.body.Byear,
                     gender: req.body.gender,
                     nation: "",
-                    bio: ""
+                    bio: "",
                 }
     
-                currentUser = req.body.account;
+                req.app.set('currentUser', req.body.account);
                 user_name = req.body.account;
     
                 controller.createAcc(userAcc);
@@ -185,7 +213,7 @@ app.post('/get_infor_login', (req, res) => {
     controller.searchAcc(req.body.account, function(this_user) {
         if (this_user != null){
             if (bcrypt.compareSync(req.body.password, this_user.password)){
-                currentUser = req.body.account;
+                req.app.set('currentUser', req.body.account);
 
                 res.redirect("/");
             }
@@ -204,28 +232,28 @@ app.post('/get_infor_login', (req, res) => {
     });
 });
 
-app.post('/get_infor_change_pass', (req, res) => {
-    controller.searchAcc(currentUser, function (this_user) {
-        const passwordMatch = bcrypt.compareSync(req.body.password, this_user.password);
-        if (passwordMatch) {
-            let s1 = req.body.new_password;
-            let s2 = req.body.confirm_password;
-            const confirmPass = s1.localeCompare(s2);
-            if (confirmPass == 0) {
-                var salt = bcrypt.genSaltSync(10);
-                controller.update_pass(bcrypt.hashSync(req.body.new_password, salt), currentUser);
-                res.render('setting-password', {func: 'Confirm_Notification();'});
-            }
-            else {
-                res.render('setting-password', { Announ: '*Password does not match'});
+// app.post('/get_infor_change_pass', (req, res) => {
+//     controller.searchAcc(currentUser, function (this_user) {
+//         const passwordMatch = bcrypt.compareSync(req.body.password, this_user.password);
+//         if (passwordMatch) {
+//             let s1 = req.body.new_password;
+//             let s2 = req.body.confirm_password;
+//             const confirmPass = s1.localeCompare(s2);
+//             if (confirmPass == 0) {
+//                 var salt = bcrypt.genSaltSync(10);
+//                 controller.update_pass(bcrypt.hashSync(req.body.new_password, salt), currentUser);
+//                 res.render('setting-password', {func: 'Confirm_Notification();'});
+//             }
+//             else {
+//                 res.render('setting-password', { Announ: '*Password does not match'});
                 
-            }
-        }
-        else {
-            res.render('setting-password', { Announ: '*Password does not match' });
-        }
-    })
-})
+//             }
+//         }
+//         else {
+//             res.render('setting-password', { Announ: '*Password does not match' });
+//         }
+//     })
+// })
 
 server.listen(app.get('port'),function(){
     console.log("Server is listening on port "+ app.get('port'))

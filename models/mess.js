@@ -15,16 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   };
   Mess.init({
     id: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       primaryKey: true
     },
     ChatId: DataTypes.INTEGER,
-    UserID: DataTypes.STRING,
-    contentMess: DataTypes.TEXT,
-    time: DataTypes.STRING,
-    mDay: DataTypes.INTEGER,
-    mMonth: DataTypes.INTEGER,
-    mYear: DataTypes.INTEGER
+    who: DataTypes.STRING,
+    typeMess: DataTypes.STRING,
+    contentMess: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Mess',

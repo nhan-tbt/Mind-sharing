@@ -19,13 +19,13 @@ module.exports = {
       lname: {
         type: Sequelize.STRING
       },
-      avtPath: {
-        type: Sequelize.STRING
-      },
-      bgPath: {
-        type: Sequelize.STRING
-      },
       email: {
+        type: Sequelize.STRING
+      },
+      avt: {
+        type: Sequelize.STRING
+      },
+      bg: {
         type: Sequelize.STRING
       },
       pNum: {

@@ -8,16 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      UserIdOwn: {
+      Owner: {
         type: Sequelize.STRING,
-        references: {
-          model: 'Users',
-          key: 'id'
-        },
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
       },
-      UserIDFriend: {
+      UserId: {
         type: Sequelize.STRING,
         references: {
           model: 'Users',
