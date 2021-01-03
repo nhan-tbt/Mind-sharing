@@ -89,8 +89,17 @@ app.get('/message',function(req,res){
     res.render('message');
 })
 
-app.get('/setting-password',function(req,res){
+
+app.get('/setting-password', function (req, res) {
     res.render('setting-password');
+})
+
+app.get('/setting-privacy', function (req, res) {
+    res.render('setting-privacy');
+})
+
+app.get('/setting-general', function (req, res) {
+    res.render('setting-general');
 })
 
 app.get('/test',function(req,res){
@@ -194,6 +203,29 @@ app.post('/get_infor_login', (req, res) => {
         }
     });
 });
+
+app.post('/get_infor_change_pass', (req, res) => {
+    controller.searchAcc(currentUser, function (this_user) {
+        const passwordMatch = bcrypt.compareSync(req.body.password, this_user.password);
+        if (passwordMatch) {
+            let s1 = req.body.new_password;
+            let s2 = req.body.confirm_password;
+            const confirmPass = s1.localeCompare(s2);
+            if (confirmPass == 0) {
+                var salt = bcrypt.genSaltSync(10);
+                controller.update_pass(bcrypt.hashSync(req.body.new_password, salt), currentUser);
+                res.render('setting-password', {func: 'Confirm_Notification();'});
+            }
+            else {
+                res.render('setting-password', { Announ: '*Password does not match'});
+                
+            }
+        }
+        else {
+            res.render('setting-password', { Announ: '*Password does not match' });
+        }
+    })
+})
 
 server.listen(app.get('port'),function(){
     console.log("Server is listening on port "+ app.get('port'))

@@ -26,6 +26,15 @@ controller.searchAllPost = function(callback){
 	});
 };
 
+controller.update_pass = function (new_pass, account) {
+	models.User
+		.update({
+			password: new_pass,
+		}, {
+			where: { id: account},
+		}).catch();
+};
+
 
 
 module.exports = controller;
