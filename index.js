@@ -14,23 +14,36 @@ const io = socketio(server);
 
 var chatId = 1;
 
-//Storage
-const storage = multer.diskStorage({
-    destination: __dirname + '/' + '/images',
-    filename: function(req, file, cb) {
-        cb(null, file.filename + path.extname(file.originalname))
-    }
-})
-
-const upload = multer({
-    storage: storage
-}).single('myImage');
-
 app.post('/upload', function(req, res) {
+    //Storage
+    // const storage = multer.diskStorage({
+    //     destination: __dirname + '/' + '/images',
+    //     filename: function(req, file, cb) {
+    //         cb(null, 'b' + path.extname(file.originalname))
+    //     }
+    // })
+
+    // const upload = multer({
+    //     storage: storage
+    // }).single('myImage');
+
+    const storage = multer.diskStorage({
+        destination: __dirname + '/' + '/images',
+        filename: function(req, file, cb) {
+            cb(null, 'user_' + file.originalname);
+        }
+    })
+    
+    const upload = multer({
+        storage: storage
+    }).array("files", 12);
+
     upload(req, res, (err) => {
         if(err){
             console.log(err)
-        } 
+        } else {
+            console.log('uploaded');
+        }
     });
 });
 
@@ -112,12 +125,6 @@ app.get('/setting-password',function(req,res){
 
 app.get('/test',function(req,res){
     res.render('test');
-})
-
-app.get('/login',function(req,res){
-    res.locals.layout = 'log_res_Layout.hbs';
-
-    res.render('login');
 })
 
 app.get('/login',function(req,res){

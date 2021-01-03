@@ -22,6 +22,12 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      avt: {
+        type: Sequelize.STRING
+      },
+      bg: {
+        type: Sequelize.STRING
+      },
       pNum: {
         type: Sequelize.STRING
       },

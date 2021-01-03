@@ -29,6 +29,8 @@ module.exports = {
       fname: 'User_1',
       lname: 'User',
       email: "",
+      avt: "defautl",
+      bg: "defautl",
       pNum: "",
       bDay: "1",
       bMonth: "1",
