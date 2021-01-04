@@ -45,6 +45,8 @@ app.post('/upload', function(req, res) {
             console.log('uploaded');
         }
     });
+    
+    res.send('success')
 });
 
 app.engine('hbs', hbs({
