@@ -38,6 +38,7 @@ var chatId = 1;
 //         storage: storage
 //     }).array("files", 12);
 
+<<<<<<< HEAD
 //     upload(req, res, (err) => {
 //         if(err){
 //             console.log(err)
@@ -46,6 +47,29 @@ var chatId = 1;
 //         }
 //     });
 // });
+=======
+    const storage = multer.diskStorage({
+        destination: __dirname + '/' + '/images',
+        filename: function(req, file, cb) {
+            cb(null, 'user_' + file.originalname);
+        }
+    })
+    
+    const upload = multer({
+        storage: storage
+    }).array("files", 12);
+
+    upload(req, res, (err) => {
+        if(err){
+            console.log(err)
+        } else {
+            console.log('uploaded');
+        }
+    });
+    
+    res.redirect("/");
+});
+>>>>>>> 56cbe22bf51efe11d2d5b7248326e86ea6e6f6db
 
 app.engine('hbs', hbs({
     extname: 'hbs',
@@ -255,6 +279,7 @@ app.post('/get_infor_login', (req, res) => {
 //     })
 // })
 
+<<<<<<< HEAD
 server.listen(app.get('port'), function () {
     console.log("Server is listening on port " + app.get('port'))
 });
@@ -305,3 +330,8 @@ app.post('/upload', upload, function (req, res, next) {
         });
     }
 }) 
+=======
+server.listen(app.get('port'),function(){
+    console.log("Server is listening on port "+ app.get('port'))
+});
+>>>>>>> 56cbe22bf51efe11d2d5b7248326e86ea6e6f6db
