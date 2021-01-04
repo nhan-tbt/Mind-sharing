@@ -16,13 +16,28 @@
                         placeholder="Write your post here" rows="4" cols="50"></textarea>
                 </div>
                 <div class="row m-3">
-                    <input type="file" id = "file" accept="image/*">
+                    <input type="file" id = "file" accept="image/*" multiple>
                     <label for="file">
                         <i class="material-icons fa-3x mainColor">add_photo_alternate</i>
                     </label>
                 </div> 
                 <div class="img-preview" id="imgPreview">
-                    <center><img src="" alt="" class="image-preview"></center>
+                    <div id="carouselId" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators" id="indicators">
+
+                        </ol>
+                        <div class="carousel-inner" id="inner" role="listbox">
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>           
                 </div>
                 <div class="row m-2 justify-content-center">
                     <button type="button" class="btn bgColor btn-block btn-postBtn mt-3">Post</button>
