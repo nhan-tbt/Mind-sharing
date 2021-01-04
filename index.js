@@ -46,7 +46,7 @@ app.post('/upload', function(req, res) {
         }
     });
     
-    res.send('success')
+    res.redirect("/");
 });
 
 app.engine('hbs', hbs({
