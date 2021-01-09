@@ -5,68 +5,15 @@ const bodyParser = require('body-parser');
 const controller = require('./controllers/blogController');
 const http = require('http')
 const socketio = require('socket.io')
-const multer = require('multer');
-const path = require('path')
+const Busboy = require('busboy')
+const inspect = require('util').inspect
+
 
 var app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
 var chatId = 1;
-
-// app.post('/upload', function(req, res) {
-//     //Storage
-//     // const storage = multer.diskStorage({
-//     //     destination: __dirname + '/' + '/images',
-//     //     filename: function(req, file, cb) {
-//     //         cb(null, 'b' + path.extname(file.originalname))
-//     //     }
-//     // })
-
-//     // const upload = multer({
-//     //     storage: storage
-//     // }).single('myImage');
-
-//     const storage = multer.diskStorage({
-//         destination: __dirname + '/' + '/images',
-//         filename: function(req, file, cb) {
-//             cb(null, 'user_' + file.originalname);
-//         }
-//     })
-
-//     const upload = multer({
-//         storage: storage
-//     }).array("files", 12);
-
-//     upload(req, res, (err) => {
-//         if(err){
-//             console.log(err)
-//         } else {
-//             console.log('uploaded');
-//         }
-//     });
-// });
-//     const storage = multer.diskStorage({
-//         destination: __dirname + '/' + '/images',
-//         filename: function(req, file, cb) {
-//             cb(null, 'user_' + file.originalname);
-//         }
-//     })
-    
-//     const upload = multer({
-//         storage: storage
-//     }).array("files", 12);
-
-//     upload(req, res, (err) => {
-//         if(err){
-//             console.log(err)
-//         } else {
-//             console.log('uploaded');
-//         }
-//     });
-    
-//     res.redirect("/");
-// });
 
 app.engine('hbs', hbs({
     extname: 'hbs',
@@ -143,7 +90,6 @@ app.get('/message', function (req, res) {
         })
     });
 })
-
 
 app.get('/setting-password', function (req, res) {
     res.render('setting-password');
@@ -278,50 +224,46 @@ app.post('/get_infor_login', (req, res) => {
 
 
 const AWS = require('aws-sdk');
-const Busboy = require('busboy');
 
 const BUCKET_NAME = 'mind-sharing';
 const IAM_USER_KEY = 'AKIATRGWWZO2WUH5TFNJ';
 const IAM_USER_SECRET = '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';
 
-const storage = multer.memoryStorage({
-    destination: function(req, file, callback) {
-        callback(null, '')
-    },
-})
-
-const upload = multer({storage}).array("files", 3);
-
-app.post('/upload', upload, function (req, res, next) {
-
-    var files = req.files;
-
+app.post('/upload', function (req, res) {
+    var busboy = new Busboy({ headers: req.headers });
     let s3bucket = new AWS.S3({
         accessKeyId: IAM_USER_KEY,
         secretAccessKey: IAM_USER_SECRET,
         Bucket: BUCKET_NAME
     });
-    for (let i = 0; i < files.length; i++) {
-        var file = files[i];
-        console.log(file);
 
-        s3bucket.createBucket(function () {
-            var params = {
-                Bucket: BUCKET_NAME,
-                Key: file.originalname,
-                Body: file.buffer
-            };
-            s3bucket.upload(params, function (err, data) {
-                if (err) {
-                    console.log('error in callback');
-                    console.log(err);
-                }
-                console.log('success');
-                console.log(data);
-            });
-        });
-    }
-}) 
+    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+        if (filename != ''){
+            if (filename != ''){
+                s3bucket.createBucket(function () {
+                    var params = {
+                        Bucket: BUCKET_NAME,
+                        Key: filename,
+                        Body: file
+                    };
+                    s3bucket.upload(params, function (err, data) {
+                        if (err) {
+                            console.log('error in callback');
+                            console.log(err);
+                        }
+                        console.log('success');
+                        console.log(data);
+                    });
+                });    
+            }
+            console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
+        }
+    });
+    busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+      console.log('Field [' + fieldname + ']: value: ' + inspect(val));
+    });
+    req.pipe(busboy);
+});
 
 
 server.listen(app.get('port'),function(){
