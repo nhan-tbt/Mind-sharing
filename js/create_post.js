@@ -12,10 +12,6 @@ file.addEventListener("change", function() {
         for (let i = 0; i < f.length; i++) {
             var reader = new FileReader();
             
-            
-            console.log(act);
-
-            
             reader.addEventListener("load", function(event) {
                 var picFile = event.target;
                 if (i === 0) {
@@ -26,7 +22,7 @@ file.addEventListener("change", function() {
                 }
                 var indi_htm = `<li data-target="#carouselId" data-slide-to="` + i + `" class="` + act + `"></li>`;
                 var inner_htm = `<div class="carousel-item ` + act + `">
-                                    <center><img src="` + picFile.result + `" alt="" class="image-preview"></center>
+                                    <center><img src="` + picFile.result + `" alt="" class="image-preview img-thumbnail"></center>
                                 </div>`;
                 indicators.insertAdjacentHTML("beforeend", indi_htm);
                 inner.insertAdjacentHTML("beforeend", inner_htm);
