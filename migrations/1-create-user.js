@@ -19,6 +19,12 @@ module.exports = {
       lname: {
         type: Sequelize.STRING
       },
+      avt: {
+        type: Sequelize.STRING
+      },
+      bg: {
+        type: Sequelize.STRING
+      },
       email: {
         type: Sequelize.STRING
       },

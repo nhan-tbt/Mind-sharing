@@ -222,9 +222,6 @@ app.post('/get_infor_login', (req, res) => {
 //     })
 // })
 
-
-const AWS = require('aws-sdk');
-
 const BUCKET_NAME = 'mind-sharing';
 const IAM_USER_KEY = 'AKIATRGWWZO2WUH5TFNJ';
 const IAM_USER_SECRET = '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';
@@ -264,7 +261,6 @@ app.post('/upload', function (req, res) {
     });
     req.pipe(busboy);
 });
-
 
 server.listen(app.get('port'),function(){
     console.log("Server is listening on port "+ app.get('port'))

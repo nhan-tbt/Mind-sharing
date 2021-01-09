@@ -1,16 +1,10 @@
 {
   "development": {
-    "username": "fwbabvcgrifffm",
-    "password": "20e1e3bc59a81b636e65a17037a04771f3f632430a712d765099f865a73fb00b",
-    "database": "d6kcoe32e1duje",
-    "host": "ec2-54-147-126-202.compute-1.amazonaws.com",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-          "require": true,
-          "rejectUnauthorized": false
-      }
-    }
+    "username": "postgres",
+    "password": "postgres",
+    "database": "Mind-Sharing",
+    "host": "localhost",
+    "dialect": "postgres"
   },
   "test": {
     "username": "root",
