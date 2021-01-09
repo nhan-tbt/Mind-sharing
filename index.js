@@ -276,10 +276,6 @@ app.post('/get_infor_login', (req, res) => {
 //     })
 // })
 
-server.listen(app.get('port'), function () {
-    console.log("Server is listening on port " + app.get('port'))
-});
-
 
 const AWS = require('aws-sdk');
 const Busboy = require('busboy');
@@ -326,6 +322,8 @@ app.post('/upload', upload, function (req, res, next) {
         });
     }
 }) 
+
+
 server.listen(app.get('port'),function(){
     console.log("Server is listening on port "+ app.get('port'))
 });
