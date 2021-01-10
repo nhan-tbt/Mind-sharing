@@ -5,22 +5,58 @@
         <div class="card my-4">
             <div class="card-header navbarTopColor">
                 <ul class="list-group categoryUL">
-                    <a href=""><li class="list-group-item active a"><p>All</p></li></a>
-                    <a href=""><li class="list-group-item"><p>Moment</p></li></a>
-                    <a href=""><li class="list-group-item"><p>Life</p></li></a>
-                    <a href=""><li class="list-group-item"><p>Science</p></li></a>
-                    <a href=""><li class="list-group-item"><p>Technology</p></li></a>
-                    <a href=""><li class="list-group-item"><p>Electronic</p></li></a>
-                    <a href=""><li class="list-group-item"><p>Biological</p></li></a>
-                    <a href=""><li class="list-group-item"><p>Literary</p></li></a></li></a>
-                    <a href=""><li class="list-group-item"><p>Mathematics</p></li></a>
+                    <a href="">
+                        <li class="list-group-item active a">
+                            <p>All</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="list-group-item">
+                            <p>Moment</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="list-group-item">
+                            <p>Life</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="list-group-item">
+                            <p>Science</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="list-group-item">
+                            <p>Technology</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="list-group-item">
+                            <p>Electronic</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="list-group-item">
+                            <p>Biological</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="list-group-item">
+                            <p>Literary</p>
+                        </li>
+                    </a></li></a>
+                    <a href="">
+                        <li class="list-group-item">
+                            <p>Mathematics</p>
+                        </li>
+                    </a>
                 </ul>
             </div>
         </div>
     </div>
     <div class="col-8">
         <ul class="contentUL">
-            <div class="card mb-2">
+            <div class="card mb-2 post_here">
                 <form action="">
                     <div class="row">
                         <div class="col-md-auto">
@@ -36,21 +72,43 @@
             </div>
 
             {{!-- Create Post --}}
-            <center><div class="create_post my-5">
+            <form action="/get_infor_create_post" method="POST" enctype="multipart/form-data">
+                <div class="create_post my-5">
                     <div class="info">
                         <div class="card">
-                            <div class="card-header bgColor">
+                            <div class="card-header postColor">
                                 <div class="close" id="close_btn">+</div>
                                 <h2 class="text-center">Create Post</h2>
                             </div>
                             <div class="card-body formColor">
-                                <div class="row m-2">
-                                    <a href="#"> <img src="./images/Avatar/user_1.png" class="rounded-circle"
-                                            style="width: 70px; height: 70px;" alt="user_img"> </a>
-                                    <span class="h3">User name 1</span>
+                                <div class="row">
+                                    <div class="col-md-auto">
+                                        <a href=""> <img src="./images/Avatar/{{user.avt}}.png" class="rounded-circle"
+                                                style="width: 70px; height: 70px;" alt="user_img"> </a>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <a href="" class="user_name">
+                                            <h3>{{user.fname}} {{user.lname}}</h3>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="cate">
+                                    <label class="label">
+                                        <h5>Category</h5>
+                                    </label>
+                                    <select id="cate" name="category">
+                                        <option value="Moment">Moment</option>
+                                        <option value="Life">Life</option>
+                                        <option value="Science">Science</option>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Electronic">Electronic</option>
+                                        <option value="Biological">Biological</option>
+                                        <option value="Literary">Literary</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                    </select>
                                 </div>
                                 <div class="row m-3 p-2">
-                                    <textarea class="form-control p-4 text-dark" id="w3review" name="post area"
+                                    <textarea class="form-control p-4 text-dark" id="w3review" name="content"
                                         placeholder="Write your post here" rows="4" cols="50"></textarea>
                                 </div>
                                 <div class="row m-3">
@@ -80,24 +138,26 @@
                                     </div>
                                 </div>
                                 <div class="row m-2 justify-content-center">
-                                    <button type="button" class="btn bgColor btn-block btn-postBtn mt-3">Post</button>
+                                    <button type="submit" class="btn bgColor btn-block btn-postBtn mt-3">Post</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div></center>
-
+                </div>
+            </form>
 
             {{#each posts}}
             <div class="card my-5">
                 <div class="card-header postColor">
                     <div class="row">
                         <div class="col-md-auto">
-                            <a href="#"> <img src="./images/Avatar/{{User.avt}}.png" class="rounded-circle"
+                            <a href=""> <img src="./images/Avatar/{{User.avt}}.png" class="rounded-circle"
                                     style="width: 70px; height: 70px;" alt="user_img"> </a>
                         </div>
-                        <div class="col-sm-10">
-                            <h3>{{User.fname}}{{User.lname}}</h3>
+                        <div class="col-sm-10 user_name">
+                            <a href="" class="user_name">
+                                <h3>{{User.fname}} {{User.lname}}</h3>
+                            </a>
                             <h5>{{time}} {{pDay}}-{{pMonth}}-{{pYear}}</h5>
                         </div>
                     </div>

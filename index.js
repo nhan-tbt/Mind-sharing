@@ -74,29 +74,6 @@ io.on('connection', socket => {
     })
 })
 
-// app.post('/get_infor_change_pass', (req, res) => {
-//     controller.searchAcc(currentUser, function (this_user) {
-//         const passwordMatch = bcrypt.compareSync(req.body.password, this_user.password);
-//         if (passwordMatch) {
-//             let s1 = req.body.new_password;
-//             let s2 = req.body.confirm_password;
-//             const confirmPass = s1.localeCompare(s2);
-//             if (confirmPass == 0) {
-//                 var salt = bcrypt.genSaltSync(10);
-//                 controller.update_pass(bcrypt.hashSync(req.body.new_password, salt), currentUser);
-//                 res.render('setting-password', {func: 'Confirm_Notification();'});
-//             }
-//             else {
-//                 res.render('setting-password', { Announ: '*Password does not match'});
-
-//             }
-//         }
-//         else {
-//             res.render('setting-password', { Announ: '*Password does not match' });
-//         }
-//     })
-// })
-
 const BUCKET_NAME = 'mind-sharing';
 const IAM_USER_KEY = 'AKIATRGWWZO2WUH5TFNJ';
 const IAM_USER_SECRET = '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';

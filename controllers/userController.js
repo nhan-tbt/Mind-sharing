@@ -16,21 +16,32 @@ controller.createAcc = function(user){
 	User.create(user);
 };
 
-controller.searchAllPost = function(callback){
-	Post.findAll({
-		include: [User],
-	}).then(function(posts) {
-		callback(posts);
-	});
-};
-
 controller.update_pass = function (new_pass, account) {
-	models.User
+	User
 		.update({
 			password: new_pass,
 		}, {
 			where: { id: account},
 		}).catch();
 };
+
+controller.update_infor = function(new_infor, account) {
+	User
+	.update({
+		fname: new_infor.fname,
+		lname: new_infor.lname,
+		email: new_infor.email,
+		address: new_infor.address,
+		pNum: new_infor.pNum,
+		bDay: new_infor.bDay,
+		bMonth: new_infor.bMonth,
+		bYear: new_infor.bYear,
+		gender: new_infor.gender,
+		nation: new_infor.nation,
+		bio: new_infor.bio
+	}, {
+		where: {id: account}
+	}).catch();
+}
 
 module.exports = controller;

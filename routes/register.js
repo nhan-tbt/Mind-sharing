@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/userController');
-
+const bcrypt = require('bcrypt');
 
 router.get('/', function (req, res) {
     res.locals.layout = 'log_res_Layout.hbs';

@@ -52,11 +52,18 @@
             </div>
             <div class="card-footer">
                 <form id="chat-form">
+                    <div class="PreviewImg m-2">
+                        {{!-- <img src="/images/Avatar/user_1.png" class="preview_img img-thumbnail" alt="">
+                        <img src="/images/Avatar/user_1.png" class="preview_img img-thumbnail" alt=""> --}}
+                    </div>
                     <input id="message" type="text" class="form-control input-sm chat_input mr-2 mt-1"
                         placeholder="Write your message here..." />
-                    
+                    <input type="file" id="file" accept="image/*" multiple>
+                    <label for="file">
+                        <i class="material-icons fa-3x mainColor add_photos">add_photo_alternate</i>
+                    </label>
                     <span class="input-group-btn">
-                        <button class="btn" type="submit"><i class="fa fa-paper-plane fa-2x mainColor"></i></button>
+                        <button class="sendBtn" type="submit"><i class="fa fa-paper-plane fa-2x mainColor"></i></button>
                     </span>
                 </form>
             </div>

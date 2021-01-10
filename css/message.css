@@ -50,6 +50,33 @@
 }
 
 .chat_input {
-  width: 92%;
+  width: 87%;
   display: inline-block;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+#chat-form{
+  position: relative;
+}
+
+.sendBtn{
+  position: absolute;
+  bottom: 5px;
+  right: 14px;
+  border: none;
+}
+
+.add_photos{
+  position:absolute;
+  bottom: 0;
+  right: 70px;
+  cursor: pointer;
+}
+
+.preview_img{
+  max-width: 100px;
+  max-height: 100px;
 }

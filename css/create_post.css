@@ -19,8 +19,8 @@
 
 .add_photos{
     position: absolute;
-    top: 100px;
-    right: 12px;
+    top: 110px;
+    right: 40px;
     cursor: pointer;
 }
 
@@ -31,6 +31,18 @@
     font-size: 42px;
     transform: rotate(45deg);
     cursor: pointer;
+}
+
+.cate{
+    position: absolute;
+    top:123px;
+    right: 100px;
+}
+
+.user_name{
+    color: black;
+    justify-content: center;
+    align-content: center;
 }
 
 input[type="file"] {

@@ -10,9 +10,11 @@ function setAnonymous(){
 }
 
 document.getElementById('post_btn').addEventListener('click', function() {
-    document.querySelector('.create_post').style.display = 'flex';
+    document.querySelector('.create_post').style.display = 'inline';
+    document.querySelector('.post_here').style.display = 'none';
 });
 
 document.getElementById('close_btn').addEventListener('click', function() {
     document.querySelector('.create_post').style.display = 'none';
+    document.querySelector('.post_here').style.display = 'flex';
 });
