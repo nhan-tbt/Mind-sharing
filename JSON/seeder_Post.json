@@ -5,11 +5,10 @@
     "pMonth": "12",
     "pYear": "2020",
     "content": "Welcome to MindSharing - where we can find or share knowledge with each other. Merry christmas and happy new year!\nLove",
-    "imgPath": [""],
     "like": 0,
     "share": 0,
     "comment": 0,
-    "category": ["announ"]
+    "category": "announ"
   },{
     "UserId": "user_1",
     "time": "20:44",
@@ -17,11 +16,10 @@
     "pMonth": "12",
     "pYear": "2020",
     "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio consequuntur eligendi maxime sequi similique quae repellendus! Aut sequi saepe incidunt, rerum fugit iste ipsum minus vel earum dolorum culpa.",
-    "imgPath": [""],
     "like": 0,
     "share": 0,
     "comment": 0,
-    "category": ["moment"]
+    "category": "moment"
   },
   {
     "UserId": "Life",
@@ -30,11 +28,10 @@
     "pMonth": "12",
     "pYear": "2020",
     "content": "This is a post with Life category !\nLove",
-    "imgPath": [""],
     "like": 0,
     "share": 0,
     "comment": 0,
-    "category": ["life"]
+    "category": "life"
   },{
     "UserId": "Science",
     "time": "20:44",
@@ -42,11 +39,10 @@
     "pMonth": "12",
     "pYear": "2020",
     "content": "This is a post with Science category !\nLove",
-    "imgPath": ["science"],
     "like": 0,
     "share": 0,
     "comment": 0,
-    "category": ["announ"]
+    "category": "science"
   },{
     "UserId": "Technology",
     "time": "20:44",
@@ -54,11 +50,10 @@
     "pMonth": "12",
     "pYear": "2020",
     "content": "This is a post with Technology category !\nLove",
-    "imgPath": ["technology"],
     "like": 0,
     "share": 0,
     "comment": 0,
-    "category": ["announ"]
+    "category": "technology"
   },{
     "UserId": "Electronic",
     "time": "20:44",
@@ -66,11 +61,10 @@
     "pMonth": "12",
     "pYear": "2020",
     "content": "This is a post with Electronic category !\nLove",
-    "imgPath": [""],
     "like": 0,
     "share": 0,
     "comment": 0,
-    "category": ["electronic"]
+    "category": "electronic"
   },{
     "UserId": "Biological",
     "time": "20:44",
@@ -78,11 +72,10 @@
     "pMonth": "12",
     "pYear": "2020",
     "content": "This is a post with Biological category !\nLove",
-    "imgPath": [""],
     "like": 0,
     "share": 0,
     "comment": 0,
-    "category": ["biological"]
+    "category": "biological"
   },{
     "UserId": "Literary",
     "time": "20:44",
@@ -90,11 +83,10 @@
     "pMonth": "12",
     "pYear": "2020",
     "content": "This is a post with Literary category !\nLove",
-    "imgPath": [""],
     "like": 0,
     "share": 0,
     "comment": 0,
-    "category": ["literary"]
+    "category": "literary"
   },{
     "UserId": "Mathematics",
     "time": "20:44",
@@ -102,10 +94,8 @@
     "pMonth": "12",
     "pYear": "2020",
     "content": "This is a post with Mathematics category !\nLove",
-    "imgPath": [""],
     "like": 0,
-    "share": 0,
     "comment": 0,
-    "category": ["mathematics"]
+    "category": "mathematics"
   }
 ]

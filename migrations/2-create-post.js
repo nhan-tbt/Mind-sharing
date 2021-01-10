@@ -36,7 +36,7 @@ module.exports = {
         type: Sequelize.ARRAY(Sequelize.STRING)
       },
       category: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.STRING
       },
       like: {
         type: Sequelize.INTEGER

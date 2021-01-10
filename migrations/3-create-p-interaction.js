@@ -29,9 +29,6 @@ module.exports = {
       like: {
         type: Sequelize.BOOLEAN
       },
-      share: {
-        type: Sequelize.BOOLEAN
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

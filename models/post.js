@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     pYear: DataTypes.TEXT,
     content: DataTypes.TEXT,
     imgPath: DataTypes.ARRAY(DataTypes.STRING),
-    category: DataTypes.ARRAY(DataTypes.STRING),
+    category: DataTypes.STRING,
     like: DataTypes.INTEGER,
     share: DataTypes.INTEGER,
     comment: DataTypes.INTEGER,

@@ -20,8 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     PostId: DataTypes.INTEGER,
     UserId: DataTypes.STRING,
-    like: DataTypes.BOOLEAN,
-    share: DataTypes.BOOLEAN
+    like: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'pInteraction',
