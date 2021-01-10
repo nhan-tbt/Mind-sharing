@@ -2,29 +2,29 @@
 const {
   Model
 } = require('sequelize');
+const post = require('./post');
 module.exports = (sequelize, DataTypes) => {
-  class Mess extends Model {
+  class ChatUser extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      ChatUser.belongsTo(models.User);
+      ChatUser.belongsTo(models.ChatRoom);
     }
   };
-  Mess.init({
+  ChatUser.init({
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       primaryKey: true
     },
-    person1: DataTypes.STRING,
-    person2: DataTypes.STRING,
-    who: DataTypes.STRING,
-    typeMess: DataTypes.STRING,
-    contentMess: DataTypes.TEXT
+    ChatRoomId: DataTypes.INTEGER,
+    UserId: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Mess',
+    modelName: 'ChatUser',
   });
-  return Mess;
+  return ChatUser;
 };

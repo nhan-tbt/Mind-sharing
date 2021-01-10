@@ -1,0 +1,49 @@
+[{
+    "ChatRoomId": 1,
+    "UserId": "user_1"
+},{
+    "ChatRoomId": 1,
+    "UserId": "Life"
+},{
+    "ChatRoomId": 1,
+    "UserId": "Science"
+},{
+    "ChatRoomId": 1,
+    "UserId": "Technology"
+},{
+    "ChatRoomId": 1,
+    "UserId": "Electronic"
+},{
+    "ChatRoomId": 1,
+    "UserId": "Biological"
+},{
+    "ChatRoomId": 1,
+    "UserId": "Literary"
+},{
+    "ChatRoomId": 1,
+    "UserId": "Mathematics"
+},{
+    "ChatRoomId": 2,
+    "UserId": "admin"
+},{
+    "ChatRoomId": 3,
+    "UserId": "admin"
+},{
+    "ChatRoomId": 4,
+    "UserId": "admin"
+},{
+    "ChatRoomId": 5,
+    "UserId": "admin"
+},{
+    "ChatRoomId": 6,
+    "UserId": "admin"
+},{
+    "ChatRoomId": 7,
+    "UserId": "admin"
+},{
+    "ChatRoomId": 8,
+    "UserId": "admin"
+},{
+    "ChatRoomId": 9,
+    "UserId": "admin"
+}]

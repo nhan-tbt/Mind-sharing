@@ -1,60 +1,70 @@
 [{
-    "id": "2020/12/30/11/59/58/0/1/admin",
-    "ChatId": 1,
+    "id": "2020/12/30/11/59/58/0/admin/user_1",
+    "person1": "admin",
+    "person2": "user_1",
     "who": "admin",
     "typeMess": "TEXT",
     "contentMess": "Welcom to Mind-Sharing!"
 },{
-    "id": "2020/12/31/11/59/58/0/1/admin",
-    "ChatId": 1,
+    "id": "2020/12/31/11/59/58/0/admin/user_1",
+    "person1": "admin",
+    "person2": "user_1",
     "who": "admin",
     "typeMess": "TEXT",
     "contentMess": "Merry Chrishmas And Happy New Year!"
 },{
-    "id": "2020/12/31/11/59/59/0/1/user",
-    "ChatId": 1,
+    "id": "2020/12/31/11/59/59/0/user_1/admin",
+    "person1": "user_1",
+    "person2": "admin",
     "who": "user_1",
     "typeMess": "TEXT",
     "contentMess": "Okay!"
 },{
-    "id": "2020/12/30/11/59/58/0/2/admin",
-    "ChatId": 2,
+    "id": "2020/12/30/11/59/58/0/admin/Life",
+    "person1": "admin",
+    "person2": "Life",
     "who": "admin",
     "typeMess": "TEXT",
     "contentMess": "Welcom to Mind-Sharing!"
 },{
-    "id": "2020/12/30/11/59/58/0/3/admin",
-    "ChatId": 3,
+    "id": "2020/12/30/11/59/58/0/admin/Science",
+    "person1": "admin",
+    "person2": "Science",
     "who": "admin",
     "typeMess": "TEXT",
     "contentMess": "Welcom to Mind-Sharing!"
 },{
-    "id": "2020/12/30/11/59/58/0/4/admin",
-    "ChatId": 4,
+    "id": "2020/12/30/11/59/58/0/admin/Technology",
+    "person1": "admin",
+    "person2": "Technology",
     "who": "admin",
     "typeMess": "TEXT",
     "contentMess": "Welcom to Mind-Sharing!"
 },{
-    "id": "2020/12/30/11/59/58/0/5/admin",
-    "ChatId": 5,
+    "id": "2020/12/30/11/59/58/0/admin/Electronic",
+    "person1": "admin",
+    "person2": "Electronic",
     "who": "admin",
     "typeMess": "TEXT",
     "contentMess": "Welcom to Mind-Sharing!"
 },{
-    "id": "2020/12/30/11/59/58/0/6/admin",
-    "ChatId": 6,
+    "id": "2020/12/30/11/59/58/0/admin/Biological",
+    "person1": "admin",
+    "person2": "Biological",
     "who": "admin",
     "typeMess": "TEXT",
     "contentMess": "Welcom to Mind-Sharing!"
 },{
-    "id": "2020/12/30/11/59/58/0/7/admin",
-    "ChatId": 7,
+    "id": "2020/12/30/11/59/58/0/admin/Literary",
+    "person1": "admin",
+    "person2": "Literary",
     "who": "admin",
     "typeMess": "TEXT",
     "contentMess": "Welcom to Mind-Sharing!"
 },{
-    "id": "2020/12/30/11/59/58/0/8/admin",
-    "ChatId": 8,
+    "id": "2020/12/30/11/59/58/0/admin/Mathematics",
+    "person1": "admin",
+    "person2": "Mathematics",
     "who": "admin",
     "typeMess": "TEXT",
     "contentMess": "Welcom to Mind-Sharing!"

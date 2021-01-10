@@ -37,9 +37,10 @@ chatForm.addEventListener('submit', (e) => {
     
     const mess = message.value;
     var today = new Date();
-    var dateTime = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' +today.getDate() + '/' + today.getHours() + "/" + today.getMinutes() + "/" + today.getSeconds();
+    var dateTime = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' +today.getDate() + '/' + today.getHours() + "/" + today.getMinutes() + "/" + today.getSeconds() + "/" + today.getMilliseconds();
+    var type = "TEXT";
 
-    socket.emit('chatMessage', {mess, user, dateTime});
+    socket.emit('chatMessage', {mess, user, type, dateTime});
 
     message.value = "";
 })

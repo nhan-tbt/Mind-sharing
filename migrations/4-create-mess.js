@@ -5,15 +5,12 @@ module.exports = {
       id: {
         primaryKey: true,
         type: Sequelize.STRING
-      },
-      ChatId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Chats',
-          key: 'id'
-        },
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
+      }, 
+      person1: {
+        type: Sequelize.STRING
+      },      
+      person2: {
+        type: Sequelize.STRING
       },
       who: {
         type: Sequelize.STRING
