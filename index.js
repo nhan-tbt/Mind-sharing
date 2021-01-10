@@ -1,8 +1,7 @@
 const express = require('express');
 const hbs = require('express-handlebars');
-const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
-const controller = require('./controllers/blogController');
+const controller = require('./controllers/userController');
 const http = require('http')
 const socketio = require('socket.io')
 const Busboy = require('busboy')
@@ -33,6 +32,17 @@ app.set('view engine', 'hbs');
 app.set('port', (process.env.PORT || 5000));
 app.set('currentUser', '');
 
+app.use((req, res, next) => {
+    if(req.app.get('currentUser') == ''){
+        res.locals.currentUser = "";
+    } else {
+        res.locals.currentUser = req.app.get('currentUser');
+    }
+    
+    
+    next();
+})
+
 io.on('connection', socket => {
     // socket.emit('message', `Hello ${currentUser}!`);
 
@@ -54,150 +64,21 @@ io.on('connection', socket => {
     })
 })
 
-app.get('/', function (req, res) {
-    res.locals.currentUser = req.app.get('currentUser');
 
-    controller.searchAllPost(function (posts) {
-        res.locals.posts = posts;
+app.use('/', require('./routes/home')); // home page
 
-        res.render('index');
-    });
-})
+app.use('/login', require('./routes/login')); // login page
 
-app.get('/profile', function (req, res) {
-    res.render('profile');
-})
+app.use('/register', require('./routes/register')); // register page
 
-app.get('/contact', function (req, res) {
-    res.render('contact');
-})
+app.use('/profile', require('./routes/profile')); // profile page
 
-app.get('/create_post', function (req, res) {
-    res.render('create_post');
-})
+app.use('/contact', require('./routes/contact')); // contact page
 
-app.get('/message', function (req, res) {
-    controller.searchChat(req.app.get('currentUser'), function (chats) {
-        controller.searchAcc(chats[0].UserId, function (user) {
-            chatId = chats[0].id;
-            controller.searchMess(chats[0].id, function (messes) {
-                res.locals.enemy = user;
-                res.locals.messes = messes;
-                res.locals.chats = chats;
+app.use('/message', require('./routes/message')); // message page
 
-                res.render('message');
-            })
-        })
-    });
-})
+app.use('/setting', require('./routes/setting')); // setting page
 
-app.get('/setting-password', function (req, res) {
-    res.render('setting-password');
-})
-
-app.get('/setting-privacy', function (req, res) {
-    res.render('setting-privacy');
-})
-
-app.get('/setting-general', function (req, res) {
-    res.render('setting-general');
-})
-
-app.get('/test', function (req, res) {
-    res.render('test');
-})
-
-app.get('/login', function (req, res) {
-    res.locals.layout = 'log_res_Layout.hbs';
-
-    res.render('login');
-})
-
-app.get('/user_wall', function (req, res) {
-    res.render('user_wall');
-})
-
-app.get('/login', function (req, res) {
-    res.locals.layout = 'log_res_Layout.hbs';
-
-    res.render('login');
-})
-
-
-app.get('/register', function (req, res) {
-    res.locals.layout = 'log_res_Layout.hbs';
-
-    res.render('register');
-})
-
-app.post('/get_infor_register', (req, res) => {
-    if (req.body.account.includes(" ")) {
-        res.locals.layout = 'log_res_Layout.hbs';
-        res.locals.resAnnoun = '*Account cannot contain space';
-        res.render('register');
-    }
-    else {
-        controller.searchAcc(req.body.account, function (this_user) {
-            if (this_user != null) {
-                res.locals.layout = 'log_res_Layout.hbs';
-                res.locals.resAnnoun = '*Account ' + req.body.account + ' has already exists';
-
-                res.render('register');
-            }
-            else {
-                var salt = bcrypt.genSaltSync(10);
-
-                var userAcc = {
-                    id: req.body.account,
-                    password: bcrypt.hashSync(req.body.password, salt),
-                    type: "USER",
-                    fname: req.body.fname,
-                    lname: req.body.lname,
-                    avtPath: "",
-                    bgPath: "",
-                    email: "",
-                    pNum: "",
-                    bDay: req.body.Bday,
-                    bMonth: req.body.Bmonth,
-                    bYear: req.body.Byear,
-                    gender: req.body.gender,
-                    nation: "",
-                    bio: "",
-                }
-
-                req.app.set('currentUser', req.body.account);
-                user_name = req.body.account;
-
-                controller.createAcc(userAcc);
-                res.redirect("/");
-            }
-        });
-    }
-});
-
-app.post('/get_infor_login', (req, res) => {
-
-    controller.searchAcc(req.body.account, function (this_user) {
-        if (this_user != null) {
-            if (bcrypt.compareSync(req.body.password, this_user.password)) {
-                req.app.set('currentUser', req.body.account);
-
-                res.redirect("/");
-            }
-            else {
-                res.locals.layout = 'log_res_Layout.hbs';
-                res.locals.resAnnoun = '*Invalid username or password';
-                res.render('login');
-            }
-        }
-        else {
-            res.locals.layout = 'log_res_Layout.hbs';
-            res.locals.resAnnoun = '*Invalid username or password';
-
-            res.render('login');
-        }
-    });
-});
 
 // app.post('/get_infor_change_pass', (req, res) => {
 //     controller.searchAcc(currentUser, function (this_user) {

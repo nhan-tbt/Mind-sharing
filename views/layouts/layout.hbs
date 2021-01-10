@@ -10,8 +10,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="./css/home.css">
-        <link rel="stylesheet" href="./css/noti.css">
+        <link rel="stylesheet" href="/css/home.css">
+        <link rel="stylesheet" href="/css/noti.css">
         
     </head>
     <script src="/js/home.js"></script>
@@ -19,11 +19,10 @@
         {{>header}}
         {{{body}}}
         <script>
-            console.log({{currentUser}})
             if (`{{currentUser}}` == ''){
                 setAnonymous();
             } else {
-                sessionStorage.setItem("currentUser", `{{currentUser}}`);
+                sessionStorage.setItem("currentUser", {{currentUser}});
             }
         </script>
         <!-- Optional JavaScript -->
