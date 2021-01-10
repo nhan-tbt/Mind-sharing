@@ -5,6 +5,7 @@ var User = models.User;
 var Chat = models.Chat;
 var Mess = models.Mess;
 
+
 controller.searchChat = function(account, callback){
 	Chat.findAll({
 		where: { Owner: account },

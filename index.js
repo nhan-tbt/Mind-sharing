@@ -1,18 +1,15 @@
+const chatController = require('./controllers/chatController');
 const express = require('express');
 const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const controller = require('./controllers/userController');
-const http = require('http')
-const socketio = require('socket.io')
 const Busboy = require('busboy')
-const inspect = require('util').inspect
+const http = require('http');
+const socketio = require('socket.io');
 
 
 var app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-
-var chatId = 1;
 
 app.engine('hbs', hbs({
     extname: 'hbs',
@@ -33,37 +30,11 @@ app.set('port', (process.env.PORT || 5000));
 app.set('currentUser', '');
 
 app.use((req, res, next) => {
-    if(req.app.get('currentUser') == ''){
-        res.locals.currentUser = "";
-    } else {
-        res.locals.currentUser = req.app.get('currentUser');
-    }
-    
+    if(req.app.get('currentUser') == ''){   res.locals.currentUser = "";    } 
+    else {  res.locals.currentUser = req.app.get('currentUser');    }
     
     next();
 })
-
-io.on('connection', socket => {
-    // socket.emit('message', `Hello ${currentUser}!`);
-
-    // socket.on('disconnect', () => {
-    //     io.emit('message', "Oops");
-    // })
-
-    //Listen
-    socket.on('chatMessage', (mess) => {
-        var messes = {
-            id: mess.dateTime,
-            ChatId: chatId,
-            who: mess.user,
-            typeMess: 'TEXT',
-            contentMess: mess.mess,
-        }
-        controller.createMess(messes);
-        io.emit('message', mess)
-    })
-})
-
 
 app.use('/', require('./routes/home')); // home page
 
@@ -79,6 +50,27 @@ app.use('/message', require('./routes/message')); // message page
 
 app.use('/setting', require('./routes/setting')); // setting page
 
+
+io.on('connection', socket => {
+    // socket.emit('message', `Hello ${currentUser}!`);
+
+    // socket.on('disconnect', () => {
+    //     io.emit('message', "Oops");
+    // })
+
+    //Listen
+    socket.on('chatMessage', (mess) => {
+        var messes = {
+            id: mess.dateTime,
+            ChatId: app.get("chatId"),
+            who: mess.user,
+            typeMess: 'TEXT',
+            contentMess: mess.mess,
+        }
+        chatController.createMess(messes);
+        io.emit('message', mess)
+    })
+})
 
 // app.post('/get_infor_change_pass', (req, res) => {
 //     controller.searchAcc(currentUser, function (this_user) {
