@@ -4,15 +4,15 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     let path = require('path');
     let fs = require('fs');
-    let chatData = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../JSON/seeder_Chat.json')));
-    for (let info of chatData) {
+    let ChatRoomData = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../JSON/seeder_ChatRoom.json')));
+    for (let info of ChatRoomData) {
       info.createdAt = Sequelize.literal('NOW()');
       info.updatedAt = Sequelize.literal('NOW()');
     }
-    return queryInterface.bulkInsert('Chats', chatData);
+    return queryInterface.bulkInsert('ChatRooms', ChatRoomData);
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Chats', null, {});
+    return queryInterface.bulkDelete('ChatRooms', null, {});
   }
 };

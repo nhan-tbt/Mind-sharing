@@ -1,15 +1,21 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Chats', {
+    await queryInterface.createTable('ChatUsers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      Owner: {
-        type: Sequelize.STRING,
+      ChatRoomId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'ChatRooms',
+          key: 'id'
+        },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
       },
       UserId: {
         type: Sequelize.STRING,
@@ -31,6 +37,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Chats');
+    await queryInterface.dropTable('ChatUsers');
   }
 };

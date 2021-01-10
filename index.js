@@ -62,11 +62,13 @@ io.on('connection', socket => {
 
     //Listen
     socket.on('chatMessage', (mess) => {
+        var id = mess.dateTime + "/" + app.get("currentUser") + "/" + app.get("enemy");
         var messes = {
-            id: mess.dateTime,
-            ChatId: app.get("chatId"),
-            who: mess.user,
-            typeMess: 'TEXT',
+            id: id,
+            person1: app.get("currentUser"),
+            person2: app.get("enemy"),
+            who: app.get("currentUser"),
+            typeMess: mess.type,
             contentMess: mess.mess,
         }
         chatController.createMess(messes);

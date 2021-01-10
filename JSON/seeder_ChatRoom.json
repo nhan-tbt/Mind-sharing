@@ -1,25 +1,19 @@
 [{
-    "Owner": "admin",
+    "UserId": "admin"
+},{
     "UserId": "user_1"
 },{
-    "Owner": "admin",
     "UserId": "Life"
 },{
-    "Owner": "admin",
     "UserId": "Science"
 },{
-    "Owner": "admin",
     "UserId": "Technology"
 },{
-    "Owner": "admin",
     "UserId": "Electronic"
 },{
-    "Owner": "admin",
     "UserId": "Biological"
 },{
-    "Owner": "admin",
     "UserId": "Literary"
 },{
-    "Owner": "admin",
     "UserId": "Mathematics"
 }]

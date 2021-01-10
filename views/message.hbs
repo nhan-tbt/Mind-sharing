@@ -1,24 +1,28 @@
-<link rel="stylesheet" href="./css/message.css">
+<link rel="stylesheet" href="/css/message.css">
 <div class="row">
     <div class="col-3 overflow-hidden">
-        <div class="card my-4">
+        <div class="card my-3">
             <div class="card-header postColor">
                 <h2>Messages</h2>
             </div>
-            <div class="card-body navbarTopColor">
+            <div class="card-body navbarTopColor ulMess">
                 <ul class="list-group categoryUL">
                     {{#each chats}}
-                    <li class="list-group-item active">
+                        {{#if active}}
+                            <li class="list-group-item active">
+                        {{else}}
+                            <li class="list-group-item">
+                        {{/if}}
                         <img src="../images/Avatar/{{User.avt}}.png" class="img-thumbnail rounded-circle avatar"
                             style="height: 60px; width: 60px;" alt="avatar">
-                        <a href="#">{{User.fname}} {{User.lname}}</a>
+                        <a href="/message/{{User.id}}">{{User.fname}} {{User.lname}}</a>
                     </li>
                     {{/each}}
                 </ul>
             </div>
         </div>
     </div>
-    <div class="col-8 ml-5 my-4">
+    <div class="col-8 ml-5 my-3">
         <div class="card">
             <div class="card-header postColor">
                 <a href="" style="font-size: 45px;">

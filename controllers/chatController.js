@@ -1,24 +1,45 @@
 var controller = {};
 
+const sequelize = require('sequelize');
 var models = require('../models');
-var User = models.User;
-var Chat = models.Chat;
+
+var ChatRoom = models.ChatRoom;
+var ChatUser = models.ChatUser;
 var Mess = models.Mess;
+var User = models.User;
 
 
-controller.searchChat = function(account, callback){
-	Chat.findAll({
-		where: { Owner: account },
-		include: [User],
-	}).then(function(chats) {
-		callback(chats);
+controller.searchChatRoom = function(account, callback){
+	ChatRoom.findOne({
+		where: { 	UserId: account 	},
+	}).then(function(chatroom) {
+		callback(chatroom);
 	});
 };
 
-controller.searchMess = function(id, callback){
+controller.searchChatUser = function(id, callback){
+	ChatUser.findAll({
+		where: {	ChatRoomId: id		},
+		include: [User]
+	}).then(function(chatusers) {
+		callback(chatusers);
+	});
+};
+
+controller.searchMess = function(person1, person2, callback){
 	Mess.findAll({
-		where: { ChatId: id },
-		raw: true
+		where: {
+			[sequelize.Op.or]: [
+				{
+					person1: person1,
+					person2: person2
+				},
+				{
+					person1: person2,
+					person2: person1
+				}
+			]
+		}
 	}).then(function(messes) {
 		callback(messes);
 	});
