@@ -6,10 +6,6 @@ const AWS = require('aws-sdk');
 const Busboy = require('busboy');
 
 
-const BUCKET_NAME = 'mind-sharing';
-const IAM_USER_KEY = 'AKIATRGWWZO2WUH5TFNJ';
-const IAM_USER_SECRET = '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';
-
 router.post('/get_infor_create_post', (req, res) => {
     var s3bucket = new AWS.S3({
         accessKeyId: 'AKIATRGWWZO2WUH5TFNJ',
@@ -22,6 +18,7 @@ router.post('/get_infor_create_post', (req, res) => {
     var num_img = 0;
 
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+        console.log(filename);
         if (filename != ''){
             s3bucket.createBucket(function () {
                 var params = {
@@ -53,6 +50,7 @@ router.post('/get_infor_create_post', (req, res) => {
 
     busboy.on('finish', function() {
         var today = new Date();
+        post['id'] = req.app.get('last_post') + 1;
         post['time'] = today.getTime();
         post['pDay'] = today.getDay();
         post['pMonth'] = today.getMonth() + 1;
