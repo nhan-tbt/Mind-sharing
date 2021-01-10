@@ -2,21 +2,14 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Posts', [{
-      UserId: 'admin',
-      time: '20:44',
-      pDay: '29',
-      pMonth: '12',
-      pYear: '2020',
-      content: 'Welcome to MindSharing - where we can find or share knowledge with each other. Merry christmas and happy new year!\nLove',
-      imgPath: [""],
-      like: 0,
-      share: 0,
-      comment: 0,
-      category: ["announ"],
-      createdAt: Sequelize.literal('NOW()'),
-      updatedAt: Sequelize.literal('NOW()')
-    }], {});
+    let path = require('path');
+    let fs = require('fs');
+    let postData = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../JSON/seeder_Post.json')));
+    for (let info of postData) {
+      info.createdAt = Sequelize.literal('NOW()');
+      info.updatedAt = Sequelize.literal('NOW()');
+    }
+    return queryInterface.bulkInsert('Posts', postData);
   },
 
   down: async (queryInterface, Sequelize) => {

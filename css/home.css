@@ -1,13 +1,34 @@
+.navbarColor{
+    background: linear-gradient(0.25turn, #b9dff0, #ebf8e1, #f5d1ab);
+}
+
+
+.navbarTopColor{
+    background: linear-gradient(to top, #b9dff0, #ebf8e1, #f5d1ab);
+}
+
+.backgroundColor{
+    background-color: rgb(157, 161, 160); 
+}
+
 .mainColor{
-    color: rgb(255, 140, 20); 
+    color: rgb(255, 114, 20); 
 }
 
 .borderColor{
-    border-color: rgb(255, 140, 20);
+    border-color: rgb(255, 114, 20); 
+}
+
+.postColor{
+    background: linear-gradient(to right, #b9dff0, #dff7e2, #e9f8de, #f5d1ab);
+}
+
+.postContentColor{
+    background: linear-gradient(to bottom, #f1fad9, #ebf8e1, #f1fad9);
 }
 
 .bgColor{
-    background-color: rgb(255, 140, 20);
+    background-color: rgb(255, 114, 20); 
 }
 
 .navBar{
@@ -30,6 +51,7 @@
 .categoryUL{
     line-height: 30px;
     font-size: 25px; 
+    width: 310px;
 }
 
 p{
@@ -56,6 +78,7 @@ p{
     font-size: 30px;
     text-decoration: none;
     color: #1100ff;
+    width: 310px;
 }
 
 .categoryUL a:active{

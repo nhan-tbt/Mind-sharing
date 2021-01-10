@@ -4,9 +4,10 @@
     "type": "ADMIN",
     "fname": "Admin",
     "lname": "",
-    "avt": "default",
-    "bg": "default",
+    "avt": "admin",
+    "bg": "admin",
     "email": "MindSharingWeb2k@gmail.com",
+    "address": "",
     "pNum": "0969327639",
     "bDay": "1",
     "bMonth": "1",
@@ -14,8 +15,25 @@
     "gender": "Male",
     "nation": "VietNam",
     "bio": "Nothing"
+},{
+    "id": "user_1",
+    "password": "123",
+    "type": "USER",
+    "fname": "User_1",
+    "lname": "User",
+    "email": "",
+    "address": "",
+    "avt": "user_1",
+    "bg": "user_1",
+    "pNum": "",
+    "bDay": "1",
+    "bMonth": "1",
+    "bYear": "2000",
+    "gender": "Male",
+    "nation": "VietNam",
+    "bio": "Nothing"
 },
-  {
+{
     "id": "Life",
     "password": "123",
     "type": "USER",
@@ -124,7 +142,7 @@
     "bio": ""
 },
 {
-    "id": "testing4",
+    "id": "Mathematics",
     "password": "123",
     "type": "USER",
     "fname": "test",

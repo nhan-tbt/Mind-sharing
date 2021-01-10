@@ -5,42 +5,15 @@ var salt = bcrypt.genSaltSync(10);
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-
-    return queryInterface.bulkInsert('Users', [{
-      id: 'admin',
-      password: bcrypt.hashSync('admin123', salt),
-      type: 'ADMIN',
-      fname: 'Admin',
-      lname: '',
-      email: "MindSharingWeb2k@gmail.com",
-      pNum: "0969327639",
-      bDay: "1",
-      bMonth: "1",
-      bYear: "2000",
-      gender: "Male",
-      nation: "VietNam",
-      bio: "Nothing",
-      createdAt: Sequelize.literal('NOW()'),
-      updatedAt: Sequelize.literal('NOW()')
-    },{
-      id: 'user_1',
-      password: bcrypt.hashSync('user_1', salt),
-      type: 'USER',
-      fname: 'User_1',
-      lname: 'User',
-      email: "",
-      avt: "defautl",
-      bg: "defautl",
-      pNum: "",
-      bDay: "1",
-      bMonth: "1",
-      bYear: "2000",
-      gender: "Male",
-      nation: "VietNam",
-      bio: "Nothing",
-      createdAt: Sequelize.literal('NOW()'),
-      updatedAt: Sequelize.literal('NOW()')
-    }], {});
+    let path = require('path');
+    let fs = require('fs');
+    let userData = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../JSON/seeder_Account.json')));
+    for (let info of userData) {
+      info.password = bcrypt.hashSync(info.password, salt);
+      info.createdAt = Sequelize.literal('NOW()');
+      info.updatedAt = Sequelize.literal('NOW()');
+    }
+    return queryInterface.bulkInsert('Users', userData);
   },
 
   down: async (queryInterface, Sequelize) => {
