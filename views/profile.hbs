@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="./css/profile.css">
 <div class="container">
     <div class="text-center">
-        <img src="./images/Background/user_1.jpg" class="img-thumbnail background" alt="background">
+        <img src="./images/Background/{{currentUser.bg}}.jpg" class="img-thumbnail background" alt="background">
     </div>
     <div class="text-center">
-        <img src="./images/Avatar/user_1.png" class="img-thumbnail rounded-circle avatar" style="height: 200px; width: 200px;" alt="avatar">
-        <h1 class="username mainColor"> User Name </h1>
-        <a href="/user_wall">
-            <input type="button" class="btn bgColor" id="wallBtn" value="See Post">
+        <img src="./images/Avatar/{{currentUser.avt}}.png" class="img-thumbnail rounded-circle avatar" style="height: 200px; width: 200px;" alt="avatar">
+        <h1 class="username mainColor"> {{currentUser.fname}} {{currentUser.lname}} </h1>
+        <a href="/profile/wall">
+            <input type="button" class="btn bgColor" id="wallBtn" value="See Your Wall">
         </a>
     </div>
     <div class="info">
@@ -17,74 +17,83 @@
             </div>
             <div class="card-body postColor">
                 <div class="row m-2">
-                    <div class="col-2 inputRow">
+                    <div class="col-2 inputRow ml-3">
                         <h5>First Name</h5>
                     </div>
                     <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control p-4" name="first name" value="User" disabled>
+                            <input type="text" class="inputField" value="{{currentUser.fname}}" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-2 inputRow">
+                    <div class="col-2 inputRow ml-3">
                         <h5>Last Name</h5>
                     </div>
                     <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control p-4" name="last name" value="Name" disabled>
+                            <input type="text" class="inputField" value="{{currentUser.lname}}" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-2 inputRow">
+                    <div class="col-2 inputRow ml-3">
                         <h5>Email Address</h5>
                     </div>
                     <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control p-4" name="email" value="user.name@gmail.com" disabled>
+                            <input type="text" class="inputField" value="{{currentUser.email}}" disabled>
+                        </div>
+                    </div>
+                </div>
+                                <div class="row m-2">
+                    <div class="col-2 inputRow ml-3">
+                        <h5>Address</h5>
+                    </div>
+                    <div class="col inputRow">
+                        <div class="form-row">
+                            <input type="text" class="inputField" value="{{currentUser.address}}" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-2 inputRow">
+                    <div class="col-2 inputRow ml-3">
                         <h5>Phone number</h5>
                     </div>
                     <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control p-4" name="phone" value="0969327639" disabled>
+                            <input type="text" class="inputField" value="{{currentUser.pNum}}" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-2 inputRow">
-                        <h5>Favorite food</h5>
+                    <div class="col-2 inputRow ml-3">
+                        <h5>Birthday</h5>
                     </div>
                     <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control p-4" name="favoriteFood"
-                                value="Lemon ice cream, lemon lemongrass kumquat tea, lemon juice" disabled>
+                            <input type="text" class="inputField" value="{{currentUser.bDay}}-{{currentUser.bMonth}}-{{currentUser.bYear}}" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-2 inputRow">
+                    <div class="col-2 inputRow ml-3">
                         <h5>Nationality</h5>
                     </div>
                     <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control p-4" name="nation" value="Campuchia" disabled>
+                            <input type="text" class="inputField" value="{{currentUser.nation}}" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="row m-2">
-                    <div class="col-2 inputRow">
+                    <div class="col-2 inputRow ml-3">
                         <h5>Bio</h5>
                     </div>
                     <div class="col inputRow">
                         <div class="form-row">
-                            <input type="text" class="form-control p-4" name="phone"
-                                value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, quod!"
+                            <input type="text" class="inputField" 
+                                value="{{currentUser.bio}}"
                                 disabled>
                         </div>
                     </div>

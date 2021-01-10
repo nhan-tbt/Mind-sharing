@@ -29,7 +29,10 @@
 }
 
 .inputField{
+    font-size: 25px;
     padding: 15px;
+    width: 840px;
+    height: 55px;
 }
 
 input[type="text"]:disabled {

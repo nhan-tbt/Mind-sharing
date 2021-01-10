@@ -42,11 +42,13 @@ app.use('/login', require('./routes/login')); // login page
 
 app.use('/register', require('./routes/register')); // register page
 
+app.use('/message', require('./routes/message')); // message page
+
+app.use('/wall', require('./routes/wall')); // wall page
+
 app.use('/profile', require('./routes/profile')); // profile page
 
 app.use('/contact', require('./routes/contact')); // contact page
-
-app.use('/message', require('./routes/message')); // message page
 
 app.use('/setting', require('./routes/setting')); // setting page
 
