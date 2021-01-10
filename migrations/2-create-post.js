@@ -41,9 +41,6 @@ module.exports = {
       like: {
         type: Sequelize.INTEGER
       },
-      share: {
-        type: Sequelize.INTEGER
-      },
       comment: {
         type: Sequelize.INTEGER
       },
