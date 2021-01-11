@@ -9,7 +9,7 @@ controller.searchAcc = function(account, callback){
 		where: { id: account },
 	}).then(function(this_user) {
 		callback(this_user);
-	});
+	}).catch();
 };
 
 controller.createAcc = function(user){

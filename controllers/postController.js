@@ -1,4 +1,5 @@
 var postController = {};
+var pInteractionController = require('./pInteractionController');
 var models = require('../models/');
 var Post = models.Post;
 var User = models.User;
@@ -10,8 +11,7 @@ postController.searchAllPost = function(user, callback){
 		include: [{
 			model: User,
 		},{
-			model: Interation,
-			where: {UserId: user.id}
+			model: Interaction
 		},{
 			model: Comment
 		}],
@@ -36,27 +36,21 @@ postController.seachPostById = function(PostId) {
 }
 
 postController.likePost = function(post) {
-	return new Promise ((resolve, reject) => {
-		Post
-		.update(
-			{like: post.like + 1}, 
-			{where: {id: post.id}}
-		)
-		.then(post => resolve(post))
-		.catch(error => reject (new Error(error)));
-	})
+	Post
+	.update(
+		{like: post.like}, 
+		{where: {id: post.id}}
+	)
+	.catch();
 }
 
 postController.unlikePost = function(post) {
-	return new Promise ((resolve, reject) => {
-		Post
-		.update(
-			{like: post.like - 1}, 
-			{where: {id: post.id}}
-		)
-		.then(post => resolve(post))
-		.catch(error => reject (new Error(error)));
-	})
+	Post
+	.update(
+		{like: post.like}, 
+		{where: {id: post.id}}
+	)
+	.catch();
 }
 
 postController.checkInteractionByUser = function(user) {

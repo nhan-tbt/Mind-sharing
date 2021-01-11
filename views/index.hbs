@@ -60,8 +60,9 @@
                 <form action="">
                     <div class="row">
                         <div class="col-md-auto">
-                            <a href="#"> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{user.avt}}.png" class="rounded-circle"
-                                    style="width: 90px; height: 90px;" alt="user_img"> </a>
+                            <a href="#"> <img
+                                    src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{user.avt}}.png"
+                                    class="rounded-circle" style="width: 90px; height: 90px;" alt="user_img"> </a>
                         </div>
                         <div class="col-md">
                             <input type="text" class="post" id="post_btn" placeholder="">
@@ -83,8 +84,10 @@
                             <div class="card-body formColor">
                                 <div class="row">
                                     <div class="col-md-auto">
-                                        <a href=""> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{user.avt}}.png" class="rounded-circle"
-                                                style="width: 70px; height: 70px;" alt="user_img"> </a>
+                                        <a href=""> <img
+                                                src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{user.avt}}.png"
+                                                class="rounded-circle" style="width: 70px; height: 70px;"
+                                                alt="user_img"> </a>
                                     </div>
                                     <div class="col-sm-10">
                                         <a href="" class="user_name">
@@ -151,8 +154,8 @@
                 <div class="card-header postColor">
                     <div class="row">
                         <div class="col-md-auto">
-                            <a href=""> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{User.avt}}.png" class="rounded-circle"
-                                    style="width: 70px; height: 70px;" alt="user_img"> </a>
+                            <a href=""> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{User.avt}}.png"
+                                    class="rounded-circle" style="width: 70px; height: 70px;" alt="user_img"> </a>
                         </div>
                         <div class="col-sm-10 user_name">
                             <a href="" class="user_name">
@@ -184,6 +187,55 @@
                         <div class="col text-center border-right border-secondary p-0 m-0">
                             <span class="text-dark like" class="like" id="like{{id}}">Like</span>
                             <span class="text-dark like" class="unlike" id="unlike{{id}}">Unlike</span>
+                            <script>
+                                document.getElementById('like{{id}}').style.display = 'inline';
+                                document.getElementById('unlike{{id}}').style.display = 'none';
+                            </script>
+                            {{#each pInteractions}}
+                            <script>
+                                
+                                if ({{ PostId }} == {{../id}} && "{{{UserId}}}" == "{{{../../user.id}}}") {
+                                    document.getElementById('like{{../id}}').style.display = 'none';
+                                    document.getElementById('unlike{{../id}}').style.display = 'inline';
+                                }
+
+                            </script>
+                            {{/each}}
+
+
+                            <script>
+                                document.getElementById('like{{id}}').addEventListener('click', function () {
+                                    var postID = parseInt("{{id}}");
+                                    document.getElementById('unlike{{id}}').style.display = 'inline';
+                                    document.getElementById('like{{id}}').style.display = 'none';
+                                    $.ajax({
+                                        url: '/like',
+                                        type: 'POST',
+                                        data: { postID },
+                                        success: result => {
+                                            console.log(result);
+                                            document.querySelector('.countLike{{id}}').innerHTML = result;
+                                        },
+                                    })
+                                })
+
+                                document.getElementById('unlike{{id}}').addEventListener('click', function () {
+                                    var postID = parseInt("{{id}}");
+                                    document.getElementById('like{{id}}').style.display = 'inline';
+                                    document.getElementById('unlike{{id}}').style.display = 'none';
+                                    $.ajax({
+                                        url: '/unlike',
+                                        type: 'POST',
+                                        data: { postID },
+                                        success: result => {
+                                            console.log(result);
+                                            document.querySelector('.countLike{{id}}').innerHTML = result;
+                                        },
+                                    })
+                                })
+                            </script>
+
+
                         </div>
                         <div class="col text-center border-right border-secondary p-0 m-0">
                             <span class="text-dark share" id="cmt">Comment</span>
@@ -199,7 +251,7 @@
                     </div>
                     <div class="input_cmt">
                         <input id="cmt" name="cmt" type="text" class="form-control input-sm cmt_input mr-2 mt-1"
-                        placeholder="Add a comment..." />
+                            placeholder="Add a comment..." />
                         <button type="submit" class="btn btn-warning cmtBtn">Comment</button>
                     </div>
                 </div>

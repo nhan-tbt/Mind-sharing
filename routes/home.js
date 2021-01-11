@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/userController');
 const postController = require('../controllers/postController');
+var pInteractionController = require('../controllers/pInteractionController');
 const AWS = require('aws-sdk');
 const Busboy = require('busboy');
 
@@ -82,18 +83,25 @@ router.get('/', function (req, res) {
 
 router.post('/like', function(req, res) {
     postController.seachPostById(req.body.postID)
-    .then(post => 
-        postController.likePost(post)
-        .then(post => res.json(post.like))
-    )
+    .then(post => {
+        post.like += 1;
+        postController.likePost(post);
+
+        pInteractionController.createInteraction(post.id, req.app.get('currentUser'));
+
+        console.log(post.like);
+        res.json(post.like);
+    })    
 })
 
 router.post('/unlike', function(req, res) {
     postController.seachPostById(req.body.postID)
-    .then(post => 
-        postController.unlikePost(post)
-        .then(post => res.json(post.like))
-    )
+    .then(post => {
+        post.like -= 1;
+        postController.unlikePost(post);
+        pInteractionController.removeInteraction(post.id, req.app.get('currentUser'));
+        console.log(post.like);
+        res.json(post.like)})
 })
 
 module.exports = router;

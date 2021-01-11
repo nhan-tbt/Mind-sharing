@@ -11,13 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       pInteraction.belongsTo(models.Post);
+      pInteraction.belongsTo(models.User);
     }
   };
   pInteraction.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
-    },
     PostId: DataTypes.INTEGER,
     UserId: DataTypes.STRING,
     like: DataTypes.BOOLEAN
