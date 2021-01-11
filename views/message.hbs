@@ -6,6 +6,10 @@
                 <h2>Messages</h2>
             </div>
             <div class="card-body navbarTopColor ulMess">
+                <ul>
+                    <span class="close_search" id="close_search_btn"><i class="fa fa-arrow-left"></i></span>
+                    <input type="text" class="searchUser" id="searchUser" placeholder="Search...">
+                </ul>
                 <ul class="list-group categoryUL">
                     {{#each chats}}
                         {{#if active}}
@@ -84,4 +88,4 @@
     </div>
 </div>
 <script src="/socket.io/socket.io.js"></script>
-<script src="./js/messenger.js"></script>
+<script src="/js/messenger.js"></script>

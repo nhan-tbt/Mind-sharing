@@ -4,6 +4,11 @@ const user = sessionStorage.getItem("currentUser");
 var chatForm = document.getElementById('chatform');
 var message = document.getElementById('message');
 var chatBox = document.getElementById('chat-box');
+var closeBtn = document.getElementById('close_preview_btn');
+var numberIMG = document.getElementById('numberIMG');
+var search = document.getElementById('searchUser');
+var close_search = document.getElementById('close_search_btn');
+
 const file = document.getElementById("file");
 const previewContainer = document.querySelector(".PreviewImg");
 
@@ -19,11 +24,15 @@ socket.on('message', mess => {
                             <div class="box-mess guy col-auto" id="me">`;
     }
 
-    for (let i = 0; i < mess.imgPath.length; i++){ 
-        outputMess += `<div><img src="${mess.imgPath[0]}" class="preview_img img-thumbnail m-2">`;
+    if (mess.imgPath.length != 0) {
+        outputMess += `<div>`;
+        for (let i = 0; i < mess.imgPath.length; i++){ 
+            outputMess += `<img src="${mess.imgPath[0]}" class="preview_img img-thumbnail m-2">`;
+        }
+        outputMess += `</div>`;
     }
     
-    outputMess += `</div>${mess.contentMess}`;
+    outputMess += `${mess.contentMess}`;
     outputMess += `</div></div>`;
 
     chatBox.insertAdjacentHTML('beforeend', outputMess);
@@ -33,7 +42,10 @@ socket.on('message', mess => {
 chatForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    console.log("here")
     if (file.value != "" || message.value != ""){
+        console.log(message.value);
+        console.log(file.value);
         let formData = new FormData(chatForm);
         $.ajax( {
             url: '/message/get_data_message',
@@ -44,7 +56,6 @@ chatForm.addEventListener('submit', (e) => {
             contentType: false,
             success: function (mess) {
                 socket.emit('chatMessage', mess);
-                localtion.reload();
             }
         });
     }
@@ -52,19 +63,23 @@ chatForm.addEventListener('submit', (e) => {
     message.value = "";
     file.value = "";
     previewContainer.innerHTML = "";
+    closeBtn.style.display = "none";
+    numberIMG.value = 0;
 })
 
-function getMeta(url){   
-    var img = new Image();
-    img.onload = function(){
-        alert(this.height);
-    };
-    img.src = url;
-}
+closeBtn.addEventListener("click", function() {
+    file.value = "";
+    previewContainer.innerHTML = "";
+    closeBtn.style.display = "none";
+    numberIMG.value = 0;
+})
 
 file.addEventListener("change", function() {
     const f = this.files;
     previewContainer.innerHTML = '';
+    closeBtn.style.display = "initial";
+    numberIMG.value = 0;
+
     if (f) {
         for (let i = 0; i < f.length; i++) {
             var reader = new FileReader();
@@ -77,7 +92,7 @@ file.addEventListener("change", function() {
             })
             reader.readAsDataURL(f[i]);
         } 
-        document.getElementById("numberIMG").value = f.length;
+        numberIMG.value = f.length;
     }
     else {
         while(previewContainer.hasChildNodes()) {
@@ -85,5 +100,28 @@ file.addEventListener("change", function() {
         }
     }
 })
+
+search.addEventListener('click', function(event) {
+    console.log("a")
+    var isClickInside = search.contains(event.target);
+  
+    search.style.width = "240px";
+    search.style.left = "0px";
+    close_search.style.display = "initial";
+
+
+    if (!isClickInside) {
+        search.style.width = "280px";
+        search.style.left = "-40px";
+        close_search.style.display = "initial";
+    }
+  });
+
+$(document).ready(function(){
+    $("input").keyup(function(){
+      
+    });
+});
+
 
 setTimeout(() => { chatBox.scrollTop = chatBox.scrollHeight }, 300);

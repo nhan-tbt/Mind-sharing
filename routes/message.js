@@ -70,14 +70,11 @@ router.post('/get_data_message', (req, res) => {
     });
 
     busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
-        console.log(fieldname);
         mess[fieldname] = val;
     });
 
     busboy.on('finish', function() {
-
         chatController.createMess(mess);
-
         setTimeout(() => { res.json(mess); }, 2500*num_img);
     });
 
@@ -85,9 +82,7 @@ router.post('/get_data_message', (req, res) => {
         await req.pipe(busboy)
 
         if (mess['numImg'] == 0){
-
             chatController.createMess(mess);
-
             res.json(mess);
         }
     }
