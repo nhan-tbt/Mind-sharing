@@ -1,54 +1,66 @@
 const socket = io();
 const user = sessionStorage.getItem("currentUser");
 
-var chatForm = document.getElementById('chat-form');
+var chatForm = document.getElementById('chatform');
 var message = document.getElementById('message');
 var chatBox = document.getElementById('chat-box');
+const file = document.getElementById("file");
+const previewContainer = document.querySelector(".PreviewImg");
 
+chatBox.scrollTop = chatBox.scrollHeight
 
 socket.on('message', mess => {
-    console.log(1)
-    console.log(mess.mess);
-    if (mess.who != user){
-        var outputMess = `<div class="row">
-            <div class="box-mess guy col-auto" id="guy">
-                ${mess.mess}
-            </div>
-        </div>`
-
-        chatBox.insertAdjacentHTML('beforeend', outputMess);
-        chatBox.scrollTop = chatBox.scrollHeight;
+    var outputMess = ``;
+    if (mess.who == user){
+        outputMess +=   `<div class="row justify-content-end">
+                            <div class="box-mess me col-auto" id="guy">`;
     } else {
-        var outputMess = `<div class="row justify-content-end">
-            <div class="box-mess me col-auto" id="me">
-                ${mess.mess}
-            </div>
-        </div>`
-    
-        chatBox.insertAdjacentHTML('beforeend', outputMess);
-        chatBox.scrollTop = chatBox.scrollHeight;
+        outputMess +=   `<div class="row">
+                            <div class="box-mess guy col-auto" id="me">`;
     }
-});
 
-chatBox.scrollTop = chatBox.scrollHeight;
+    for (let i = 0; i < mess.imgPath.length; i++){ 
+        outputMess += `<div><img src="${mess.imgPath[0]}" class="preview_img img-thumbnail m-2">`;
+    }
+    
+    outputMess += `</div>${mess.contentMess}`;
+    outputMess += `</div></div>`;
+
+    chatBox.insertAdjacentHTML('beforeend', outputMess);
+    setTimeout(() => { chatBox.scrollTop = chatBox.scrollHeight }, 300);
+});
 
 chatForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    const mess = message.value;
-    var today = new Date();
-    var dateTime = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' +today.getDate() + '/' + today.getHours() + "/" + today.getMinutes() + "/" + today.getSeconds() + "/" + today.getMilliseconds();
-    var type = "TEXT";
 
-    socket.emit('chatMessage', {mess, user, type, dateTime});
+    if (file.value != "" || message.value != ""){
+        let formData = new FormData(chatForm);
+        $.ajax( {
+            url: '/message/get_data_message',
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (mess) {
+                socket.emit('chatMessage', mess);
+                localtion.reload();
+            }
+        });
+    }
 
     message.value = "";
+    file.value = "";
+    previewContainer.innerHTML = "";
 })
 
-
-
-const file = document.getElementById("file");
-const previewContainer = document.querySelector(".PreviewImg");
+function getMeta(url){   
+    var img = new Image();
+    img.onload = function(){
+        alert(this.height);
+    };
+    img.src = url;
+}
 
 file.addEventListener("change", function() {
     const f = this.files;
@@ -59,19 +71,19 @@ file.addEventListener("change", function() {
             
             reader.addEventListener("load", function(event) {
                 var picFile = event.target;
-                var indi_htm = `<img src="` + picFile.result + `" alt="" class="preview_img img-thumbnail m-2">`;
+
+                var indi_htm = `<img src="` + picFile.result + `" class="preview_img img-thumbnail m-2">`;
                 previewContainer.insertAdjacentHTML("beforeend", indi_htm);
             })
             reader.readAsDataURL(f[i]);
         } 
+        document.getElementById("numberIMG").value = f.length;
     }
     else {
-        //previewImage.display = null;
-        //previewImage.setAttribute("src", "");
-        console.log(1);
         while(previewContainer.hasChildNodes()) {
             previewContainer.removeChild(previewContainer.childNodes[0]);
         }
-        
     }
 })
+
+setTimeout(() => { chatBox.scrollTop = chatBox.scrollHeight }, 300);

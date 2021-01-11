@@ -85,3 +85,13 @@ input[type="file"] {
   max-width: 100px;
   max-height: 100px;
 }
+
+.close_preview{
+  position: absolute;
+  top: 0;
+  color: black;
+  right: 14px;
+  font-size: 42px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}

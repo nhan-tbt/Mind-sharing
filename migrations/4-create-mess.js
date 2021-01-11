@@ -15,8 +15,8 @@ module.exports = {
       who: {
         type: Sequelize.STRING
       },
-      typeMess: {
-        type: Sequelize.STRING
+      imgPath: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       contentMess: {
         type: Sequelize.TEXT

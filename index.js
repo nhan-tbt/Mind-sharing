@@ -62,23 +62,10 @@ io.on('connection', socket => {
 
     //Listen
     socket.on('chatMessage', (mess) => {
-        var id = mess.dateTime + "/" + app.get("currentUser") + "/" + app.get("enemy");
-        var messes = {
-            id: id,
-            person1: app.get("currentUser"),
-            person2: app.get("enemy"),
-            who: app.get("currentUser"),
-            typeMess: mess.type,
-            contentMess: mess.mess,
-        }
-        chatController.createMess(messes);
+        console.log("sended")
         io.emit('message', mess)
     })
 })
-
-const BUCKET_NAME = 'mind-sharing';
-const IAM_USER_KEY = 'AKIATRGWWZO2WUH5TFNJ';
-const IAM_USER_SECRET = '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';
 
 app.post('/upload', function (req, res) {
     var busboy = new Busboy({ headers: req.headers });

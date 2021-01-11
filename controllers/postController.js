@@ -2,7 +2,7 @@ var postController = {};
 var models = require('../models/');
 var Post = models.Post;
 var User = models.User;
-var Interation = models.pInteration
+var Interaction = models.pInteraction
 var Comment = models.pComment
 
 postController.searchAllPost = function(callback){
@@ -10,7 +10,7 @@ postController.searchAllPost = function(callback){
 		// include: [{
 		// 	model: User
 		// },{
-		// 	model: Interation
+		// 	model: Interaction
 		// },{
 		// 	model: Comment
 		// }]
