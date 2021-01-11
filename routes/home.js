@@ -72,14 +72,27 @@ router.get('/', function (req, res) {
     res.locals.currentUser = req.app.get('currentUser');
     userController.searchAcc(req.app.get('currentUser'), function(this_user) {
         res.locals.user = this_user;
-        postController.searchAllPost(this_user, function (posts) {
+        postController.searchAllPost(function (posts) {
             res.locals.posts = posts;
             req.app.set('last_post', posts.length);
             res.render('index');
         });
     } )
-    
 })
+
+router.get('/category/:cate', function(req, res) {
+    res.locals.currentUser = req.app.get('currentUser');
+
+    userController.searchAcc(req.app.get('currentUser'), function(this_user) {
+        res.locals.user = this_user;
+        console.log(req.params.cate);
+        postController.searchCatePost(req.params.cate ,function (posts) {
+            res.locals.posts = posts;
+            req.app.set('last_post', posts.length);
+            res.render('index');
+        });
+    } )
+});
 
 router.post('/like', function(req, res) {
     postController.seachPostById(req.body.postID)
