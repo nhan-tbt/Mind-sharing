@@ -15,10 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   ChatRoom.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
-    },
     UserId: DataTypes.STRING
   }, {
     sequelize,

@@ -18,10 +18,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Post.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
-    },
     UserId: DataTypes.STRING,
     time: DataTypes.STRING,
     pDay: DataTypes.TEXT,

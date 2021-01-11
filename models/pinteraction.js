@@ -14,10 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   pInteraction.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
-    },
     PostId: DataTypes.INTEGER,
     UserId: DataTypes.STRING,
     like: DataTypes.BOOLEAN
