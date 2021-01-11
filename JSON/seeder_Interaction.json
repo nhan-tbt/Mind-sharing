@@ -1,0 +1,9 @@
+[{
+    "PostId": 1,
+    "UserId": "user_1",
+    "like": true
+},{
+    "PostId": 1,
+    "UserId": "Technology",
+    "like": true
+}]
