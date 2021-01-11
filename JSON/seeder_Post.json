@@ -6,7 +6,6 @@
     "pYear": "2020",
     "content": "Welcome to MindSharing - where we can find or share knowledge with each other. Merry christmas and happy new year!\nLove",
     "like": 0,
-    "share": 0,
     "comment": 0,
     "category": "announ"
   },{
@@ -17,7 +16,6 @@
     "pYear": "2020",
     "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam optio consequuntur eligendi maxime sequi similique quae repellendus! Aut sequi saepe incidunt, rerum fugit iste ipsum minus vel earum dolorum culpa.",
     "like": 0,
-    "share": 0,
     "comment": 0,
     "category": "moment"
   },
@@ -29,7 +27,6 @@
     "pYear": "2020",
     "content": "This is a post with Life category !\nLove",
     "like": 0,
-    "share": 0,
     "comment": 0,
     "category": "life"
   },{
@@ -40,7 +37,6 @@
     "pYear": "2020",
     "content": "This is a post with Science category !\nLove",
     "like": 0,
-    "share": 0,
     "comment": 0,
     "category": "science"
   },{
@@ -51,7 +47,6 @@
     "pYear": "2020",
     "content": "This is a post with Technology category !\nLove",
     "like": 0,
-    "share": 0,
     "comment": 0,
     "category": "technology"
   },{
@@ -62,7 +57,6 @@
     "pYear": "2020",
     "content": "This is a post with Electronic category !\nLove",
     "like": 0,
-    "share": 0,
     "comment": 0,
     "category": "electronic"
   },{
@@ -73,7 +67,6 @@
     "pYear": "2020",
     "content": "This is a post with Biological category !\nLove",
     "like": 0,
-    "share": 0,
     "comment": 0,
     "category": "biological"
   },{
@@ -84,7 +77,6 @@
     "pYear": "2020",
     "content": "This is a post with Literary category !\nLove",
     "like": 0,
-    "share": 0,
     "comment": 0,
     "category": "literary"
   },{

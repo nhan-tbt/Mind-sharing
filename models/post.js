@@ -31,7 +31,6 @@ module.exports = (sequelize, DataTypes) => {
     imgPath: DataTypes.ARRAY(DataTypes.STRING),
     category: DataTypes.STRING,
     like: DataTypes.INTEGER,
-    share: DataTypes.INTEGER,
     comment: DataTypes.INTEGER,
   }, {
     sequelize,

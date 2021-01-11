@@ -13,7 +13,7 @@
                         {{else}}
                             <li class="list-group-item">
                         {{/if}}
-                        <img src="../images/Avatar/{{User.avt}}.png" class="img-thumbnail rounded-circle avatar"
+                        <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{User.avt}}.png" class="img-thumbnail rounded-circle avatar"
                             style="height: 60px; width: 60px;" alt="avatar">
                         <a href="/message/{{User.id}}">{{User.fname}} {{User.lname}}</a>
                     </li>
@@ -26,7 +26,7 @@
         <div class="card">
             <div class="card-header postColor">
                 <a href="" style="font-size: 45px;">
-                    <img src="../images/Avatar/{{enemy.avt}}.png" class="img-thumbnail rounded-circle avatar"
+                    <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{enemy.avt}}.png" class="img-thumbnail rounded-circle avatar"
                         style="height: 80px; width: 80px;" alt="avatar">
                     {{enemy.fname}} {{enemy.lname}}
                 </a>
