@@ -18,7 +18,6 @@ router.post('/get_infor_create_post', (req, res) => {
     var num_img = 0;
 
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-        console.log(filename);
         if (filename != ''){
             s3bucket.createBucket(function () {
                 var params = {
@@ -51,7 +50,7 @@ router.post('/get_infor_create_post', (req, res) => {
     busboy.on('finish', function() {
         var today = new Date();
         post['id'] = req.app.get('last_post') + 1;
-        post['time'] = today.getTime();
+        post['time'] = today.getHours() + ":" + today.getMinutes();
         post['pDay'] = today.getDay();
         post['pMonth'] = today.getMonth() + 1;
         post['pYear'] = today.getFullYear();
