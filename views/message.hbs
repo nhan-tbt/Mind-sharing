@@ -6,6 +6,10 @@
                 <h2>Messages</h2>
             </div>
             <div class="card-body navbarTopColor ulMess">
+                <ul>
+                    <span class="close_search" id="close_search_btn"><i class="fa fa-arrow-left"></i></span>
+                    <input type="text" class="searchUser" id="searchUser" placeholder="Search...">
+                </ul>
                 <ul class="list-group categoryUL">
                     {{#each chats}}
                         {{#if active}}
@@ -25,7 +29,7 @@
     <div class="col-8 ml-5 my-3">
         <div class="card">
             <div class="card-header postColor">
-                <a href="" style="font-size: 45px;">
+                <a href="/profile/{{enemy.id}}" style="font-size: 45px;">
                     <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{enemy.avt}}.png" class="img-thumbnail rounded-circle avatar"
                         style="height: 80px; width: 80px;" alt="avatar">
                     {{enemy.fname}} {{enemy.lname}}
@@ -37,6 +41,7 @@
                     if (`{{../enemy.id}}` == `{{who}}`){
                         var item = `                        <div class="row">
                             <div class="box-mess guy col-auto" id="guy">
+                                <div id="imgHere"></div>
                                 {{contentMess}}
                             </div>
                         </div>`
@@ -45,24 +50,32 @@
                     } else {
                         var item = `                        <div class="row justify-content-end">
                             <div class="box-mess me col-auto" id="me">
+                                <div id="{{id}}"></div>
                                 {{contentMess}}
                             </div>
                         </div>`;
                         var t = document.querySelector('#chat-box');
                         t.insertAdjacentHTML("beforeend", item);
                     }
-                </script>
+                    </script>
+                    {{#each imgPath}}
+                    <script>
+                        var indi_htm = `<img src="` + `{{this}}` + `" alt="" class="preview_img img-thumbnail m-2">`;
+                        var t = document.getElementById('{{../id}}');
+                        t.insertAdjacentHTML("beforeend", indi_htm);
+                    </script>
+                    {{/each}}
             {{/each}}
             </div>
             <div class="card-footer">
-                <form id="chat-form">
+                <form id="chatform">
+                    <input type="text" style="display: none;" id="numberIMG" name="numImg" value="0">
+                    <div class="close_preview" id="close_preview_btn">+</div>
                     <div class="PreviewImg m-2">
-                        {{!-- <img src="/images/Avatar/user_1.png" class="preview_img img-thumbnail" alt="">
-                        <img src="/images/Avatar/user_1.png" class="preview_img img-thumbnail" alt=""> --}}
                     </div>
-                    <input id="message" type="text" class="form-control input-sm chat_input mr-2 mt-1"
-                        placeholder="Write your message here..." />
-                    <input type="file" id="file" accept="image/*" multiple>
+                    <input id="message" type="text" name="contentMess" class="form-control input-sm chat_input mr-2 mt-1"
+                        placeholder="Write your message here..." value=""/>
+                    <input type="file" id="file" name="file" accept="image/*" value="" multiple>
                     <label for="file">
                         <i class="material-icons fa-3x mainColor add_photos">add_photo_alternate</i>
                     </label>
@@ -75,4 +88,4 @@
     </div>
 </div>
 <script src="/socket.io/socket.io.js"></script>
-<script src="./js/messenger.js"></script>
+<script src="/js/messenger.js"></script>

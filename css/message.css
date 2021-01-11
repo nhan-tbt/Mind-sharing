@@ -69,14 +69,14 @@ input[type="file"] {
 
 .sendBtn{
   position: absolute;
-  bottom: 5px;
+  bottom: 15px;
   right: 14px;
   border: none;
 }
 
 .add_photos{
   position:absolute;
-  bottom: 0;
+  bottom: 10px;
   right: 70px;
   cursor: pointer;
 }
@@ -84,4 +84,35 @@ input[type="file"] {
 .preview_img{
   max-width: 100px;
   max-height: 100px;
+}
+
+.close_preview{
+  position: absolute;
+  top: 435px;
+  display: none;
+  color: black;
+  right: 14px;
+  font-size: 42px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.searchUser{
+  outline-color: rgb(98, 98, 206);
+  transition: all 0.2s ease;
+  padding: 10px 15px;
+  width: 280px;
+  left: -40px;
+  margin: 10px;
+  position: relative;
+}
+
+.close_search{
+  position: absolute;
+  top: 105px;
+  color: black;
+  left: 30px;
+  display: none;
+  font-size: 25px;
+  cursor: pointer;
 }
