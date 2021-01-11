@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       pInteraction.belongsTo(models.Post);
+      pInteraction.belongsTo(models.User);
     }
   };
   pInteraction.init({
