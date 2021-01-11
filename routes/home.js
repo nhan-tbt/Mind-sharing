@@ -121,6 +121,7 @@ router.post('/get_cmt_content', function(req, res) {
             contentCmt: req.body.content
         }
         pCommentController.createComment(cmt);
+        postController.cmtPost(post);
         res.json(post.comment);
     })
 })

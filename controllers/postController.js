@@ -50,6 +50,15 @@ postController.unlikePost = function(post) {
 	.catch();
 }
 
+postController.cmtPost = function(post) {
+	Post
+	.update(
+		{comment: post.comment}, 
+		{where: {id: post.id}}
+	)
+	.catch();
+}
+
 // postController.addComment = function() {
 
 // }

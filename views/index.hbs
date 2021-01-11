@@ -289,7 +289,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-muted">
-                    <div class="comments">
+                    <div class="comments" id="viewCmt{{id}}">
                         {{#each pComments}}
                             <div class="card">
                                 <div class="card-header">
@@ -311,13 +311,22 @@
                             console.log(1);
                             var postID = parseInt("{{id}}");
                             var content = document.getElementById('cmt{{id}}').value;
-                            console.log(content);
                             $.ajax({
                                 url: '/get_cmt_content',
                                 type: 'POST',
                                 data: { postID, content },
                                 success: result => {
                                     document.querySelector('.countCmt{{id}}').innerHTML = result;
+                                    var inner = `<div class="card">
+                                                    <div class="card-header">
+                                                        <a href="#"> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{../user.avt}}.png" class="rounded-circle"
+                                                                style="width: 30px; height: 30px;" alt="user_img"> </a>
+                                                        <span class="h5 text-dark"> {{../user.fname}} {{../user.lname}} </span>
+                                                        <p class="card-title">${content}</p>
+                                                    </div>
+                                                </div>`;
+                                    document.getElementById('viewCmt{{id}}').insertAdjacentHTML("beforeend", inner);
+                                    document.getElementById('cmt{{id}}').value = '';
                                 },
                                 })
                             })
