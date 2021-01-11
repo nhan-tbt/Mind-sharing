@@ -109,3 +109,21 @@ p{
     opacity: 0.8; /* Firefox */
     font-size: 30px;
 }
+
+.unlike{
+    display: none;
+}
+
+.input_cmt{
+    position: relative;
+}
+
+.cmt_input {
+    width: 85%;
+}
+
+.cmtBtn{
+    position: absolute;
+    top: 0;
+    right: 14px;
+}

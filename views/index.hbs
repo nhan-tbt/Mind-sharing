@@ -112,7 +112,7 @@
                                         placeholder="Write your post here" rows="4" cols="50"></textarea>
                                 </div>
                                 <div class="row m-3">
-                                    <input type="file" name="file" id="file" accept="image/*">
+                                    <input type="file" name="file" id="file" accept="image/*" multiple>
                                     <label for="file">
                                         <i class="material-icons fa-3x mainColor add_photos">add_photo_alternate</i>
                                     </label>
@@ -147,7 +147,7 @@
             </form>
 
             {{#each posts}}
-            <div class="card my-5">
+            <div class="card my-5 postsID" id="{{id}}">
                 <div class="card-header postColor">
                     <div class="row">
                         <div class="col-md-auto">
@@ -169,7 +169,7 @@
                     <div class="row">
                         <div class="col-md-9">
                             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                            <span>{{like}}</span>
+                            <span class="countLike{{id}}">{{like}}</span>
                         </div>
                         <div class="col-md-3 text-center">
                             <span>{{share}}</span>
@@ -182,7 +182,8 @@
                 <div class="card-footer text-muted">
                     <div class="row" style="cursor: pointer;">
                         <div class="col text-center border-right border-secondary p-0 m-0">
-                            <span class="text-dark like" id="like">Like</span>
+                            <span class="text-dark like" class="like" id="like{{id}}">Like</span>
+                            <span class="text-dark like" class="unlike" id="unlike{{id}}">Unlike</span>
                         </div>
                         <div class="col text-center border-right border-secondary p-0 m-0">
                             <span class="text-dark share" id="cmt">Comment</span>
@@ -193,7 +194,14 @@
                     </div>
                 </div>
                 <div class="card-footer text-muted">
-                    <span class="h6 font-weight-bold"> See more comments... </span>
+                    <div class="comments">
+
+                    </div>
+                    <div class="input_cmt">
+                        <input id="cmt" name="cmt" type="text" class="form-control input-sm cmt_input mr-2 mt-1"
+                        placeholder="Add a comment..." />
+                        <button type="submit" class="btn btn-warning cmtBtn">Comment</button>
+                    </div>
                 </div>
             </div>
             {{/each}}

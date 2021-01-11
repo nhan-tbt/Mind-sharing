@@ -71,7 +71,7 @@ router.get('/', function (req, res) {
     res.locals.currentUser = req.app.get('currentUser');
     userController.searchAcc(req.app.get('currentUser'), function(this_user) {
         res.locals.user = this_user;
-        postController.searchAllPost(function (posts) {
+        postController.searchAllPost(this_user, function (posts) {
             res.locals.posts = posts;
             req.app.set('last_post', posts.length);
             res.render('index');
@@ -80,20 +80,20 @@ router.get('/', function (req, res) {
     
 })
 
-// router.post('/get_infor_create_post', function(req, res) {
-//     var today = new Date();
-//     var post = {
-//         UserId: req.app.get('currentUser'),
-//         content: req.body.post_area,
-//         time: today.getTime,
-//         pDay: today.getDay(),
-//         pMonth: today.getMonth() + 1,
-//         pYear: today.getFullYear(),
-//         category: req.body.cate,
+router.post('/like', function(req, res) {
+    postController.seachPostById(req.body.postID)
+    .then(post => 
+        postController.likePost(post)
+        .then(post => res.json(post.like))
+    )
+})
 
-//     }
-//     postController.createPost(post);
-// })
-
+router.post('/unlike', function(req, res) {
+    postController.seachPostById(req.body.postID)
+    .then(post => 
+        postController.unlikePost(post)
+        .then(post => res.json(post.like))
+    )
+})
 
 module.exports = router;
