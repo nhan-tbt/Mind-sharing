@@ -26,6 +26,14 @@ router.get('/', function (req, res) {
     });
 })
 
+router.post('/get_seach_user', (req, res) => {
+    key = req.body.sValue;
+
+    userController.searchUserWithKey(key, function (users) {
+        res.send(users);
+    });
+});
+
 router.post('/get_data_message', (req, res) => {
     var s3bucket = new AWS.S3({
         accessKeyId: 'AKIATRGWWZO2WUH5TFNJ',
@@ -92,22 +100,41 @@ router.post('/get_data_message', (req, res) => {
 
 router.get('/:enemyId', function (req, res) {
     chatController.searchChatRoom(req.app.get('currentUser'), function (chatroom) {
-        chatController.searchChatUser(chatroom.id, function(chatUsers) {
-            userController.searchAcc(req.params.enemyId, function (user) {
-                chatController.searchMess(req.app.get('currentUser'), req.params.enemyId, function (messes) {
-                    req.app.set('enemy', req.params.enemyId);
-                    for (let i = 0; i < chatUsers.length; i++){
-                        if (chatUsers[i].UserId == req.params.enemyId){
-                            chatUsers[i].active = true;
-                        }
+        chatController.checkChatUser(chatroom.id, req.params.enemyId, function (user) {
+            if (user == undefined || user == null){
+                var chatUser = {
+                    ChatRoomId: chatroom.id,
+                    UserId: req.params.enemyId
+                }
+                chatController.createChatUser(chatUser);
+                chatController.searchChatRoom(req.params.enemyId, function (enemyChatroom) {
+                    var enemyChatUser = {
+                        ChatRoomId: enemyChatroom.id,
+                        UserId: req.app.get('currentUser')
                     }
-                    res.locals.enemy = user;
-                    res.locals.messes = messes;
-                    res.locals.chats = chatUsers;
+                    chatController.createChatUser(enemyChatUser);
+                });
 
-                    res.render('message');
+                res.redirect('/message/' + req.params.enemyId)
+            } else {
+                chatController.searchChatUser(chatroom.id, function(chatUsers) {
+                    userController.searchAcc(req.params.enemyId, function (user) {
+                        chatController.searchMess(req.app.get('currentUser'), req.params.enemyId, function (messes) {
+                            req.app.set('enemy', req.params.enemyId);
+                            for (let i = 0; i < chatUsers.length; i++){
+                                if (chatUsers[i].UserId == req.params.enemyId){
+                                    chatUsers[i].active = true;
+                                }
+                            }
+                            res.locals.enemy = user;
+                            res.locals.messes = messes;
+                            res.locals.chats = chatUsers;
+    
+                            res.render('message');
+                        })
+                    })
                 })
-            })
+            }
         })
     });
 })

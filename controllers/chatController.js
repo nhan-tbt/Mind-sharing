@@ -45,8 +45,31 @@ controller.searchMess = function(person1, person2, callback){
 	});
 };
 
-controller.createMess = function(mess){
-	Mess.create(mess);
+controller.createMess = function(mess) {
+	Mess.create(mess)
+}
+
+controller.createChatRoom = function(account, callback) {
+	ChatRoom.create({	 
+		UserId: account	
+	}).then(function(chatroom) {
+		callback(chatroom);
+	});
+}
+
+controller.checkChatUser = function(RoomId, account, callback){
+	ChatUser.findOne({
+		where: {
+			ChatRoomId: RoomId,
+			UserId: account
+		}
+	}).then(function(user) {
+		callback(user);
+	});
+}
+
+controller.createChatUser = function(ele) {
+	ChatUser.create(ele);
 }
 
 module.exports = controller;

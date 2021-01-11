@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/userController');
+const chatController = require('../controllers/chatController');
 const bcrypt = require('bcrypt');
 
 router.get('/', function (req, res) {
@@ -32,8 +33,8 @@ router.post('/get_infor_register', (req, res) => {
                     type: "USER",
                     fname: req.body.fname,
                     lname: req.body.lname,
-                    avtPath: "",
-                    bgPath: "",
+                    avt: "avatar_default",
+                    bg: "background_default",
                     email: "",
                     pNum: "",
                     bDay: req.body.Bday,
@@ -48,6 +49,31 @@ router.post('/get_infor_register', (req, res) => {
                 user_name = req.body.account;
 
                 userController.createAcc(userAcc);
+                chatController.createChatRoom(userAcc.id, function(chatroom) {
+                    console.log(chatroom.id)
+                    var chatuser = {
+                        ChatRoomId: chatroom.id,
+                        UserId: "admin"
+                    }
+                    chatController.createChatUser(chatuser)
+
+                    var adminChatUser = {
+                        ChatRoomId: 1,
+                        UserId: userAcc.id
+                    }
+                    chatController.createChatUser(adminChatUser)
+
+                    var today = new Date();
+                    var mess = {
+                        id: today.getFullYear() + '_' + (today.getMonth() + 1) + '_' +today.getDate() + '_' + today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds() + "_" + today.getMilliseconds() + "_" + "admin" + "_" + userAcc.id,
+                        person1: "admin",
+                        person2: userAcc.id,
+                        who: "admin",
+                        contentMess: "Welcom to Mind-Sharing!"
+                    }
+                    chatController.createMess(mess)
+                })
+                
                 res.redirect("/");
             }
         });

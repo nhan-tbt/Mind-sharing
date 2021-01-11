@@ -10,7 +10,9 @@
                     <span class="close_search" id="close_search_btn"><i class="fa fa-arrow-left"></i></span>
                     <input type="text" class="searchUser" id="searchUser" placeholder="Search...">
                 </ul>
-                <ul class="list-group categoryUL">
+                <ul class="list-group categoryUL" id="choosen">
+                </ul>
+                <ul class="list-group categoryUL" id="chated">
                     {{#each chats}}
                         {{#if active}}
                             <li class="list-group-item active">

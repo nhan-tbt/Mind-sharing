@@ -3,6 +3,7 @@ var controller = {};
 var models = require('../models');
 var User = models.User;
 var Post = models.Post;
+const sequelize = require('sequelize');
 
 controller.searchAcc = function(account, callback){
 	User.findOne({
@@ -10,6 +11,27 @@ controller.searchAcc = function(account, callback){
 	}).then(function(this_user) {
 		callback(this_user);
 	}).catch();
+};
+
+controller.searchUserWithKey = function(key, callback){
+	User.findAll({
+		where: {
+			[sequelize.Op.or]: [
+				{
+					fname: {
+						[sequelize.Op.iLike]: '%' + key + '%'
+					}
+				},
+				{
+					lname: {
+						[sequelize.Op.iLike]: '%' + key + '%'
+					}
+				}
+			]
+		}
+	}).then(function(users) {
+		callback(users);
+	});
 };
 
 controller.createAcc = function(user){
