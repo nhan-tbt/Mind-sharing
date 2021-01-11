@@ -33,8 +33,8 @@ router.post('/get_infor_register', (req, res) => {
                     type: "USER",
                     fname: req.body.fname,
                     lname: req.body.lname,
-                    avtPath: "avatar_default",
-                    bgPath: "background_default",
+                    avt: "avatar_default",
+                    bg: "background_default",
                     email: "",
                     pNum: "",
                     bDay: req.body.Bday,
@@ -73,7 +73,6 @@ router.post('/get_infor_register', (req, res) => {
                     }
                     chatController.createMess(mess)
                 })
-
                 
                 res.redirect("/");
             }

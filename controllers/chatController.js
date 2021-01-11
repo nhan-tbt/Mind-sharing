@@ -57,13 +57,15 @@ controller.createChatRoom = function(account, callback) {
 	});
 }
 
-controller.checkChatUser = function(RoomId, account){
+controller.checkChatUser = function(RoomId, account, callback){
 	ChatUser.findOne({
 		where: {
 			ChatRoomId: RoomId,
 			UserId: account
 		}
-	})
+	}).then(function(user) {
+		callback(user);
+	});
 }
 
 controller.createChatUser = function(ele) {
