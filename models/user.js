@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Post);
       User.hasMany(models.ChatUser);
       User.hasMany(models.pInteraction);
+      User.hasMany(models.pComment);
     }
   };
   User.init({

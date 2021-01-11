@@ -22,7 +22,7 @@ file.addEventListener("change", function() {
                 }
                 var indi_htm = `<li data-target="#carouselId" data-slide-to="` + i + `" class="` + act + `"></li>`;
                 var inner_htm = `<div class="carousel-item ` + act + `">
-                                    <center><img src="` + picFile.result + `" alt="" class="image-preview img-thumbnail"></center>
+                                    <center><img src="` + picFile.result + `" alt="" class="image-post img-thumbnail"></center>
                                 </div>`;
                 indicators.insertAdjacentHTML("beforeend", indi_htm);
                 inner.insertAdjacentHTML("beforeend", inner_htm);
@@ -40,3 +40,13 @@ file.addEventListener("change", function() {
         
     }
 })
+
+document.getElementById('post_btn').addEventListener('click', function() {
+    document.querySelector('.create_post').style.display = 'inline';
+    document.querySelector('.post_here').style.display = 'none';
+});
+
+document.getElementById('close_btn').addEventListener('click', function() {
+    document.querySelector('.create_post').style.display = 'none';
+    document.querySelector('.post_here').style.display = 'flex';
+});

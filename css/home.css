@@ -127,3 +127,8 @@ p{
     top: 0;
     right: 14px;
 }
+
+.image-post{
+    max-width: 300px;
+    max-height: 300px;
+}
