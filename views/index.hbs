@@ -181,6 +181,11 @@
                 <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     <h3 id="post_option{{id}}">...</h3>
+                    <script>
+                        if (`{{../user.id}}` == null || `{{../user.id}}` == undefined ||`{{../user.id}}` == ``) {
+                            document.getElementById('post_option{{id}}').style.display = 'none';
+                        }
+                    </script>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a class="dropdown-item" id="report_post{{id}}">Report</a>
@@ -319,6 +324,12 @@
                                 <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <h3 id="cmt_option{{id}}">...</h3>
                                 </a>
+                                <script>
+                                    if (`{{../../user.id}}` == null || `{{../../user.id}}` == undefined ||`{{../../user.id}}` == ``) {
+                                        document.getElementById('cmt_option{{id}}').style.display = 'none';
+                                    }
+                                    
+                                </script>
                                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                                     <a class="dropdown-item" id="report_cmt{{id}}">Report</a>
                                     <a class="dropdown-item" id="edit_cmt{{id}}">Edit</a>
