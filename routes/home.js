@@ -175,11 +175,14 @@ router.post('/like', function(req, res) {
 })
 
 router.post('/report', function(req, res) {
-    var report = {
-        PostId: req.body.postID,
-        UserId: req.app.get('currentUser')
-    }
-    rpController.createReported(report)
+
+    var postid = req.body.postID;
+    var userid = req.app.get('currentUser');
+
+    console.log(postid)
+    console.log(userid)
+
+    rpController.createReported(userid, postid)
 })
 
 
