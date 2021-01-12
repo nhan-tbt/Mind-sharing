@@ -183,3 +183,14 @@ a:hover {
     font-size: 20px;
     font-weight: 600;
 }
+
+.post_option{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    cursor: pointer;
+}
+
+.update_post{
+    display: none;
+}
