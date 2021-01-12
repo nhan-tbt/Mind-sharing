@@ -11,23 +11,22 @@ postController.searchAllPost = function(callback){
 			model: User,
 		},{
 			model: Interaction
-		},{
-			model: Comment
-		}],
-		include: [{all: true}]
+		}]
 	}).then(function(posts) {
 		callback(posts);
 	});
 };
 
-postController.searchCatePost = function(category , callback){
+postController.searchCatePost = function(cate, callback){
 	Post.findAll({
+		where: {
+			category: cate
+		},
 		include: [{
 			model: User,
 		},{
 			model: Interaction
-		}],
-		include: [{all: true}]
+		}]
 	}).then(function(posts) {
 		callback(posts);
 	});

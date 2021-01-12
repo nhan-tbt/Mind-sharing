@@ -7,4 +7,8 @@ function setAnonymous(){
             listNav.children[i].children[0].setAttribute("data-toggle","");
         }
     }
+
+    document.querySelector('.post_here').style.display = 'none';
+    document.querySelector('.interaction').style.display = 'none';
+    document.querySelector('.input_cmt').style.display = 'none';
 }
