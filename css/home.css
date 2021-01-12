@@ -155,3 +155,20 @@ p{
 .like:active{
     border-color: #EFEFEF;
 }
+
+.comments{
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.cmt_card{
+    position: relative;
+}
+
+.cmt_option{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    cursor: pointer;
+}

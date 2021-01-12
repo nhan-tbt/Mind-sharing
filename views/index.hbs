@@ -294,15 +294,51 @@
             <div class="card-footer text-muted">
                 <div class="comments" id="viewCmt{{id}}">
                     {{#each pComments}}
-                        <div class="card">
+                        <div class="card cmt_card my-1" id="cmt_card{{id}}">
                             <div class="card-header">
                                 <a href="#"> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{this.User.avt}}.png" class="rounded-circle"
                                         style="width: 30px; height: 30px;" alt="user_img"> </a>
                                 <span class="h5 text-dark"> {{this.User.fname}} {{this.User.lname}} </span>
-                                <p class="card-title">{{contentCmt}}</p>
+                                <p class="card-title ml-5">{{contentCmt}}</p>
+                            </div>
+                            <div class="nav-item cmt_option dropdown">
+                                <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <h3 id="cmt_option{{id}}">...</h3>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                    <a class="dropdown-item" id="report_cmt{{id}}">Report</a>
+                                    <a class="dropdown-item" id="edit_cmt{{id}}">Edit</a>
+                                    <a class="dropdown-item" id="delete_cmt{{id}}">Delete</a>
+                                </div>
                             </div>
                         </div>
+                        <script>
+                            if ("{{{UserId}}}" != "{{{../../user.id}}}") {
+                                document.getElementById('edit_cmt{{id}}').style.display = 'none';
+                                document.getElementById('delete_cmt{{id}}').style.display = 'none';
+                            }
+                            else{
+                                document.getElementById('report_cmt{{id}}').style.display = 'none';
+                            }
+                            document.getElementById('delete_cmt{{id}}').addEventListener('click', function() {
+                                var cmtID = parseInt("{{id}}");
+                                var postID = parseInt("{{../id}}");
+                                $.ajax({
+                                    url: '/delete_cmt',
+                                    type: 'POST',
+                                    data: { cmtID, postID },
+                                    success: result => {
+                                        document.querySelector('.countCmt{{../id}}').innerHTML = result;
+                                        document.getElementById('cmt_card{{id}}').innerHTML = '';
+                                    },
+                                    })
+                            })
+                            document.getElementById('edit_cmt{{id}}').addEventListener('click', function() {
+                                
+                            })
+                        </script>
                     {{/each}}
+                    
                 </div>
                 <div class="input_cmt">
                     <input id="cmt{{id}}" name="cmt{{id}}" type="text" class="form-control input-sm cmt_input mr-2 mt-1"
@@ -311,7 +347,6 @@
                 </div>
                 <script>
                     document.getElementById('cmtBtn{{id}}').addEventListener('click', function () {
-                        console.log(1);
                         var postID = parseInt("{{id}}");
                         var content = document.getElementById('cmt{{id}}').value;
                         $.ajax({
@@ -319,20 +354,48 @@
                             type: 'POST',
                             data: { postID, content },
                             success: result => {
-                                document.querySelector('.countCmt{{id}}').innerHTML = result;
-                                var inner = `<div class="card">
+                                document.querySelector('.countCmt{{id}}').innerHTML = result.quantity;
+                                var cmtID = result.id;
+                                console.log(cmtID);
+                                var inner = `
+                                            <div class="card cmt_card my-1" id="cmt_card${cmtID}">
                                                 <div class="card-header">
                                                     <a href="#"> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{../user.avt}}.png" class="rounded-circle"
                                                             style="width: 30px; height: 30px;" alt="user_img"> </a>
                                                     <span class="h5 text-dark"> {{../user.fname}} {{../user.lname}} </span>
-                                                    <p class="card-title">${content}</p>
+                                                    <p class="card-title ml-5">${content}</p>
+                                                </div>
+                                                <div class="nav-item cmt_option dropdown">
+                                                    <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <h3 id="cmt_option${cmtID}">...</h3>
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                                        <a class="dropdown-item" id="edit_cmt${cmtID}">Edit</a>
+                                                        <a class="dropdown-item" id="delete_cmt${cmtID}">Delete</a>
+                                                    </div>
                                                 </div>
                                             </div>`;
+                        
                                 document.getElementById('viewCmt{{id}}').insertAdjacentHTML("beforeend", inner);
                                 document.getElementById('cmt{{id}}').value = '';
+                                console.log(cmtID);
+                                document.getElementById(`delete_cmt${cmtID}`).addEventListener('click', function() {
+                                    $.ajax({
+                                        url: '/delete_cmt',
+                                        type: 'POST',
+                                        data: { cmtID, postID },
+                                        success: result => {
+                                            document.querySelector('.countCmt{{id}}').innerHTML = result;
+                                            document.getElementById(`cmt_card${cmtID}`).innerHTML = '';
+                                        },
+                                        })
+                                })
+                                document.getElementById(`edit_cmt${cmtID}`).addEventListener('click', function() {   
+                                })
                             },
                             })
                         })
+                        
                 </script>
             </div>
         </div>
