@@ -463,6 +463,24 @@
                 document.getElementById('post{{id}}').style.display = 'none';
             })
 
+            document.getElementById('close_btn{{id}}').addEventListener('click', function() {
+                location.reload();
+            })
+
+            document.getElementById('report_post{{id}}').addEventListener('click', function() {
+                var postID = parseInt("{{id}}");
+                $.ajax({
+                    url: '/report',
+                    type: 'POST',
+                    data: { postID },
+                    success: result => {
+                        location.reload();
+                    }
+                },
+                )
+
+            })
+
             document.getElementById('cfm_btn{{id}}').addEventListener('click', function () {
                 var postID = parseInt("{{id}}");
                 var content = document.getElementById("contetn{{id}}").value;

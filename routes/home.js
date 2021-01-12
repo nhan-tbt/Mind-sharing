@@ -177,9 +177,8 @@ router.post('/like', function(req, res) {
 router.post('/report', function(req, res) {
     var report = {
         PostId: req.body.postID,
-        UserId: req.body.userID
+        UserId: req.app.get('currentUser')
     }
-
     rpController.createReported(report)
 })
 
