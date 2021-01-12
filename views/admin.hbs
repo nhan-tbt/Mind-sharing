@@ -20,15 +20,21 @@
         </div>
         <div class="card-body">
             {{#each rpPosts}}
+            <a href="{{User.id}}"> 
+                <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{User.avt}}.png"
+                                    class="rounded-circle" style="width: 70px; height: 70px;" alt="user_img">                 
+            </a>
+            <span class="ml-3"style="font-size: 25px;"> Account: {{User.id}} has reported this following post</span>
+
             <div class="card my-4 postsID" id="{{Post.id}}">
                 <div class="card-header postColor">
                     <div class="row">
                         <div class="col-md-auto">
-                            <a href=""> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{Post.pUser.avt}}.png"
+                            <a href="/profile/user/{{Post.pUser.id}}"> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{Post.pUser.avt}}.png"
                                     class="rounded-circle" style="width: 70px; height: 70px;" alt="user_img"> </a>
                         </div>
                         <div class="col-sm-10 user_name">
-                            <a href="" class="user_name">
+                            <a href="/profile/user/{{Post.pUser.id}}" class="user_name">
                                 <h3>{{Post.pUser.fname}} {{Post.pUser.lname}}</h3>
                             </a>
                             <h5>{{Post.time}} {{Post.pDay}}-{{Post.pMonth}}-{{Post.pYear}}</h5>
@@ -38,12 +44,40 @@
                 <div class="nav-item post_option dropdown">
                     <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <h3 id="post_option{{id}}">...</h3>
+                        <h3 id="post_option{{Post.id}}">...</h3>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" id="report_post{{id}}">Report</a>
-                        <a class="dropdown-item" id="edit_post{{id}}">Edit</a>
+                        <a class="dropdown-item" id="delete_post{{Post.id}}">Delete</a>
+                        <a class="dropdown-item" id="skip_post{{Post.id}}">Skip</a>
                     </div>
+                    <script>
+                        document.getElementById("delete_post{{Post.id}}").addEventListener("click", function() {
+                            var idd = {{Post.id}};
+
+                            $.ajax({
+                                url: '/admin/deletePost',
+                                type: 'Post',
+                                data: { idd },
+                                success: result => {
+                                    location.reload();
+                                }
+                            })
+                        })
+                        
+                        document.getElementById("skip_post{{Post.id}}").addEventListener("click", function() {
+                            var idd = {{Post.id}};
+                            var accc = {{User.id}};
+
+                            $.ajax({
+                                url: '/admin/skipPost',
+                                type: 'Post',
+                                data: { idd, accc },
+                                success: result => {
+                                    location.reload();
+                                }
+                            })
+                        })
+                    </script>
                 </div>
                 <div class="card-body postContentColor">
                     <h4 class="card-title">{{Post.content}}</h4>
