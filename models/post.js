@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       Post.hasMany(models.pComment);
       Post.hasMany(models.pInteraction);
       Post.hasMany(models.Announcement);
+      Post.hasMany(models.ReportedPost);
     }
   };
   Post.init({

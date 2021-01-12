@@ -1,6 +1,5 @@
 var controller = {};
 
-const sequelize = require('sequelize');
 const models = require('../models');
 const Announcement = models.Announcement;
 const Post = models.Post;

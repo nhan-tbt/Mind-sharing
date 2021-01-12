@@ -1,0 +1,269 @@
+<link rel="stylesheet" href="/css/setting.css">
+<link rel="stylesheet" href="/css/profile.css">
+
+<form class="" action="/setting/get_infor_edit" method="POST">
+<div class="row">
+  <div class="col-3">
+    <div class="card my-4">
+      <div class="card-header">
+        <ul class="list-group categoryUL">
+          <li class="list-group-item active"><a href="/setting/general">Reported post</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-8 my-4">
+    <div class="card">
+        <div class="card-header postColor">
+            <h1>Reported Post</h1>
+        </div>
+        <div class="card-body">
+
+            {{#each rpPosts}}
+            <div class="card my-4 postsID" id="{{Post.id}}">
+                <div class="card-header postColor">
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <a href=""> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{Post.pUser.avt}}.png"
+                                    class="rounded-circle" style="width: 70px; height: 70px;" alt="user_img"> </a>
+                        </div>
+                        <div class="col-sm-10 user_name">
+                            <a href="" class="user_name">
+                                <h3>{{Post.pUser.fname}} {{Post.pUser.lname}}</h3>
+                            </a>
+                            <h5>{{Post.time}} {{Post.pDay}}-{{Post.pMonth}}-{{Post.pYear}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body postContentColor">
+                    <h4 class="card-title">{{Post.content}}</h4>
+                    <div id="carouselId{{id}}" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators" id="indicators{{Post.id}}">
+
+                        </ol>
+                        <div class="carousel-inner" id="inner{{Post.id}}" role="listbox">
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselId{{Post.id}}" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselId{{Post.id}}" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <script>
+                    var i = 0;
+                </script>
+                {{#each Post.imgPath as |src|}}
+                <script>
+                    if (i == 0) {  
+                        var indi_htm = `<li data-target="#carouselId" data-slide-to="` + i + `" class="active"></li>`;
+                        var inner_htm = `<div class="carousel-item active">
+                                            <center><img src="{{src}}" alt="" class="image-post img-thumbnail"></center>
+                                        </div>`;
+                                        
+                        document.getElementById(`indicators{{../Post.id}}`).insertAdjacentHTML("beforeend", indi_htm);
+                        document.getElementById(`inner{{../Post.id}}`).insertAdjacentHTML("beforeend", inner_htm);
+                    } else {
+                        var indi_htm = `<li data-target="#carouselId" data-slide-to="` + i + `"></li>`;
+                        var inner_htm = `<div class="carousel-item">
+                                            <center><img src="{{src}}" alt="" class="image-post img-thumbnail"></center>
+                                        </div>`;
+                                        
+                        document.getElementById(`indicators{{../Post.id}}`).insertAdjacentHTML("beforeend", indi_htm);
+                        document.getElementById(`inner{{../Post.id}}`).insertAdjacentHTML("beforeend", inner_htm);
+                    }
+                    i++;
+                </script>
+                {{/each}}
+                {{!-- Post.p
+                <div class="card-footer text-muted showInteraction">
+                    <div class="row">
+                        <div class="col-md-9 ml-5">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            <span class="countLike{{id}}">{{Post.like}}</span>
+                        </div>
+                        <div class="col-md text-center">
+                            <span>{{share}}</span>
+                            <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            <span class="countCmt{{id}}">{{comment}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted interaction">
+                    <div class="row" style="cursor: pointer;">
+                        <div class="col text-center border-secondary p-0 m-0">
+                            <button class="text-dark like" class="like" id="like{{id}}">Like</button>
+                            <button class="text-dark like" class="unlike" id="unlike{{id}}">Unlike</button>
+                            <script>
+                                document.getElementById('like{{id}}').style.display = 'inline';
+                                document.getElementById('unlike{{id}}').style.display = 'none';
+                            </script>
+                            {{#each pInteractions}}
+                            <script>
+                                if ({{ PostId }} == {{../id}} && "{{{UserId}}}" == "{{{../../user.id}}}") {
+                                    document.getElementById('like{{../id}}').style.display = 'none';
+                                    document.getElementById('unlike{{../id}}').style.display = 'inline';
+                                }
+                            </script>
+                            {{/each}}
+
+
+                            <script>
+                                document.getElementById('like{{id}}').addEventListener('click', function () {
+                                    var postID = parseInt("{{id}}");
+                                    document.getElementById('unlike{{id}}').style.display = 'inline';
+                                    document.getElementById('like{{id}}').style.display = 'none';
+                                    $.ajax({
+                                        url: '/like',
+                                        type: 'POST',
+                                        data: { postID },
+                                        success: result => {
+                                            console.log(result);
+                                            document.querySelector('.countLike{{id}}').innerHTML = result;
+                                        },
+                                    })
+                                })
+
+                                document.getElementById('unlike{{id}}').addEventListener('click', function () {
+                                    var postID = parseInt("{{id}}");
+                                    document.getElementById('like{{id}}').style.display = 'inline';
+                                    document.getElementById('unlike{{id}}').style.display = 'none';
+                                    $.ajax({
+                                        url: '/unlike',
+                                        type: 'POST',
+                                        data: { postID },
+                                        success: result => {
+                                            console.log(result);
+                                            document.querySelector('.countLike{{id}}').innerHTML = result;
+                                        },
+                                    })
+                                })
+                            </script>
+
+
+                        </div>
+                        <div class="col text-center border-secondary p-0 m-0">
+                            <button class="text-dark like" id="cmt">Comment</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="comments" id="viewCmt{{id}}">
+                        {{#each pComments}}
+                            <div class="card cmt_card my-1" id="cmt_card{{id}}">
+                                <div class="card-header">
+                                    <a href="#"> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{this.User.avt}}.png" class="rounded-circle"
+                                            style="width: 30px; height: 30px;" alt="user_img"> </a>
+                                    <span class="h5 text-dark"> {{this.User.fname}} {{this.User.lname}} </span>
+                                    <p class="card-title ml-5">{{contentCmt}}</p>
+                                </div>
+                                <div class="nav-item cmt_option dropdown">
+                                    <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <h3 id="cmt_option{{id}}">...</h3>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                        <a class="dropdown-item" id="report_cmt{{id}}">Report</a>
+                                        <a class="dropdown-item" id="edit_cmt{{id}}">Edit</a>
+                                        <a class="dropdown-item" id="delete_cmt{{id}}">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                if ("{{{UserId}}}" != "{{{../../user.id}}}") {
+                                    document.getElementById('edit_cmt{{id}}').style.display = 'none';
+                                    document.getElementById('delete_cmt{{id}}').style.display = 'none';
+                                }
+                                else{
+                                    document.getElementById('report_cmt{{id}}').style.display = 'none';
+                                }
+                                document.getElementById('delete_cmt{{id}}').addEventListener('click', function() {
+                                    var cmtID = parseInt("{{id}}");
+                                    var postID = parseInt("{{../id}}");
+                                    $.ajax({
+                                        url: '/delete_cmt',
+                                        type: 'POST',
+                                        data: { cmtID, postID },
+                                        success: result => {
+                                            document.querySelector('.countCmt{{../id}}').innerHTML = result;
+                                            document.getElementById('cmt_card{{id}}').innerHTML = '';
+                                        },
+                                        })
+                                })
+                                document.getElementById('edit_cmt{{id}}').addEventListener('click', function() {
+                                    
+                                })
+                            </script>
+                        {{/each}}
+                        
+                    </div>
+                    <div class="input_cmt">
+                        <input id="cmt{{id}}" name="cmt{{id}}" type="text" class="form-control input-sm cmt_input mr-2 mt-1"
+                            placeholder="Add a comment..." />
+                        <button type="button" class="btn btn-warning cmtBtn" id="cmtBtn{{id}}">Comment</button>
+                    </div>
+                    <script>
+                        document.getElementById('cmtBtn{{id}}').addEventListener('click', function () {
+                            var postID = parseInt("{{id}}");
+                            var content = document.getElementById('cmt{{id}}').value;
+                            $.ajax({
+                                url: '/get_cmt_content',
+                                type: 'POST',
+                                data: { postID, content },
+                                success: result => {
+                                    document.querySelector('.countCmt{{id}}').innerHTML = result.quantity;
+                                    var cmtID = result.id;
+                                    console.log(cmtID);
+                                    var inner = `
+                                                <div class="card cmt_card my-1" id="cmt_card${cmtID}">
+                                                    <div class="card-header">
+                                                        <a href="#"> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{../user.avt}}.png" class="rounded-circle"
+                                                                style="width: 30px; height: 30px;" alt="user_img"> </a>
+                                                        <span class="h5 text-dark"> {{../user.fname}} {{../user.lname}} </span>
+                                                        <p class="card-title ml-5">${content}</p>
+                                                    </div>
+                                                    <div class="nav-item cmt_option dropdown">
+                                                        <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <h3 id="cmt_option${cmtID}">...</h3>
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                                            <a class="dropdown-item" id="edit_cmt${cmtID}">Edit</a>
+                                                            <a class="dropdown-item" id="delete_cmt${cmtID}">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>`;
+                            
+                                    document.getElementById('viewCmt{{id}}').insertAdjacentHTML("beforeend", inner);
+                                    document.getElementById('cmt{{id}}').value = '';
+                                    console.log(cmtID);
+                                    document.getElementById(`delete_cmt${cmtID}`).addEventListener('click', function() {
+                                        $.ajax({
+                                            url: '/delete_cmt',
+                                            type: 'POST',
+                                            data: { cmtID, postID },
+                                            success: result => {
+                                                document.querySelector('.countCmt{{id}}').innerHTML = result;
+                                                document.getElementById(`cmt_card${cmtID}`).innerHTML = '';
+                                            },
+                                            })
+                                    })
+                                    document.getElementById(`edit_cmt${cmtID}`).addEventListener('click', function() {   
+                                    })
+                                },
+                                })
+                            })
+                            
+                    </script>
+                </div>
+            </div> --}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+</form>

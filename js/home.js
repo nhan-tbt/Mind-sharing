@@ -1,12 +1,10 @@
 function setAnonymous(){
     var listNav = document.getElementById('navbar');
 
-    console.log(listNav);
-
     for (let i = 1; i < listNav.children.length; i++){
         listNav.children[i].children[0].href = "/login";
-        if (i == 2){
-            listNav.children[i].children[0].setAttribute("data-toggle","");
+        if (i == 2 || i == listNav.children.length - 1){
+            listNav.children[i].children[0].removeAttribute(("data-toggle"));
         }
     }
 

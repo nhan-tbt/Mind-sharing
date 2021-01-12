@@ -51,6 +51,8 @@ app.use('/message', require('./routes/message')); // message page
 
 app.use('/profile', require('./routes/profile')); // profile page
 
+app.use('/admin', require('./routes/admin')); // contact page
+
 app.use('/contact', require('./routes/contact')); // contact page
 
 app.use('/setting', require('./routes/setting')); // setting page
