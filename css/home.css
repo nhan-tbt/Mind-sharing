@@ -114,6 +114,17 @@ p{
     display: none;
 }
 
+.showInteraction{
+    font-size: 20px;
+}
+
+.interaction{
+    font-size: 25px;
+    padding: 0px;
+    margin: 0px;
+    background-color: #EFEFEF;
+}
+
 .input_cmt{
     position: relative;
 }
@@ -131,4 +142,16 @@ p{
 .image-post{
     max-width: 300px;
     max-height: 300px;
+}
+
+.like{
+    width: 94%;
+    height: 100%;
+    border: none;
+    background-color: none;
+    padding: 0px;
+}
+
+.like:active{
+    border-color: #EFEFEF;
 }

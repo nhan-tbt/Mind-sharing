@@ -17,6 +17,21 @@ postController.searchAllPost = function(callback){
 	});
 };
 
+postController.searchCatePost = function(cate, callback){
+	Post.findAll({
+		where: {
+			category: cate
+		},
+		include: [{
+			model: User,
+		},{
+			model: Interaction
+		}]
+	}).then(function(posts) {
+		callback(posts);
+	});
+};
+
 postController.createPost = function(post) {
     Post.create(post);
 };
