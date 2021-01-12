@@ -5,6 +5,7 @@ const postController = require('../controllers/postController');
 const pCommentController = require('../controllers/pCommentController');
 const pInteractionController = require('../controllers/pInteractionController');
 const AnnouController = require('../controllers/annouController');
+const rpController = require('../controllers/rpPostController');
 
 const AWS = require('aws-sdk');
 const Busboy = require('busboy');
@@ -172,6 +173,16 @@ router.post('/like', function(req, res) {
         res.json(post.like);
     })    
 })
+
+router.post('/report', function(req, res) {
+    var report = {
+        PostId: req.body.postID,
+        UserId: req.body.userID
+    }
+
+    rpController.createReported(report)
+})
+
 
 router.post('/unlike', function(req, res) {
     postController.seachPostById(req.body.postID)

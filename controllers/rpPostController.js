@@ -18,4 +18,8 @@ controller.searchAllRpPost = function(callback){
 	});
 };
 
+controller.createReported = function(report, callback){
+	rpPost.create({	report	})
+}
+
 module.exports = controller;
