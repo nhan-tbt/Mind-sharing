@@ -5,14 +5,13 @@ var User = models.User;
 var Interaction = models.pInteraction;
 var Comment = models.pComment;
 
-postController.searchAllPost = function(user, callback){
+postController.searchAllPost = function(callback){
 	Post.findAll({
 		include: [{
 			model: User,
 		},{
 			model: Interaction
-		}],
-		include: [{all: true}]
+		}]
 	}).then(function(posts) {
 		callback(posts);
 	});
