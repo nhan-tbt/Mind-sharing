@@ -1,5 +1,4 @@
 var postController = {};
-var pInteractionController = require('./pInteractionController');
 var models = require('../models/');
 var Post = models.Post;
 var User = models.User;
@@ -27,8 +26,6 @@ postController.searchCatePost = function(category , callback){
 			model: User,
 		},{
 			model: Interaction
-		},{
-			model: Comment
 		}],
 		include: [{all: true}]
 	}).then(function(posts) {
@@ -67,6 +64,19 @@ postController.unlikePost = function(post) {
 	)
 	.catch();
 }
+
+postController.cmtPost = function(post) {
+	Post
+	.update(
+		{comment: post.comment}, 
+		{where: {id: post.id}}
+	)
+	.catch();
+}
+
+// postController.addComment = function() {
+
+// }
 
 postController.checkInteractionByUser = function(user) {
 	return new Promise ((resolve, reject) => {

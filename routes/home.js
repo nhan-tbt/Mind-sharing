@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/userController');
 const postController = require('../controllers/postController');
+const pCommentController = require('../controllers/pCommentController');
 var pInteractionController = require('../controllers/pInteractionController');
 const AWS = require('aws-sdk');
 const Busboy = require('busboy');
@@ -72,7 +73,12 @@ router.get('/', function (req, res) {
     res.locals.currentUser = req.app.get('currentUser');
     userController.searchAcc(req.app.get('currentUser'), function(this_user) {
         res.locals.user = this_user;
-        postController.searchAllPost(function (posts) {
+        postController.searchAllPost(this_user, function (posts) {
+            for (let i = 0; i < posts.length; i++) {
+                pCommentController.getCommentByPostId(posts[i].id).then(pComments => {
+                    posts[i].pComments = pComments;
+                })
+            }
             res.locals.posts = posts;
             req.app.set('last_post', posts.length);
             res.render('index');
@@ -113,8 +119,24 @@ router.post('/unlike', function(req, res) {
         post.like -= 1;
         postController.unlikePost(post);
         pInteractionController.removeInteraction(post.id, req.app.get('currentUser'));
-        console.log(post.like);
         res.json(post.like)})
+})
+
+router.post('/get_cmt_content', function(req, res) {
+    console.log('########');
+    console.log(req.body.postID);
+    postController.seachPostById(req.body.postID)
+    .then(post => {
+        post.comment += 1;
+        var cmt = {
+            PostId: post.id,
+            UserId: req.app.get('currentUser'),
+            contentCmt: req.body.content
+        }
+        pCommentController.createComment(cmt);
+        postController.cmtPost(post);
+        res.json(post.comment);
+    })
 })
 
 module.exports = router;
