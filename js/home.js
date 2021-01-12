@@ -1,6 +1,8 @@
 function setAnonymous(){
     var listNav = document.getElementById('navbar');
 
+    console.log(listNav);
+
     for (let i = 1; i < listNav.children.length; i++){
         listNav.children[i].children[0].href = "/login";
         if (i == 2){

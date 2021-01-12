@@ -17,6 +17,19 @@ postController.searchAllPost = function(callback){
 	});
 };
 
+postController.searchUserPost = function(userid, callback){
+	Post.findAll({
+		where: { UserId: userid },
+		include: [{
+			model: User,
+		},{
+			model: Interaction
+		}]
+	}).then(function(posts) {
+		callback(posts);
+	});
+};
+
 postController.searchCatePost = function(cate, callback){
 	Post.findAll({
 		where: {

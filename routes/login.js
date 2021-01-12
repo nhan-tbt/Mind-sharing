@@ -6,6 +6,7 @@ const userController = require('../controllers/userController');
 
 router.get('/', function (req, res) {
     res.locals.layout = 'log_res_Layout.hbs';
+    req.app.set('currentUser', "");
 
     res.render('login');
 })

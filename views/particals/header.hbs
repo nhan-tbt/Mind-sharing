@@ -31,10 +31,14 @@
                              <li class="notification-box">
                                 <div class="row">
                                     <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                        <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{User.avt}}.png" class="w-50 rounded-circle">
+                                        <a href="/profile/user/{{User.id}}">
+                                            <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{User.avt}}.png" class="w-50 rounded-circle">
+                                        </a>
                                     </div>    
                                     <div class="col-lg-8 col-sm-8 col-8">
-                                        <strong class="text-info">{{User.fname}} {{User.lname}}</strong>
+                                        <a href="/profile/user/{{User.id}}">
+                                            <strong class="text-info">{{User.fname}} {{User.lname}}</strong>
+                                        </a>
                                         <div>
                                         {{contentAnnoun}}
                                         </div>

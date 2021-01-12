@@ -1,3 +1,9 @@
 #cfmBtn{
     display: none;
 }
+
+.editBtn{
+    margin-top: 20px;
+    font-size: 25px;
+    padding: 10px 20px;
+}

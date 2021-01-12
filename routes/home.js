@@ -111,6 +111,7 @@ router.get('/', function (req, res) {
                 })
             }
             
+            res.locals.active = "all"
             res.locals.posts = posts;
             req.app.set('last_post', posts.length);
 
@@ -131,6 +132,7 @@ router.get('/category/:cate', function(req, res) {
                 })
             }
 
+            res.locals.active = req.params.cate;
             res.locals.posts = posts;
             req.app.set('last_post', posts.length);
 

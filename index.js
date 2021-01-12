@@ -30,7 +30,7 @@ app.set('port', (process.env.PORT || 5000));
 app.set('currentUser', '');
 
 app.use((req, res, next) => {
-    if(req.app.get('currentUser') == ''){   res.locals.currentUser = "";    } 
+    if(req.app.get('currentUser') == '' || req.app.get('currentUser') == null){   res.locals.currentUser = "";    } 
     else {  res.locals.currentUser = req.app.get('currentUser');    }
     
     AnnouController.searchAllAnnoun(function(annou) {
@@ -48,8 +48,6 @@ app.use('/login', require('./routes/login')); // login page
 app.use('/register', require('./routes/register')); // register page
 
 app.use('/message', require('./routes/message')); // message page
-
-app.use('/wall', require('./routes/wall')); // wall page
 
 app.use('/profile', require('./routes/profile')); // profile page
 
