@@ -1,10 +1,7 @@
 var pInteractionController = {};
 var models = require('../models/');
-var Post = models.Post;
-var User = models.User;
 var Interaction = models.pInteraction;
-var Comment = models.pComment;
-const sequelize = require('sequelize');
+
 
 pInteractionController.removeInteraction = function(PostId, UserId) {
     Interaction.destroy({

@@ -46,7 +46,7 @@ router.post('/get_data_message', (req, res) => {
     var num_img = 0;
     var today = new Date();
 
-    mess['id'] = today.getFullYear() + '_' + (today.getMonth() + 1) + '_' +today.getDate() + '_' + today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds() + "_" + today.getMilliseconds() + "_" + req.app.get("currentUser") + "_" + req.app.get("enemy");
+    mess['id'] = today.getFullYear() + '_' + (today.getMonth() + 1) + '_' + today.getDate() + '_' + today.getHours() + "_" + today.getMinutes() + "_" + today.getSeconds() + "_" + today.getMilliseconds() + "_" + req.app.get("currentUser") + "_" + req.app.get("enemy");
     mess['person1'] = req.app.get('currentUser');
     mess['person2'] = req.app.get('enemy');
     mess['who'] = req.app.get('currentUser');

@@ -10,6 +10,11 @@
                             <p>All</p>
                         </li>
                     </a>
+                     <a href="/category/announ">
+                        <li class="list-group-item">
+                            <p>Admin Announcement</p>
+                        </li>
+                    </a>
                     <a href="/category/moment">
                         <li class="list-group-item">
                             <p>Moment</p>
@@ -72,6 +77,7 @@
 
         {{!-- Create Post --}}
         <form action="/get_infor_create_post" method="POST" enctype="multipart/form-data">
+            <input type="text" style="display: none;" id="numberIMG" name="numImg" value="0">
             <div class="create_post my-3">
                 <div class="info">
                     <div class="card">
@@ -107,6 +113,11 @@
                                     <option value="Literary">Literary</option>
                                     <option value="Mathematics">Mathematics</option>
                                 </select>
+                                <script>
+                                    if (`{{user.id}}` == 'admin'){
+                                        document.querySelector('#cate').insertAdjacentHTML("beforeend", `<option value="announ">Admin Announcement</option>`);
+                                    }
+                                </script>
                             </div>
                             <div class="row m-3 p-2">
                                 <textarea class="form-control p-4 text-dark" id="w3review" name="content"

@@ -1,0 +1,13 @@
+[{
+    "PostId": 1,
+    "UserId": "admin",
+    "contentAnnoun": "Admin has posted a new announcement!"
+},{
+    "PostId": 10,
+    "UserId": "admin",
+    "contentAnnoun": "Admin has posted a new announcement!"
+},{
+    "PostId": 11,
+    "UserId": "admin",
+    "contentAnnoun": "Admin has posted a new announcement!"
+}]

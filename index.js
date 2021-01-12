@@ -1,4 +1,4 @@
-const chatController = require('./controllers/chatController');
+const AnnouController = require('./controllers/annouController');
 const express = require('express');
 const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');
@@ -33,6 +33,11 @@ app.use((req, res, next) => {
     if(req.app.get('currentUser') == ''){   res.locals.currentUser = "";    } 
     else {  res.locals.currentUser = req.app.get('currentUser');    }
     
+    AnnouController.searchAllAnnoun(function(annou) {
+        res.locals.announcement = annou;
+    })
+
+    
     next();
 })
 
@@ -66,42 +71,6 @@ io.on('connection', socket => {
         io.emit('message', mess)
     })
 })
-
-app.post('/upload', function (req, res) {
-    var busboy = new Busboy({ headers: req.headers });
-    let s3bucket = new AWS.S3({
-        accessKeyId: IAM_USER_KEY,
-        secretAccessKey: IAM_USER_SECRET,
-        Bucket: BUCKET_NAME
-    });
-
-    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-        if (filename != ''){
-            if (filename != ''){
-                s3bucket.createBucket(function () {
-                    var params = {
-                        Bucket: BUCKET_NAME,
-                        Key: filename,
-                        Body: file
-                    };
-                    s3bucket.upload(params, function (err, data) {
-                        if (err) {
-                            console.log('error in callback');
-                            console.log(err);
-                        }
-                        console.log('success');
-                        console.log(data);
-                    });
-                });    
-            }
-            console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
-        }
-    });
-    busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
-      console.log('Field [' + fieldname + ']: value: ' + inspect(val));
-    });
-    req.pipe(busboy);
-});
 
 server.listen(app.get('port'),function(){
     console.log("Server is listening on port "+ app.get('port'))

@@ -3,9 +3,12 @@
     right: 0px;
     left: unset;
     width: 460px;
+    max-height: 370px;
     box-shadow: 0px 5px 7px -1px #c1c1c1;
     padding-bottom: 0px;
     padding: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .noti:before{

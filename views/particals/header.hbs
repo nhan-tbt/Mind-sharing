@@ -3,8 +3,8 @@
         <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/logo_background.png" style="height: 80px; width: 80px;" alt="logo">
         <span class="logoName mainColor">Mind-Sharing</span>
     </a>
-    <form class="form-inline my-2 my-lg-0 ml-5 mr-5">
-        <input class="form-control mr-sm-2 rounded borderColor searchField" type="text" placeholder="Search...">
+    <form class="form-inline my-2 my-lg-0 ml-5 mr-5" action="/search/">
+        <input class="form-control mr-sm-2 rounded borderColor searchField" type="text" name="key" placeholder="Search...">
         <button class="btn btn-outline-success my-2 my-sm-0 borderColor" type="submit"><span><b>Search</b></span> </button>
     </form>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -27,48 +27,22 @@
                                     <strong>Notification</strong>
                                 </div>
                             </li>
-                            <li class="notification-box">
+                            {{#each announcement}}
+                             <li class="notification-box">
                                 <div class="row">
-                                <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                    <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/logo_background.png" class="w-50 rounded-circle">
-                                </div>    
-                                <div class="col-lg-8 col-sm-8 col-8">
-                                    <strong class="text-info">System</strong>
-                                    <div>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    </div>
-                                    <small class="text-warning">06.12.2020, 15:00</small>
-                                </div>    
+                                    <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                        <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{User.avt}}.png" class="w-50 rounded-circle">
+                                    </div>    
+                                    <div class="col-lg-8 col-sm-8 col-8">
+                                        <strong class="text-info">{{User.fname}} {{User.lname}}</strong>
+                                        <div>
+                                        {{contentAnnoun}}
+                                        </div>
+                                        <small class="text-warning">{{Post.pDay}}-{{Post.pMonth}}.{{Post.pYear}} {{Post.time}}</small>
+                                    </div>    
                                 </div>
                             </li>
-                            <li class="notification-box bg-gray">
-                                <div class="row">
-                                <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                    <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/logo_background.png" class="w-50 rounded-circle">
-                                </div>    
-                                <div class="col-lg-8 col-sm-8 col-8">
-                                    <strong class="text-info">System</strong>
-                                    <div>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    </div>
-                                    <small class="text-warning">06.12.2020, 15:00</small>
-                                </div>    
-                                </div>
-                            </li>
-                            <li class="notification-box">
-                                <div class="row">
-                                <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                    <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/logo_background.png" class="w-50 rounded-circle">
-                                </div>    
-                                <div class="col-lg-8 col-sm-8 col-8">
-                                    <strong class="text-info">System</strong>
-                                    <div>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    </div>
-                                    <small class="text-warning">06.12.2020, 15:00</small>
-                                </div>    
-                                </div>
-                            </li>
+                            {{/each}}
                         </ul>
                 </div>
             </li>

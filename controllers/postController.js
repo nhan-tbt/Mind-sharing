@@ -3,7 +3,7 @@ var models = require('../models/');
 var Post = models.Post;
 var User = models.User;
 var Interaction = models.pInteraction;
-var Comment = models.pComment;
+const sequelize = require('sequelize');
 
 postController.searchAllPost = function(callback){
 	Post.findAll({
@@ -32,9 +32,58 @@ postController.searchCatePost = function(cate, callback){
 	});
 };
 
-postController.createPost = function(post) {
-    Post.create(post);
+postController.searchPostWithSearch = function(key, callback){
+	Post.findAll({
+		where: {
+			[sequelize.Op.or]: [
+				{
+					UserId: {
+						[sequelize.Op.iLike]: '%' + key + '%'
+					}
+				},
+				{
+					category: {
+						[sequelize.Op.iLike]: '%' + key + '%'
+					}
+				},
+				{
+					content: {
+						[sequelize.Op.iLike]: '%' + key + '%'
+					}
+				}
+			]
+		},
+		include: [{
+			model: User,
+		},{
+			model: Interaction
+		}]
+	}).then(function(posts) {
+		callback(posts);
+	});
 };
+
+postController.searchPostWithId = function(id, callback){
+	Post.findAll({
+		where: {
+			id: id
+		},
+		include: [{
+			model: User,
+		},{
+			model: Interaction
+		}]
+	}).then(function(posts) {
+		callback(posts);
+	});
+};
+
+postController.createPost = function(post, callback) {
+	Post.create(post)
+			.then(function(annou) {
+				callback(annou);
+			});
+}
 
 postController.seachPostById = function(PostId) {
 	return new Promise ((resolve, reject) => {

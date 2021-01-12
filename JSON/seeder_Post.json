@@ -89,5 +89,25 @@
     "like": 0,
     "comment": 0,
     "category": "mathematics"
+  }, {    
+    "UserId": "admin",
+    "time": "20:44",
+    "pDay": "29",
+    "pMonth": "12",
+    "pYear": "2020",
+    "content": "This is a admin announcement",
+    "like": 2,
+    "comment": 1,
+    "category": "announ"
+  }, {    
+    "UserId": "admin",
+    "time": "20:44",
+    "pDay": "29",
+    "pMonth": "12",
+    "pYear": "2020",
+    "content": "This is a admin announcement",
+    "like": 2,
+    "comment": 1,
+    "category": "announ"
   }
 ]

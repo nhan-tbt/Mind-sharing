@@ -3,10 +3,11 @@ var router = express.Router();
 const userController = require('../controllers/userController');
 const postController = require('../controllers/postController');
 const pCommentController = require('../controllers/pCommentController');
-var pInteractionController = require('../controllers/pInteractionController');
+const pInteractionController = require('../controllers/pInteractionController');
+const AnnouController = require('../controllers/annouController');
+
 const AWS = require('aws-sdk');
 const Busboy = require('busboy');
-
 
 router.post('/get_infor_create_post', (req, res) => {
     var s3bucket = new AWS.S3({
@@ -18,6 +19,16 @@ router.post('/get_infor_create_post', (req, res) => {
     var post = {}
     post['imgPath'] = []
     var num_img = 0;
+    var today = new Date();
+        
+    post['id'] = req.app.get('last_post') + 1;
+    post['time'] = today.getHours() + ":" + today.getMinutes();
+    post['pDay'] = today.getDate();
+    post['pMonth'] = today.getMonth() + 1;
+    post['pYear'] = today.getFullYear();
+    post['UserId'] = req.app.get('currentUser');
+    post['like'] = 0;
+    post['comment'] = 0;
 
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
         if (filename != ''){
@@ -50,22 +61,42 @@ router.post('/get_infor_create_post', (req, res) => {
     });
 
     busboy.on('finish', function() {
-        var today = new Date();
-        post['id'] = req.app.get('last_post') + 1;
-        post['time'] = today.getHours() + ":" + today.getMinutes();
-        post['pDay'] = today.getDay();
-        post['pMonth'] = today.getMonth() + 1;
-        post['pYear'] = today.getFullYear();
-        post['UserId'] = req.app.get('currentUser');
-        post['like'] = 0;
-        post['comment'] = 0;
+        postController.createPost(post, function(post){
 
-        postController.createPost(post);
+            if (post.category == 'announ'){
+                var annou = {
+                    PostId: post.id,
+                    UserId: post.UserId,
+                    contentAnnoun: "Admin has posted a new announcement!"
+                }
+                AnnouController.createAnnou(annou);
+            }
+        })
 
         res.redirect('/');
     });
 
-    req.pipe(busboy);
+    const Load = async () => {
+        await req.pipe(busboy)
+
+        if (post['numImg'] == 0){
+            postController.createPost(post, function(post){
+
+                if (post.category == 'announ'){
+                    var annou = {
+                        PostId: post.id,
+                        UserId: post.UserId,
+                        contentAnnoun: "Admin has posted a new announcement!"
+                    }
+                    AnnouController.createAnnou(annou);
+                }
+            })
+
+            res.redirect('/');
+        }
+    }
+
+    Load();
 });
 
 
@@ -93,8 +124,7 @@ router.get('/category/:cate', function(req, res) {
 
     userController.searchAcc(req.app.get('currentUser'), function(this_user) {
         res.locals.user = this_user;
-        console.log(req.params.cate);
-        postController.searchCatePost(req.params.cate ,function (posts) {
+        postController.searchCatePost(req.params.cate, function(posts) {
             for (let i = 0; i < posts.length; i++) {
                 pCommentController.getCommentByPostId(posts[i].id).then(pComments => {
                     posts[i].pComments = pComments;
@@ -108,6 +138,25 @@ router.get('/category/:cate', function(req, res) {
         });
     } )
 });
+
+router.get('/search/', function(req, res) {
+    res.locals.currentUser = req.app.get('currentUser');
+    userController.searchAcc(req.app.get('currentUser'), function(this_user) {
+        res.locals.user = this_user;
+        postController.searchPostWithSearch(req.query.key, function (posts) {
+            for (let i = 0; i < posts.length; i++) {
+                pCommentController.getCommentByPostId(posts[i].id).then(pComments => {
+                    posts[i].pComments = pComments;
+                })
+            }
+            
+            res.locals.posts = posts;
+            req.app.set('last_post', posts.length);
+
+            res.render('index');
+        });
+    } )
+})
 
 router.post('/like', function(req, res) {
     postController.seachPostById(req.body.postID)
