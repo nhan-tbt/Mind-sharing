@@ -12,5 +12,10 @@ router.get('/', function (req, res) {
     });
 })
 
+router.get('/wall', function (req, res) {
+
+    res.render('user_wall');
+})
+
 
 module.exports = router;
