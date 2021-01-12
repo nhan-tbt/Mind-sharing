@@ -132,8 +132,6 @@ router.post('/unlike', function(req, res) {
 })
 
 router.post('/get_cmt_content', function(req, res) {
-    console.log('########');
-    console.log(req.body.postID);
     postController.seachPostById(req.body.postID)
     .then(post => {
         post.comment += 1;
@@ -142,8 +140,25 @@ router.post('/get_cmt_content', function(req, res) {
             UserId: req.app.get('currentUser'),
             contentCmt: req.body.content
         }
-        pCommentController.createComment(cmt);
         postController.cmtPost(post);
+        pCommentController.createComment(cmt)
+        .then(comment => {
+            var comment = {
+                quantity: post.comment,
+                id: comment.id
+            }
+            res.json(comment);
+        }
+        )
+    })
+})
+
+router.post('/delete_cmt', function(req, res) {
+    postController.seachPostById(req.body.postID)
+    .then(post => {
+        post.comment -= 1;
+        postController.cmtPost(post);
+        pCommentController.deleteComment(req.body.cmtID);
         res.json(post.comment);
     })
 })
