@@ -150,4 +150,13 @@ postController.checkInteractionByUser = function(user) {
 	})
 }
 
+postController.editPost = function(postID, content) {
+	console.log(postID, content);
+
+	Post.update(
+		{content: content},
+		{where: {id: postID}
+	}).catch();
+}
+
 module.exports = postController;

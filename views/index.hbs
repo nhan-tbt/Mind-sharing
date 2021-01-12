@@ -162,7 +162,7 @@
         </form>
 
         {{#each posts}}
-        <div class="card my-4 postsID" id="{{id}}">
+        <div class="card my-4 postsID" id="post{{id}}">
             <div class="card-header postColor">
                 <div class="row">
                     <div class="col-md-auto">
@@ -175,6 +175,16 @@
                         </a>
                         <h5>{{time}} {{pDay}}-{{pMonth}}-{{pYear}}</h5>
                     </div>
+                </div>
+            </div>
+            <div class="nav-item post_option dropdown">
+                <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <h3 id="post_option{{id}}">...</h3>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" id="report_post{{id}}">Report</a>
+                    <a class="dropdown-item" id="edit_post{{id}}">Edit</a>
                 </div>
             </div>
             <div class="card-body postContentColor">
@@ -304,6 +314,7 @@
                                 </a>
                                 <p class="card-title ml-5 contentComment">{{contentCmt}}</p>
                             </div>
+                            
                             <div class="nav-item cmt_option dropdown">
                                 <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <h3 id="cmt_option{{id}}">...</h3>
@@ -401,6 +412,72 @@
                 </script>
             </div>
         </div>
+
+        <div class="my-4 update_post" id="update_post{{id}}">
+            <div class="info">
+                <div class="card">
+                    <div class="card-header postColor">
+                        <div class="close" id="close_btn{{id}}">+</div>
+                        <h2 class="text-center">Update Post</h2>
+                    </div>
+                    <div class="card-body formColor">
+                        <div class="row">
+                            <div class="col-md-auto">
+                                <a href=""> <img src="https://mind-sharing.s3-ap-southeast-1.amazonaws.com/{{User.avt}}.png"
+                                        class="rounded-circle" style="width: 70px; height: 70px;" alt="user_img"> </a>
+                            </div>
+                            <div class="col-sm-10">
+                                <a href="" class="user_name">
+                                    <h3>{{User.fname}} {{User.lname}}</h3>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row m-3 p-2">
+                                <textarea class="form-control p-4 text-dark" id="contetn{{id}}" name="content"
+                                    placeholder="" rows="4" cols="50">{{content}}</textarea>
+                            </div>
+
+                            <div class="row m-2 justify-content-center">
+                                <button type="submit" class="btn bgColor btn-block btn-postBtn mt-3"
+                                    id="cfm_btn{{id}}">Confirm</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            if ("{{{UserId}}}" != "{{{../user.id}}}") {
+                document.getElementById('edit_post{{id}}').style.display = 'none';
+            }
+            else {
+                document.getElementById('report_post{{id}}').style.display = 'none';
+            }
+
+            document.getElementById('edit_post{{id}}').addEventListener('click', function () {
+                document.getElementById('update_post{{id}}').style.display = 'inline';
+                document.getElementById('post{{id}}').style.display = 'none';
+            })
+
+            document.getElementById('cfm_btn{{id}}').addEventListener('click', function () {
+                var postID = parseInt("{{id}}");
+                var content = document.getElementById("contetn{{id}}").value;
+                $.ajax({
+                    url: '/update_post',
+                    type: 'POST',
+                    data: { postID, content },
+                    success: result => {
+                        location.reload();
+                    }
+                },
+                )
+            })
+        </script>
+
         {{/each}}
     </div>
 </div>

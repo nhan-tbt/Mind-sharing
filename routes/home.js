@@ -225,4 +225,11 @@ router.post('/delete_cmt', function(req, res) {
     })
 })
 
+router.post('/update_post', function(req, res) {
+    console.log(req.body.postID,  req.body.content);
+
+    postController.editPost(parseInt(req.body.postID), req.body.content);
+    res.json("sucess");
+})
+
 module.exports = router;
